@@ -7,17 +7,13 @@
   <title>Kanishk Callychurn — Graphic Designer & Animator</title>
 
   <link rel="icon" type="image/png" href="./assets/images/Third-eye-trip.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body class="is-loading">
 
   <!-- =====================================================
        SPLASH / INTRO
-       1) Red background, logo pops in (scale + fade).
-       2) After a beat, whole panel slides up and off the
-          top of the viewport (curtain lift) to reveal Home.
-       See script.js -> initSplash() and style.css -> .splash
   ====================================================== -->
 
   <div class="splash" id="splash">
@@ -48,33 +44,51 @@
 
   <header class="site-header">
 
-    <a href="#home" class="brand" aria-label="Kanishk Callychurn home">
+    <a
+      href="#home"
+      class="brand"
+      aria-label="Kanishk Callychurn home"
+    >
 
       <img
         src="./assets/images/kanishk_typeface_black.png"
         alt="Kanishk"
         class="brand-logo"
       >
+
     </a>
 
+
     <nav class="main-nav" aria-label="Main navigation">
+
       <a href="#about">About</a>
       <a href="#works">Works</a>
       <a href="#contact">Contact</a>
+
     </nav>
 
   </header>
 
 
   <!-- =====================================================
-       HOME
+       MAIN
   ====================================================== -->
 
   <main>
 
-    <section id="home" class="home-section" data-theme="light">
 
-      <!-- Profile information -->
+    <!-- ===================================================
+         HOME
+    ==================================================== -->
+
+    <section
+      id="home"
+      class="home-section"
+      data-theme="light"
+    >
+
+      <!-- PROFILE -->
+
       <div class="profile-box">
 
         <div class="profile-info">
@@ -96,28 +110,41 @@
 
         </div>
 
+
+        <!-- THIRD EYE
+             Transparent PNG.
+             No black background.
+             No CSS clipping.
+        -->
+
         <div class="third-eye">
+
           <img
             src="./assets/images/Third-eye-trip.png"
             alt=""
+            class="third-eye-image"
           >
+
         </div>
 
       </div>
 
 
-      <!-- Giant logo -->
+      <!-- GIANT LOGO -->
+
       <div class="hero-logo-wrapper">
 
         <img
           src="./assets/images/kanishk_typeface_black.png"
           alt="Kanishk"
-          class="hero-logo-img">
+          class="hero-logo-img"
+        >
 
       </div>
 
 
-      <!-- Hero bottom-left -->
+      <!-- HERO DESCRIPTION -->
+
       <div class="hero-description">
 
         <p>
@@ -125,18 +152,25 @@
           visual effects work.
         </p>
 
+
         <div class="hero-actions">
 
-          <a href="#works" class="view-button">
+          <a
+            href="#works"
+            class="view-button"
+          >
             View Works
           </a>
 
+
           <div class="barcode">
+
             <svg
               class="barcode-svg"
               viewBox="0 0 150 34"
-              aria-hidden="true">
-            </svg>
+              aria-hidden="true"
+            ></svg>
+
           </div>
 
         </div>
@@ -144,28 +178,36 @@
       </div>
 
 
-      <!-- Signal -->
+      <!-- SIGNAL -->
+
       <div class="signal-box">
 
         <div class="signal-header">
+
           <span>Signal</span>
 
           <span class="signal-live">
+
             <span class="live-dot"></span>
+
             Live
+
           </span>
+
         </div>
+
 
         <canvas
           id="signal-canvas"
           width="180"
-          height="48">
-        </canvas>
+          height="48"
+        ></canvas>
 
       </div>
 
 
-      <!-- Time zones -->
+      <!-- TIME ZONES -->
+
       <div class="timezone">
 
         <div>
@@ -174,8 +216,9 @@
           <strong id="toronto-time">--:--:--</strong>
         </div>
 
+
         <div>
-          Mauritius
+          Port Louis, Mauritius
           <br>
           <strong id="mauritius-time">--:--:--</strong>
         </div>
@@ -189,7 +232,11 @@
          ABOUT
     ==================================================== -->
 
-    <section id="about" class="about-section" data-theme="light">
+    <section
+      id="about"
+      class="about-section"
+      data-theme="light"
+    >
 
       <div class="section-inner">
 
@@ -199,21 +246,25 @@
             About
           </div>
 
+
           <h1>
             Design,<br>
-            animation and<br>
-            motion.
+            animation and motion.
           </h1>
 
+
           <div class="section-rule"></div>
+
 
           <h2>
             Education
           </h2>
 
+
           <div class="education">
 
             <div class="education-item">
+
               <p>
                 Humber College | Jan 2026 – Apr 2027 |
               </p>
@@ -221,9 +272,12 @@
               <p>
                 Diploma in Advertising and Graphic Design
               </p>
+
             </div>
 
+
             <div class="education-item">
+
               <p>
                 Polytechnics Mauritius | Apr 2024 – Mar 2025 |
               </p>
@@ -231,6 +285,7 @@
               <p>
                 Certificate in IT
               </p>
+
             </div>
 
           </div>
@@ -263,7 +318,11 @@
          WORKS
     ==================================================== -->
 
-    <section id="works" class="works-section" data-theme="light">
+    <section
+      id="works"
+      class="works-section"
+      data-theme="light"
+    >
 
       <div class="section-inner">
 
@@ -281,8 +340,8 @@
         <div
           class="works-grid"
           id="works-grid"
-          aria-label="Portfolio projects">
-        </div>
+          aria-label="Portfolio projects"
+        ></div>
 
       </div>
 
@@ -297,17 +356,17 @@
       id="project-detail"
       class="project-detail"
       data-theme="dark"
-      aria-hidden="true">
+      aria-hidden="true"
+    >
 
       <div class="project-detail-inner">
 
         <button
           type="button"
           class="back-button"
-          id="back-button">
-
+          id="back-button"
+        >
           ← Back to works
-
         </button>
 
 
@@ -326,9 +385,8 @@
 
         <div
           class="project-hero"
-          id="detail-hero">
-
-        </div>
+          id="detail-hero"
+        ></div>
 
 
         <div class="project-description">
@@ -345,17 +403,17 @@
 
         <div
           class="gallery"
-          id="detail-gallery">
-        </div>
+          id="detail-gallery"
+        ></div>
 
 
         <div
           class="gallery-dots"
-          id="gallery-dots">
-        </div>
+          id="gallery-dots"
+        ></div>
 
 
-        <!-- Project footer -->
+        <!-- PROJECT FOOTER -->
 
         <footer class="project-footer">
 
@@ -363,7 +421,8 @@
 
             <img
               src="./assets/images/kanishk_typeface_white.png"
-              alt="Kanishk">
+              alt="Kanishk"
+            >
 
             <small>
               © 2026 Kanishk Callychurn. All rights reserved.
@@ -377,8 +436,8 @@
             <svg
               class="footer-barcode-svg"
               viewBox="0 0 120 34"
-              aria-hidden="true">
-            </svg>
+              aria-hidden="true"
+            ></svg>
 
           </div>
 
@@ -392,7 +451,8 @@
             <a
               href="https://instagram.com/kanishk_.c"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               @kanishk_.c
             </a>
 
@@ -413,7 +473,11 @@
          CONTACT
     ==================================================== -->
 
-    <section id="contact" class="contact-section" data-theme="dark">
+    <section
+      id="contact"
+      class="contact-section"
+      data-theme="dark"
+    >
 
       <div class="section-inner">
 
@@ -429,9 +493,11 @@
 
 
         <div class="contact-email">
+
           <a href="mailto:contact@im-kanishk.com">
             CONTACT@IM-KANISHK.COM
           </a>
+
         </div>
 
 
@@ -449,13 +515,16 @@
         </div>
 
 
+        <!-- CONTACT FOOTER -->
+
         <footer class="contact-footer">
 
           <div class="footer-logo">
 
             <img
               src="./assets/images/kanishk_typeface_white.png"
-              alt="Kanishk">
+              alt="Kanishk"
+            >
 
             <small>
               © 2026 Kanishk Callychurn. All rights reserved.
@@ -469,8 +538,8 @@
             <svg
               class="footer-barcode-svg"
               viewBox="0 0 120 34"
-              aria-hidden="true">
-            </svg>
+              aria-hidden="true"
+            ></svg>
 
           </div>
 
@@ -484,7 +553,8 @@
             <a
               href="https://instagram.com/kanishk_.c"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               @kanishk_.c
             </a>
 
@@ -503,7 +573,7 @@
   </main>
 
 
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 
 </body>
 </html>

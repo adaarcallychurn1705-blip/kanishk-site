@@ -58,15 +58,6 @@ button {
 
 /* =========================================================
    SPLASH
-   Two-stage intro:
-     1) Red panel is already on screen. The logo pops in
-        (scale + fade) a beat after load.
-     2) After the logo has held for a moment, the whole panel
-        slides straight up and off the top of the viewport
-        (like a curtain lifting), revealing Home underneath.
-   Stage 1 is driven by the .is-visible class on .splash-logo
-   (added shortly after load). Stage 2 is driven by
-   .is-hidden on .splash itself. See script.js -> initSplash().
    ========================================================= */
 
 .splash {
@@ -91,12 +82,10 @@ button {
 }
 
 .splash.is-hidden {
-    /* Slides the whole intro up and off the top of the
-       viewport, like a curtain lifting, so Home is revealed
-       underneath it rather than cross-fading into view. */
     transform: translateY(-100%);
 
     visibility: hidden;
+
     pointer-events: none;
 }
 
@@ -119,8 +108,11 @@ button {
 
     object-fit: contain;
 
-    /* Stage 1: starts hidden/small, pops up to full size. */
-    opacity: 100;
+    /*
+     * FIXED:
+     * opacity: 100 was invalid.
+     */
+    opacity: 0;
 
     transform: scale(0.75);
 
@@ -181,8 +173,6 @@ button {
         0
         var(--page-padding);
 
-    /* Above the splash (z-index 9999) so the nav and small logo
-       stay visible over the red intro, matching the wireframe. */
     z-index: 10000;
 
     display: flex;
@@ -219,8 +209,12 @@ button {
 
     height: auto;
 
-    /* Single static asset — plain image, no blend mode. Only the
-       nav text (.main-nav a below) does the automatic invert. */
+    background: transparent;
+
+    /*
+     * Automatically reacts to the background.
+     */
+    mix-blend-mode: difference;
 }
 
 
@@ -245,22 +239,14 @@ button {
 .main-nav a {
     color: #ffffff;
 
-    /* Automatic invert: white text differenced against whatever
-       is behind the fixed header reads as black on a white
-       section and white on a dark one, with no need to track
-       which section is in view. */
+    /*
+     * Difference makes the navigation automatically
+     * readable against light and dark sections.
+     */
     mix-blend-mode: difference;
 
-    transition: opacity 0.25s ease;
-}
-
-body.is-loading .main-nav a {
-    /* The splash is a saturated red, not pure black/white, so
-       difference against it produces an off color — force white
-       here instead, matching the logo, while the intro is up. */
-    color: #ffffff;
-
-    mix-blend-mode: normal;
+    transition:
+        opacity 0.25s ease;
 }
 
 .main-nav a:hover {
@@ -276,7 +262,6 @@ body.is-loading .main-nav a {
     position: relative;
 
     min-height: 100vh;
-
     min-height: 100svh;
 
     padding:
@@ -341,9 +326,19 @@ body.is-loading .main-nav a {
 
 /* =========================================================
    THIRD EYE
+   IMPORTANT:
+   - No black box
+   - No background
+   - No border
+   - No forced border-radius
+   - No overflow hidden
+   - PNG remains transparent
+   - Difference applied directly to image
    ========================================================= */
 
 .third-eye {
+    position: relative;
+
     width: 78px;
     height: 78px;
 
@@ -352,34 +347,41 @@ body.is-loading .main-nav a {
     align-items: center;
     justify-content: center;
 
-    /* Wireframe shows this as a circular badge. Cropping to a
-       circle here means the source PNG can keep a square canvas
-       (with its own black fill/transparency) without you having
-       to re-export it — this just clips it round. If the asset's
-       artwork itself doesn't reach the edges, you may still see
-       its square background peeking into the corners; in that
-       case the fix is in the image file, not here. */
-    border-radius: 50%;
+    background: transparent;
 
-    overflow: hidden;
+    border: 0;
+
+    border-radius: 0;
+
+    overflow: visible;
+
+    flex-shrink: 0;
+
+    z-index: 10;
 }
 
-.third-eye img {
+.third-eye-image {
     display: block;
 
     width: 100%;
     height: 100%;
+
+    max-width: none;
+
+    object-fit: contain;
+
+    background: transparent;
+
+    /*
+     * THIS is the requested blend mode.
+     */
+    mix-blend-mode: difference;
 }
 
 
 /* =========================================================
    HERO LOGO
    ========================================================= */
-
-/*
-   im-kanishk-wireframe.png is used directly here — no filter,
-   no swap. This section always sits on a white background.
-*/
 
 .hero-logo-wrapper {
     position: absolute;
@@ -418,8 +420,14 @@ body.is-loading .main-nav a {
 }
 
 .hero-logo-img {
-    /* Kept as a hook for sizing/animation if you want it later. */
     display: block;
+
+    background: transparent;
+
+    /*
+     * Difference applied directly to transparent PNG.
+     */
+    mix-blend-mode: difference;
 }
 
 
@@ -1021,14 +1029,21 @@ body.is-loading .main-nav a {
 }
 
 .footer-logo img {
+    display: block;
+
     width: 100px;
 
     height: auto;
 
-    /* These footers sit on the dark (#050505) project-detail /
-       contact backgrounds, so the plain white PNG is already
-       correct here — no invert needed (inverting it would turn
-       it black-on-black and make it disappear). */
+    max-width: none;
+
+    background: transparent;
+
+    /*
+     * White PNG on dark background.
+     * Do NOT use difference here.
+     */
+    mix-blend-mode: normal;
 }
 
 .footer-logo small {
@@ -1211,8 +1226,14 @@ body.is-loading .main-nav a {
    IMAGE ERROR
    ========================================================= */
 
+/*
+ * Don't fade failed images.
+ * If an image is broken, keep it visible enough for
+ * debugging instead of hiding it.
+ */
+
 .image-error {
-    opacity: 0.15;
+    opacity: 1;
 }
 
 
@@ -1240,10 +1261,6 @@ body.is-loading .main-nav a {
     .profile-box {
         top: 125px;
     }
-
-    /*
-       Smaller hero logo on tablet.
-    */
 
     .hero-logo-wrapper {
         left: var(--page-padding);
@@ -1365,16 +1382,25 @@ body.is-loading .main-nav a {
         border-radius: 12px;
     }
 
+
+    /* THIRD EYE */
+
     .third-eye {
         width: 70px;
 
         height: 70px;
+
+        background: transparent;
+
+        border: 0;
+
+        border-radius: 0;
+
+        overflow: visible;
     }
 
 
-    /* =====================================================
-       MOBILE HERO KANISHK
-       ===================================================== */
+    /* HERO */
 
     .hero-logo-wrapper {
         left: var(--page-padding);
@@ -1661,14 +1687,25 @@ body.is-loading .main-nav a {
         font-size: 9px;
     }
 
+
+    /* THIRD EYE */
+
     .third-eye {
         width: 58px;
 
         height: 58px;
+
+        background: transparent;
+
+        border: 0;
+
+        border-radius: 0;
+
+        overflow: visible;
     }
 
 
-    /* SMALL MOBILE KANISHK */
+    /* HERO */
 
     .hero-logo-wrapper {
         left: var(--page-padding);
