@@ -50,18 +50,18 @@
 
     <a href="#home" class="brand" aria-label="Kanishk Callychurn home">
 
-      <!-- White PNG on purpose — mix-blend-mode: difference (in
-           style.css) recolors this automatically against whatever
-           section is scrolled behind the fixed header:
-             - black background  -> reads white  (negative of black)
-             - white background  -> reads black  (negative of white)
-             - orange/red hatch  -> reads as its difference colour
-           so it stays legible on every section without swapping
-           images or writing per-section overrides. Same trick is
-           used on .main-nav a below. No second (black) logo file
-           is needed for the header. -->
+      <!-- Two real files, swapped by script.js (initHeader/applyHeaderTheme)
+           depending on what's behind the fixed header:
+             - white asset while the red intro is showing, or while a
+               dark section (Project Detail / Contact) is in view
+             - black asset while a light section (Home/About/Works)
+               is in view
+           data-logo-light / data-logo-dark just tell the JS which
+           file is which; the actual swap happens on .src. -->
       <img
         src="./assets/images/kanishk_typeface_white.png"
+        data-logo-light="./assets/images/kanishk_typeface_black.png"
+        data-logo-dark="./assets/images/kanishk_typeface_white.png"
         alt="Kanishk"
         class="brand-logo"
       >
@@ -119,12 +119,12 @@
       <!-- Giant logo -->
       <div class="hero-logo-wrapper">
 
-        <!-- Same single white asset used everywhere else on the
-             site (header, splash, footer). Recoloured to black
-             purely with CSS (filter: invert(1) in style.css), so
-             there's no second "black" PNG to keep in sync. -->
+        <!-- Real black asset used directly — no filter. The white
+             asset is only for dark backgrounds (splash, header on
+             dark sections); this section is always white, so the
+             black file goes straight in. -->
         <img
-          src="./assets/images/kanishk_typeface_white.png"
+          src="./assets/images/kanishk_typeface_black.png"
           alt="Kanishk"
           class="hero-logo-img">
 

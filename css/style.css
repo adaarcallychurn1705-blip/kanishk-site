@@ -181,17 +181,15 @@ button {
         0
         var(--page-padding);
 
-    z-index: 900;
+    /* Above the splash (z-index 9999) so the nav and small logo
+       stay visible over the red intro, matching the wireframe. */
+    z-index: 10000;
 
     display: flex;
 
     align-items: center;
     justify-content: space-between;
 
-    /* No background, no backdrop-filter and no opacity < 1 here —
-       any of those would break the mix-blend-mode invert trick
-       on the logo/nav below, because the blend needs to see the
-       section content directly behind it. */
     background: transparent;
 
     pointer-events: none;
@@ -221,28 +219,12 @@ button {
 
     height: auto;
 
-    /* Same single white PNG used everywhere on the site.
-       Recoloured to black by default (filter: invert(1)) since
-       Home/About/Works sit on a white background. When script.js
-       tags <body data-theme="dark"> for Project Detail / Contact,
-       the rule below removes the filter so the logo shows white
-       again.
-
-       NOTE: this used to run on mix-blend-mode: difference so one
-       asset could auto-invert against any background. That's
-       unreliable on position: fixed elements — many browsers
-       promote fixed elements to their own compositing layer,
-       which breaks the blend against whatever is scrolled
-       underneath (white-on-white renders as literal white,
-       not a blended black, and the logo disappears). Explicit
-       theme-driven color swap doesn't have that failure mode. */
-    filter: invert(1);
-
-    transition: filter 0.3s ease;
-}
-
-body[data-theme="dark"] .brand-logo {
-    filter: none;
+    /* No filter, no mix-blend-mode. script.js swaps .src between the
+       two real asset files (data-logo-light / data-logo-dark on the
+       <img> in index.html) depending on what's behind the header:
+       white asset over the red intro or a dark section, black asset
+       over a light section. Filters/blend-modes were dropped because
+       mix-blend-mode is unreliable on position: fixed elements. */
 }
 
 
@@ -267,14 +249,17 @@ body[data-theme="dark"] .brand-logo {
 .main-nav a {
     color: #050505;
 
-    /* Same reasoning as .brand-logo above: explicit theme-driven
-       color instead of mix-blend-mode, which doesn't reliably
-       blend against content behind a position: fixed header. */
+    /* Explicit theme-driven color instead of mix-blend-mode, which
+       doesn't reliably blend against content behind a position:
+       fixed header. White while the red intro is up (body.is-loading)
+       or while a dark section (Project Detail / Contact) is in view;
+       black otherwise. */
     transition:
         color 0.3s ease,
         opacity 0.25s ease;
 }
 
+body.is-loading .main-nav a,
 body[data-theme="dark"] .main-nav a {
     color: #ffffff;
 }
@@ -395,12 +380,10 @@ body[data-theme="dark"] .main-nav a {
    ========================================================= */
 
 /*
-   Only one asset is used for this logo: kanishk_typeface_white.png.
-   It's recoloured to black with `filter: invert(1)` below, instead
-   of loading a separate kanishk_typeface_black.png. Do NOT swap the
-   <img src> to the black PNG in HTML while this filter is in place —
-   black + invert(1) = white, which disappears on this section's
-   white background. Pick exactly one of the two approaches.
+   Real black asset used directly (kanishk_typeface_black.png) — no
+   filter. This section always sits on a white background, so there's
+   no need to invert anything here; the white asset is reserved for
+   dark backgrounds (splash, header over dark sections).
 */
 
 .hero-logo-wrapper {
@@ -432,11 +415,9 @@ body[data-theme="dark"] .main-nav a {
 }
 
 .hero-logo-img {
-    /* Turns the white glyph black. Because it's a plain filter
-       (not mix-blend-mode), it always renders solid black here
-       regardless of what's behind it — correct for this section,
-       which always sits on the white home background. */
-    filter: invert(1);
+    /* Real black asset — nothing to do here, kept as a hook for
+       sizing/animation if you want it later. */
+    display: block;
 }
 
 

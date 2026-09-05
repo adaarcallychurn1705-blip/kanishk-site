@@ -6,14 +6,59 @@
     "use strict";
 
     /* =======================================================
+       HEADER THEME (shared by the splash and the section
+       observer below)
+
+       There are two real logo files — a white one and a black
+       one — swapped directly via .src. No filters, no
+       mix-blend-mode.
+
+       theme "light" -> section behind the header is light
+                         (Home/About/Works)      -> black logo,
+                                                     black nav
+       theme "dark"  -> section is dark (Project Detail /
+                         Contact), OR the red intro is still
+                         showing                  -> white logo,
+                                                     white nav
+       ======================================================= */
+
+    const brandLogo = document.querySelector(".brand-logo");
+
+    function applyHeaderTheme(theme) {
+
+        document.body.setAttribute("data-theme", theme);
+
+        if (!brandLogo) {
+            return;
+        }
+
+        const nextSrc =
+            theme === "dark"
+                ? brandLogo.getAttribute("data-logo-dark")
+                : brandLogo.getAttribute("data-logo-light");
+
+        if (nextSrc && brandLogo.getAttribute("src") !== nextSrc) {
+            brandLogo.setAttribute("src", nextSrc);
+        }
+    }
+
+
+    /* =======================================================
        SPLASH
        Stage 1: red panel is already visible on load. Shortly
                 after, the logo pops in (scale + fade), driven
-                by .splash-logo.is-visible in style.css.
-       Stage 2: after the logo has held for a moment, the whole
-                panel slides up and off the top of the viewport
+                by .splash-logo.is-visible in style.css. The
+                header (small logo + nav) sits above the splash
+                the whole time and is forced to the "dark"
+                (white) theme via body.is-loading in style.css.
+       Stage 2: the panel is dismissed either by the visitor
+                (click, key press, scroll, or swipe — the
+                "scroll up" gesture) or by a timed fallback, and
+                slides up and off the top of the viewport
                 (curtain lift), driven by .splash.is-hidden.
        ======================================================= */
+
+    let dismissSplash = function () {};
 
     function initSplash() {
 
@@ -21,6 +66,7 @@
 
         if (!splash) {
             document.body.classList.remove("is-loading");
+            applyHeaderTheme("light");
             return;
         }
 
@@ -42,6 +88,16 @@
             document.body.classList.remove("is-loading");
 
             /*
+             * Home is the section right under the intro, so
+             * default the header to its theme immediately. If
+             * the visitor has already scrolled further by the
+             * time this fires, initHeader()'s own observer will
+             * correct it on the next section boundary.
+             */
+
+            applyHeaderTheme("light");
+
+            /*
              * Remove the splash completely after it has
              * finished sliding up and off the top.
              */
@@ -54,6 +110,14 @@
 
             }, 900);
         };
+
+        /*
+         * Exposed so initNavigation() can dismiss the splash
+         * immediately if the visitor clicks a nav link while
+         * it's still showing.
+         */
+
+        dismissSplash = hideSplash;
 
         /*
          * Stage 1 — pop the logo in a beat after load, so the
@@ -71,7 +135,8 @@
 
         /*
          * Stage 2 — hold on the popped-in logo, then lift the
-         * curtain into Home.
+         * curtain into Home, if the visitor hasn't already
+         * dismissed it another way.
          */
 
         window.setTimeout(hideSplash, 1900);
@@ -90,6 +155,23 @@
          */
 
         splash.addEventListener("click", hideSplash);
+
+        /*
+         * Scroll / swipe closes it too — the wireframe's
+         * "scroll up" gesture. Any wheel movement or touch drag
+         * while the splash is up counts; { once: true } means
+         * it can only fire the one time.
+         */
+
+        splash.addEventListener("wheel", hideSplash, {
+            passive: true,
+            once: true
+        });
+
+        splash.addEventListener("touchmove", hideSplash, {
+            passive: true,
+            once: true
+        });
 
         /*
          * Keyboard accessibility.
@@ -136,6 +218,14 @@
                 }
 
                 event.preventDefault();
+
+                /*
+                 * If the visitor clicks a header nav link while
+                 * the intro is still up, dismiss it first so the
+                 * scroll actually lands somewhere visible.
+                 */
+
+                dismissSplash();
 
                 target.scrollIntoView({
                     behavior: "smooth",
@@ -203,7 +293,7 @@
 
 
     /* =======================================================
-       HEADER / BACKGROUND INVERSION
+       HEADER / SECTION THEME
        ======================================================= */
 
     function initHeader() {
@@ -213,17 +303,6 @@
         if (!header) {
             return;
         }
-
-        /*
-         * CSS mix-blend-mode:difference handles the actual
-         * inversion of the logo/nav against whatever section
-         * is behind the fixed header.
-         *
-         * This observer just tags <body data-theme="..."> to
-         * match the current section, in case other elements
-         * (not covered by the blend trick) need to react to
-         * light vs. dark sections later.
-         */
 
         const sections = document.querySelectorAll(
             "section[data-theme]"
@@ -240,6 +319,20 @@
         const observer = new IntersectionObserver(
             function (entries) {
 
+                /*
+                 * While the red intro is still up, the header is
+                 * pinned to the "dark" (white) theme by
+                 * body.is-loading in style.css regardless of what
+                 * this observer thinks the underlying section is —
+                 * so skip updating applyHeaderTheme() until the
+                 * splash has been dismissed, or it would flip the
+                 * header black while it's still sitting on red.
+                 */
+
+                if (document.body.classList.contains("is-loading")) {
+                    return;
+                }
+
                 entries.forEach(function (entry) {
 
                     if (!entry.isIntersecting) {
@@ -249,10 +342,7 @@
                     const theme =
                         entry.target.getAttribute("data-theme");
 
-                    document.body.setAttribute(
-                        "data-theme",
-                        theme || "light"
-                    );
+                    applyHeaderTheme(theme || "light");
 
                 });
 
@@ -412,6 +502,8 @@
             document.body.classList.remove(
                 "is-loading"
             );
+
+            applyHeaderTheme("light");
 
             window.setTimeout(function () {
 
