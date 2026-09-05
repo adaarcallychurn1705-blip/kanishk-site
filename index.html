@@ -10,30 +10,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="is-loading">
-
-  <!-- =====================================================
-       SPLASH / INTRO
-       1) Red background, logo pops in (scale + fade).
-       2) After a beat, whole panel slides up and off the
-          top of the viewport (curtain lift) to reveal Home.
-       See script.js -> initSplash() and style.css -> .splash
-  ====================================================== -->
-
-  <div class="splash" id="splash">
-
-    <div class="splash-inner">
-
-      <img
-        src="./assets/images/kanishk_typeface_white.png"
-        alt="Kanishk"
-        class="splash-logo"
-      >
-
-    </div>
-
-  </div>
-
+<body>
 
   <!-- =====================================================
        LEFT HATCH
@@ -81,6 +58,30 @@
   ====================================================== -->
 
   <main>
+
+    <!-- =====================================================
+         INTRO
+         A normal first section in the page, not a fixed
+         overlay. Its logo is sized and positioned to line up
+         with Home's hero logo directly below it, so scrolling
+         from Intro into Home reads as one continuous logo
+         changing from white-on-red to black-on-white right at
+         the seam between the two sections.
+    ====================================================== -->
+
+    <section id="intro" class="intro-section" data-theme="dark" aria-label="Intro">
+
+      <div class="intro-logo-wrapper">
+
+        <img
+          src="./assets/images/kanishk_typeface_white.png"
+          alt="Kanishk"
+          class="intro-logo-img">
+
+      </div>
+
+    </section>
+
 
     <section id="home" class="home-section" data-theme="light">
 

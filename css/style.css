@@ -57,82 +57,59 @@ button {
 
 
 /* =========================================================
-   SPLASH
-   Two-stage intro:
-     1) Red panel is already on screen. The logo pops in
-        (scale + fade) a beat after load.
-     2) After the logo has held for a moment, the whole panel
-        slides straight up and off the top of the viewport
-        (like a curtain lifting), revealing Home underneath.
-   Stage 1 is driven by the .is-visible class on .splash-logo
-   (added shortly after load). Stage 2 is driven by
-   .is-hidden on .splash itself. See script.js -> initSplash().
+   INTRO
+   A normal first section in the page — not a fixed overlay.
+   The visitor lands on the red panel and simply scrolls or
+   swipes the page the ordinary way to move into Home
+   underneath it (no timers, no forced "curtain lift").
+
+   The logo here is deliberately given the exact same size,
+   left offset, and vertical centering as Home's
+   .hero-logo-wrapper directly below it. Since Intro and Home
+   are both full-height sections stacked in normal flow, that
+   shared geometry means the moment the visitor scrolls past
+   the seam between them, the red-background/white-logo half
+   and the white-background/black-logo half line up as one
+   continuous wordmark rather than two unrelated logos.
    ========================================================= */
 
-.splash {
-    position: fixed;
+.intro-section {
+    position: relative;
 
-    inset: 0;
+    min-height: 100vh;
 
-    z-index: 9999;
+    min-height: 100svh;
 
     background: var(--splash-red);
     color: #ffffff;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transform: translateY(0);
-
-    transition:
-        transform 0.8s var(--ease),
-        visibility 0s linear 0.8s;
+    overflow: hidden;
 }
 
-.splash.is-hidden {
-    /* Slides the whole intro up and off the top of the
-       viewport, like a curtain lifting, so Home is revealed
-       underneath it rather than cross-fading into view. */
-    transform: translateY(-100%);
+.intro-logo-wrapper {
+    /* Same position/size recipe as .hero-logo-wrapper below —
+       keep the two in sync if you ever resize one. */
+    position: absolute;
 
-    visibility: hidden;
-    pointer-events: none;
+    left: var(--page-padding);
+
+    top: 47%;
+
+    width: min(570px, 48vw);
+
+    transform: translateY(-50%);
 }
 
-.splash-inner {
-    width: 100%;
-
-    padding: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.splash-logo {
+.intro-logo-wrapper img {
     display: block;
 
-    width: min(520px, 75vw);
+    width: 100%;
 
     height: auto;
 
+    max-width: 570px;
+
     object-fit: contain;
-
-    /* Stage 1: starts hidden/small, pops up to full size. */
-    opacity: 100;
-
-    transform: scale(0.75);
-
-    transition:
-        opacity 0.55s var(--ease),
-        transform 0.55s var(--ease);
-}
-
-.splash-logo.is-visible {
-    opacity: 1;
-
-    transform: scale(1);
 }
 
 
@@ -251,15 +228,13 @@ button {
 
     /* Explicit theme-driven color instead of mix-blend-mode, which
        doesn't reliably blend against content behind a position:
-       fixed header. White while the red intro is up (body.is-loading)
-       or while a dark section (Project Detail / Contact) is in view;
-       black otherwise. */
+       fixed header. White while a dark section (Intro / Project
+       Detail / Contact) is in view; black otherwise. */
     transition:
         color 0.3s ease,
         opacity 0.25s ease;
 }
 
-body.is-loading .main-nav a,
 body[data-theme="dark"] .main-nav a {
     color: #ffffff;
 }
@@ -1243,7 +1218,8 @@ body[data-theme="dark"] .main-nav a {
        Smaller hero logo on tablet.
     */
 
-    .hero-logo-wrapper {
+    .hero-logo-wrapper,
+    .intro-logo-wrapper {
         left: var(--page-padding);
 
         width: min(500px, 55vw);
@@ -1310,18 +1286,24 @@ body[data-theme="dark"] .main-nav a {
     }
 
 
-    /* SPLASH */
+    /* INTRO */
 
-    .splash-inner {
-        padding: 20px;
-    }
+    .intro-logo-wrapper {
+        left: var(--page-padding);
 
-    .splash-logo {
-        width: 82vw;
+        top: 45%;
+
+        width: 72vw;
 
         max-width: none;
 
-        max-height: 45vh;
+        transform: translateY(-50%);
+    }
+
+    .intro-logo-wrapper img {
+        width: 100%;
+
+        height: auto;
     }
 
 
@@ -1662,7 +1644,8 @@ body[data-theme="dark"] .main-nav a {
 
     /* SMALL MOBILE KANISHK */
 
-    .hero-logo-wrapper {
+    .hero-logo-wrapper,
+    .intro-logo-wrapper {
         left: var(--page-padding);
 
         top: 44%;
@@ -1672,7 +1655,8 @@ body[data-theme="dark"] .main-nav a {
         padding: 0;
     }
 
-    .hero-logo-wrapper img {
+    .hero-logo-wrapper img,
+    .intro-logo-wrapper img {
         width: 100%;
 
         height: auto;
@@ -1727,13 +1711,5 @@ body[data-theme="dark"] .main-nav a {
         opacity: 1;
 
         transform: none;
-    }
-
-    .splash-logo {
-        opacity: 1;
-
-        transform: none;
-
-        transition: none;
     }
 }
