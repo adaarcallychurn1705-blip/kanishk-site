@@ -221,15 +221,28 @@ button {
 
     height: auto;
 
-    /* Auto-inverts against whatever section is scrolled
-       underneath the fixed header, on EVERY page/section:
-         - white section  -> renders black  (negative of white)
-         - black section  -> renders white  (negative of black)
-         - orange hatch   -> renders as the difference colour,
-                             so it never disappears into it either
-       No need for a second black logo file — same white PNG
-       is reused everywhere. */
-    mix-blend-mode: difference;
+    /* Same single white PNG used everywhere on the site.
+       Recoloured to black by default (filter: invert(1)) since
+       Home/About/Works sit on a white background. When script.js
+       tags <body data-theme="dark"> for Project Detail / Contact,
+       the rule below removes the filter so the logo shows white
+       again.
+
+       NOTE: this used to run on mix-blend-mode: difference so one
+       asset could auto-invert against any background. That's
+       unreliable on position: fixed elements — many browsers
+       promote fixed elements to their own compositing layer,
+       which breaks the blend against whatever is scrolled
+       underneath (white-on-white renders as literal white,
+       not a blended black, and the logo disappears). Explicit
+       theme-driven color swap doesn't have that failure mode. */
+    filter: invert(1);
+
+    transition: filter 0.3s ease;
+}
+
+body[data-theme="dark"] .brand-logo {
+    filter: none;
 }
 
 
@@ -252,16 +265,18 @@ button {
 }
 
 .main-nav a {
-    color: #ffffff;
+    color: #050505;
 
-    /* Same auto-invert trick as the logo, so the nav text
-       stays legible no matter which section is behind it:
-         - white section -> reads black
-         - black section -> reads white */
-    mix-blend-mode: difference;
-
+    /* Same reasoning as .brand-logo above: explicit theme-driven
+       color instead of mix-blend-mode, which doesn't reliably
+       blend against content behind a position: fixed header. */
     transition:
+        color 0.3s ease,
         opacity 0.25s ease;
+}
+
+body[data-theme="dark"] .main-nav a {
+    color: #ffffff;
 }
 
 .main-nav a:hover {
@@ -345,13 +360,22 @@ button {
    ========================================================= */
 
 .third-eye {
-    width: 85px;
+    width: 78px;
     height: 78px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
+
+    /* Wireframe shows this as a circular badge. Cropping to a
+       circle here means the source PNG can keep a square canvas
+       (with its own black fill/transparency) without you having
+       to re-export it — this just clips it round. If the asset's
+       artwork itself doesn't reach the edges, you may still see
+       its square background peeking into the corners; in that
+       case the fix is in the image file, not here. */
+    border-radius: 50%;
 
     overflow: hidden;
 }
@@ -1355,7 +1379,7 @@ button {
     .third-eye {
         width: 70px;
 
-        height: 64px;
+        height: 70px;
     }
 
 
@@ -1651,7 +1675,7 @@ button {
     .third-eye {
         width: 58px;
 
-        height: 54px;
+        height: 58px;
     }
 
 
