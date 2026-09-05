@@ -9,37 +9,18 @@
        HEADER THEME (shared by the splash and the section
        observer below)
 
-       There are two real logo files — a white one and a black
-       one — swapped directly via .src. No filters, no
-       mix-blend-mode.
-
        theme "light" -> section behind the header is light
-                         (Home/About/Works)      -> black logo,
-                                                     black nav
+                         (Home/About/Works) -> black nav
        theme "dark"  -> section is dark (Project Detail /
                          Contact), OR the red intro is still
-                         showing                  -> white logo,
-                                                     white nav
+                         showing                  -> white nav
+
+       Note: the brand logo is a single static image (no
+       black/white swap) and does not react to this theme.
        ======================================================= */
 
-    const brandLogo = document.querySelector(".brand-logo");
-
     function applyHeaderTheme(theme) {
-
         document.body.setAttribute("data-theme", theme);
-
-        if (!brandLogo) {
-            return;
-        }
-
-        const nextSrc =
-            theme === "dark"
-                ? brandLogo.getAttribute("data-logo-dark")
-                : brandLogo.getAttribute("data-logo-light");
-
-        if (nextSrc && brandLogo.getAttribute("src") !== nextSrc) {
-            brandLogo.setAttribute("src", nextSrc);
-        }
     }
 
 
@@ -326,7 +307,7 @@
                  * this observer thinks the underlying section is —
                  * so skip updating applyHeaderTheme() until the
                  * splash has been dismissed, or it would flip the
-                 * header black while it's still sitting on red.
+                 * nav color while it's still sitting on red.
                  */
 
                 if (document.body.classList.contains("is-loading")) {

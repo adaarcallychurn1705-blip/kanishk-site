@@ -219,12 +219,10 @@ button {
 
     height: auto;
 
-    /* No filter, no mix-blend-mode. script.js swaps .src between the
-       two real asset files (data-logo-light / data-logo-dark on the
-       <img> in index.html) depending on what's behind the header:
-       white asset over the red intro or a dark section, black asset
-       over a light section. Filters/blend-modes were dropped because
-       mix-blend-mode is unreliable on position: fixed elements. */
+    /* Single static asset — no swap logic. This sits over both
+       light and dark sections since the header is position:
+       fixed, so pick a version that reads well enough across
+       both if you revisit this later. */
 }
 
 
@@ -378,10 +376,8 @@ body[data-theme="dark"] .main-nav a {
    ========================================================= */
 
 /*
-   Real black asset used directly (kanishk_typeface_black.png) — no
-   filter. This section always sits on a white background, so there's
-   no need to invert anything here; the white asset is reserved for
-   dark backgrounds (splash, header over dark sections).
+   im-kanishk-wireframe.png is used directly here — no filter,
+   no swap. This section always sits on a white background.
 */
 
 .hero-logo-wrapper {
@@ -413,8 +409,7 @@ body[data-theme="dark"] .main-nav a {
 }
 
 .hero-logo-img {
-    /* Real black asset — nothing to do here, kept as a hook for
-       sizing/animation if you want it later. */
+    /* Kept as a hook for sizing/animation if you want it later. */
     display: block;
 }
 
