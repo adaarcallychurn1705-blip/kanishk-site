@@ -57,60 +57,43 @@ button {
 
 
 /* =========================================================
-   SPLASH
-   Two-stage intro:
-     1) Red panel is already on screen. The logo pops in
-        (scale + fade) a beat after load.
-     2) After the logo has held for a moment, the whole panel
-        slides straight up and off the top of the viewport
-        (like a curtain lifting), revealing Home underneath.
-   Stage 1 is driven by the .is-visible class on .splash-logo
-   (added shortly after load). Stage 2 is driven by
-   .is-hidden on .splash itself. See script.js -> initSplash().
+   INTRO
+   A normal first section in the page — not a fixed overlay.
+   The visitor lands here, sees the red panel and the logo,
+   and simply scrolls/swipes the page the ordinary way to
+   move on to Home underneath it. No timers, no forced
+   "curtain lift": the section just scrolls out of view like
+   any other section on the page.
    ========================================================= */
 
-.splash {
-    position: fixed;
+.intro-section {
+    position: relative;
 
-    inset: 0;
+    min-height: 100vh;
 
-    z-index: 9999;
+    min-height: 100svh;
 
     background: var(--splash-red);
     color: #ffffff;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
-
-    transform: translateY(0);
-
-    transition:
-        transform 0.8s var(--ease),
-        visibility 0s linear 0.8s;
 }
 
-.splash.is-hidden {
-    /* Slides the whole intro up and off the top of the
-       viewport, like a curtain lifting, so Home is revealed
-       underneath it rather than cross-fading into view. */
-    transform: translateY(-100%);
-
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.splash-inner {
+.intro-inner {
     width: 100%;
 
     padding: 40px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 }
 
-.splash-logo {
+.intro-logo {
     display: block;
 
     width: min(520px, 75vw);
@@ -118,21 +101,56 @@ button {
     height: auto;
 
     object-fit: contain;
-
-    /* Stage 1: starts hidden/small, pops up to full size. */
-    opacity: 0;
-
-    transform: scale(0.75);
-
-    transition:
-        opacity 0.55s var(--ease),
-        transform 0.55s var(--ease);
 }
 
-.splash-logo.is-visible {
-    opacity: 1;
 
-    transform: scale(1);
+/* =========================================================
+   SCROLL CUE
+   Small hint at the bottom of Intro inviting the visitor to
+   keep scrolling into Home. Purely decorative — it has no
+   click handler, it's just a nudge.
+   ========================================================= */
+
+.scroll-cue {
+    position: absolute;
+
+    left: 50%;
+    bottom: 40px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+
+    opacity: 0.75;
+}
+
+.scroll-cue-arrow {
+    animation: scroll-cue-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes scroll-cue-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(6px);
+    }
+
 }
 
 
@@ -181,8 +199,6 @@ button {
         0
         var(--page-padding);
 
-    /* Above the splash (z-index 9999) so the nav and small logo
-       stay visible over the red intro, matching the wireframe. */
     z-index: 10000;
 
     display: flex;
@@ -222,9 +238,10 @@ button {
     /* No filter, no mix-blend-mode. script.js swaps .src between the
        two real asset files (data-logo-light / data-logo-dark on the
        <img> in index.html) depending on what's behind the header:
-       white asset over the red intro or a dark section, black asset
-       over a light section. Filters/blend-modes were dropped because
-       mix-blend-mode is unreliable on position: fixed elements. */
+       white asset over a dark section (Intro / Project Detail /
+       Contact), black asset over a light section. Filters/blend-modes
+       were dropped because mix-blend-mode is unreliable on
+       position: fixed elements. */
 }
 
 
@@ -251,15 +268,13 @@ button {
 
     /* Explicit theme-driven color instead of mix-blend-mode, which
        doesn't reliably blend against content behind a position:
-       fixed header. White while the red intro is up (body.is-loading)
-       or while a dark section (Project Detail / Contact) is in view;
-       black otherwise. */
+       fixed header. White while a dark section (Intro / Project
+       Detail / Contact) is in view; black otherwise. */
     transition:
         color 0.3s ease,
         opacity 0.25s ease;
 }
 
-body.is-loading .main-nav a,
 body[data-theme="dark"] .main-nav a {
     color: #ffffff;
 }
@@ -353,13 +368,6 @@ body[data-theme="dark"] .main-nav a {
     align-items: center;
     justify-content: center;
 
-    /* Wireframe shows this as a circular badge. Cropping to a
-       circle here means the source PNG can keep a square canvas
-       (with its own black fill/transparency) without you having
-       to re-export it — this just clips it round. If the asset's
-       artwork itself doesn't reach the edges, you may still see
-       its square background peeking into the corners; in that
-       case the fix is in the image file, not here. */
     border-radius: 50%;
 
     overflow: hidden;
@@ -378,13 +386,6 @@ body[data-theme="dark"] .main-nav a {
 /* =========================================================
    HERO LOGO
    ========================================================= */
-
-/*
-   Real black asset used directly (kanishk_typeface_black.png) — no
-   filter. This section always sits on a white background, so there's
-   no need to invert anything here; the white asset is reserved for
-   dark backgrounds (splash, header over dark sections).
-*/
 
 .hero-logo-wrapper {
     position: absolute;
@@ -415,8 +416,6 @@ body[data-theme="dark"] .main-nav a {
 }
 
 .hero-logo-img {
-    /* Real black asset — nothing to do here, kept as a hook for
-       sizing/animation if you want it later. */
     display: block;
 }
 
@@ -1310,13 +1309,13 @@ body[data-theme="dark"] .main-nav a {
     }
 
 
-    /* SPLASH */
+    /* INTRO */
 
-    .splash-inner {
+    .intro-inner {
         padding: 20px;
     }
 
-    .splash-logo {
+    .intro-logo {
         width: 82vw;
 
         max-width: none;
@@ -1729,11 +1728,7 @@ body[data-theme="dark"] .main-nav a {
         transform: none;
     }
 
-    .splash-logo {
-        opacity: 1;
-
-        transform: none;
-
-        transition: none;
+    .scroll-cue-arrow {
+        animation: none;
     }
 }
