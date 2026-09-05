@@ -6,92 +6,165 @@
 
   <title>Kanishk Callychurn — Graphic Designer & Animator</title>
 
+  <link rel="icon" type="image/png" href="images/Third-eye-trip.png">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+  <!-- =====================================================
+       SPLASH / INTRO
+  ====================================================== -->
+
+  <div class="splash" id="splash">
+    <div class="splash-inner">
+      <img
+        src="images/kanishk_typeface_white.png"
+        alt="Kanishk"
+        class="splash-logo"
+      >
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       LEFT HATCH
+  ====================================================== -->
+
   <div class="hatch" aria-hidden="true"></div>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
 
-  <header>
-    <a href="#home" class="brand-link">
-     <img src="kanishk_typeface_black.png" alt="Kanishk" class="wordmark">
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="site-header">
+
+    <a href="#home" class="brand">
+      <img
+        src="images/kanishk_typeface_black.png"
         alt="Kanishk"
-        class="wordmark"
+        class="brand-logo brand-logo-black"
+      >
+
+      <img
+        src="images/kanishk_typeface_white.png"
+        alt="Kanishk"
+        class="brand-logo brand-logo-white"
       >
     </a>
 
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#works">Works</a></li>
-        <li><a href="#contact">Contact</a></li>
-
-      </ul>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
     </nav>
+
   </header>
 
 
-  <!-- =========================
+  <!-- =====================================================
        HOME
-  ========================== -->
+  ====================================================== -->
 
-  <section id="home">
+  <main>
 
-    <div class="hero-top">
+    <section id="home" class="home-section">
 
-      <img
-        src="kanishk_typeface_black.png"
-        alt="Kanishk"
-        class="hero-logo"
-      >
+      <!-- Profile information -->
+      <div class="profile-box">
 
-      <div class="meta-box" aria-label="Profile summary">
+        <div class="profile-info">
 
-        <div>
-          <span>Role</span>
-          <span>Graphic Designer</span>
+          <div class="profile-row">
+            <span>Role</span>
+            <span>Graphic Designer</span>
+          </div>
+
+          <div class="profile-row">
+            <span>Based</span>
+            <span>Mauritius</span>
+          </div>
+
+          <div class="profile-row">
+            <span>Since</span>
+            <span>2021</span>
+          </div>
+
         </div>
 
-        <div>
-          <span>Based</span>
-          <span>Toronto, Canada</span>
-        </div>
-
-        <div>
-          <span>Since</span>
-          <span>2021</span>
+        <div class="third-eye">
+          <img
+            src="images/Third-eye-trip.png"
+            alt=""
+          >
         </div>
 
       </div>
 
-    </div>
+
+      <!-- Giant logo -->
+      <div class="hero-logo-wrapper">
+
+        <img
+          src="images/kanishk_typeface_black.png"
+          alt="Kanishk"
+          class="hero-logo"
+        >
+
+      </div>
 
 
-    <div class="hero-bottom">
+      <!-- Hero bottom-left -->
+      <div class="hero-description">
 
-      <div>
-
-        <p class="tagline">
-          Portfolio of graphic design, animation, and visual effects work, donne fess.
+        <p>
+          Portfolio of graphic design, animation, and
+          visual effects work.
         </p>
 
-        <button
-          class="view-works-btn"
-          type="button"
-          onclick="document.getElementById('works').scrollIntoView({ behavior: 'smooth' })"
-        >
-          View Works
-        </button>
+        <div class="hero-actions">
+
+          <a href="#works" class="view-button">
+            View Works
+          </a>
+
+          <div class="barcode">
+            <svg
+              class="barcode-svg"
+              viewBox="0 0 150 34"
+              aria-hidden="true">
+            </svg>
+          </div>
+
+        </div>
 
       </div>
 
 
-      <div class="clocks">
+      <!-- Signal -->
+      <div class="signal-box">
+
+        <div class="signal-header">
+          <span>Signal</span>
+
+          <span class="signal-live">
+            <span class="live-dot"></span>
+            Live
+          </span>
+        </div>
+
+        <canvas
+          id="signal-canvas"
+          width="180"
+          height="48">
+        </canvas>
+
+      </div>
+
+
+      <!-- Time zones -->
+      <div class="timezone">
 
         <div>
           Toronto, ON, Canada
@@ -107,205 +180,325 @@
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================
-       ABOUT
-  ========================== -->
+    <!-- ===================================================
+         ABOUT
+    ==================================================== -->
 
-  <section id="about">
+    <section id="about" class="about-section">
 
-    <h2>
-      Design, animation, and motion.
-    </h2>
+      <div class="section-inner">
 
-    <div>
+        <div class="about-title-column">
 
-      <p>
-        A multidisciplinary graphic designer and animator with a strong focus
-        on 2D/3D animation and visual effects. I work at the intersection of
-        creativity and technology, transforming ideas into visually compelling
-        digital experiences that communicate meaning and emotion. My approach
-        is centered on combining artistic creativity with technical precision
-        to produce engaging and purposeful visual work.
-      </p>
-
-
-      <div class="edu-list">
-
-        <div class="edu-item">
-
-          <div class="school">
-            Humber College
+          <div class="small-heading">
+            About
           </div>
 
-          <div class="when">
-            Jan 2026 – Apr 2027 · Diploma in Advertising and Graphic Design
+          <h1>
+            Design,<br>
+            animation and<br>
+            motion.
+          </h1>
+
+          <div class="section-rule"></div>
+
+          <h2>
+            Education
+          </h2>
+
+          <div class="education">
+
+            <div class="education-item">
+              <p>
+                Humber College | Jan 2026 – Apr 2027 |
+              </p>
+
+              <p>
+                Diploma in Advertising and Graphic Design
+              </p>
+            </div>
+
+            <div class="education-item">
+              <p>
+                Polytechnics Mauritius | Apr 2024 – Mar 2025 |
+              </p>
+
+              <p>
+                Certificate in IT
+              </p>
+            </div>
+
           </div>
 
         </div>
 
 
-        <div class="edu-item">
+        <div class="about-copy">
 
-          <div class="school">
-            Polytechnics Mauritius
-          </div>
-
-          <div class="when">
-            Apr 2024 – Mar 2025 · Certificate in IT
-          </div>
+          <p>
+            A multidisciplinary graphic designer and animator
+            with a strong focus on 2D/3D animation and visual
+            effects. I work at the intersection of creativity
+            and technology, transforming ideas into visually
+            compelling digital experiences that communicate
+            meaning and emotion. My approach is centered on
+            combining artistic creativity with technical
+            precision to produce engaging and purposeful
+            visual work.
+          </p>
 
         </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================
-       WORKS
-  ========================== -->
+    <!-- ===================================================
+         WORKS
+    ==================================================== -->
 
-  <section id="works">
+    <section id="works" class="works-section">
 
-    <h2>Works</h2>
+      <div class="section-inner">
 
-    <div class="carousel-wrap">
+        <div class="works-heading">
 
-      <div
-        class="carousel"
-        id="carousel"
-        aria-label="Portfolio works"
-      ></div>
+          <h2>
+            Works
+          </h2>
+
+          <div class="orange-hatch"></div>
+
+        </div>
 
 
-      <div class="carousel-nav">
-
-        <button
-          type="button"
-          aria-label="Previous projects"
-          onclick="scrollCarousel(-1)"
-        >
-          &larr;
-        </button>
-
-        <button
-          type="button"
-          aria-label="Next projects"
-          onclick="scrollCarousel(1)"
-        >
-          &rarr;
-        </button>
+        <div
+          class="works-grid"
+          id="works-grid"
+          aria-label="Portfolio projects">
+        </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================
-       SHOWS
-  ========================== -->
+    <!-- ===================================================
+         PROJECT DETAIL
+    ==================================================== -->
 
-  <section id="shows">
+    <section
+      id="project-detail"
+      class="project-detail"
+      aria-hidden="true">
 
-    <h2>Shows</h2>
+      <div class="project-detail-inner">
 
-    <p class="shows-intro">
-      Selected visual work, motion pieces, and creative projects.
-    </p>
+        <button
+          type="button"
+          class="back-button"
+          id="back-button">
 
-  </section>
+          ← Back to works
 
-
-  <!-- =========================
-       CONTACT
-  ========================== -->
-
-  <section id="contact">
-
-    <h2>
-      Drop me a Hello
-    </h2>
-
-    <p>
-      Have a project in mind or want to collaborate?
-      I'd love to hear from you.
-    </p>
+        </button>
 
 
-    <div class="contact-links">
+        <div class="project-heading">
 
-      <a href="mailto:contact@im-kanishk.com">
-        contact@im-kanishk.com
-      </a>
+          <h1 id="detail-title">
+            BMW - SPEC AD
+          </h1>
 
-      <a
-        href="https://instagram.com/kanishk_.c"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        @kanishk_.c
-      </a>
+          <p id="detail-category">
+            3D Animation
+          </p>
 
-    </div>
+        </div>
 
 
-    <footer>
-      &copy; 2026 Kanishk Callychurn.
-      All rights reserved.
-      Toronto, ON, Canada
-    </footer>
+        <div
+          class="project-hero"
+          id="detail-hero">
 
-  </section>
+        </div>
 
 
-  <!-- =========================
-       PROJECT DETAIL OVERLAY
-  ========================== -->
+        <div class="project-description">
 
-  <div
-    class="detail"
-    id="detail"
-    aria-hidden="true"
-  >
+          <p id="detail-description"></p>
 
-    <button
-      class="back-btn"
-      type="button"
-      onclick="closeDetail()"
-    >
-      &larr; Back to works
-    </button>
+        </div>
 
 
-    <h3 id="detail-title"></h3>
-
-    <div
-      class="cat"
-      id="detail-cat"
-    ></div>
-
-    <p id="detail-desc"></p>
-
-    <div
-      class="gallery"
-      id="detail-gallery"
-    ></div>
-
-  </div>
+        <h2 class="gallery-title">
+          Gallery
+        </h2>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+        <div
+          class="gallery"
+          id="detail-gallery">
+        </div>
+
+
+        <div
+          class="gallery-dots"
+          id="gallery-dots">
+        </div>
+
+
+        <!-- Project footer -->
+
+        <footer class="project-footer">
+
+          <div class="footer-logo">
+
+            <img
+              src="images/kanishk_typeface_white.png"
+              alt="Kanishk">
+
+            <small>
+              © 2026 Kanishk Callychurn. All rights reserved.
+            </small>
+
+          </div>
+
+
+          <div class="footer-barcode">
+
+            <svg
+              class="footer-barcode-svg"
+              viewBox="0 0 120 34"
+              aria-hidden="true">
+            </svg>
+
+          </div>
+
+
+          <div class="footer-contact">
+
+            <a href="mailto:contact@im-kanishk.com">
+              contact@im-kanishk.com
+            </a>
+
+            <a
+              href="https://instagram.com/kanishk_.c"
+              target="_blank"
+              rel="noopener noreferrer">
+              @kanishk_.c
+            </a>
+
+            <span>
+              Toronto, ON, Canada
+            </span>
+
+          </div>
+
+        </footer>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         CONTACT
+    ==================================================== -->
+
+    <section id="contact" class="contact-section">
+
+      <div class="section-inner">
+
+        <div class="contact-heading">
+
+          <h1>
+            Drop Me a Hello
+          </h1>
+
+          <div class="orange-hatch"></div>
+
+        </div>
+
+
+        <div class="contact-email">
+          <a href="mailto:contact@im-kanishk.com">
+            CONTACT@IM-KANISHK.COM
+          </a>
+        </div>
+
+
+        <div class="contact-copy">
+
+          <h2>
+            Let’s Work Together
+          </h2>
+
+          <p>
+            Have a project in mind or want to collaborate?
+            I’d love to hear from you.
+          </p>
+
+        </div>
+
+
+        <footer class="contact-footer">
+
+          <div class="footer-logo">
+
+            <img
+              src="images/kanishk_typeface_white.png"
+              alt="Kanishk">
+
+            <small>
+              © 2026 Kanishk Callychurn. All rights reserved.
+            </small>
+
+          </div>
+
+
+          <div class="footer-barcode">
+
+            <svg
+              class="footer-barcode-svg"
+              viewBox="0 0 120 34"
+              aria-hidden="true">
+            </svg>
+
+          </div>
+
+
+          <div class="footer-contact">
+
+            <a href="mailto:contact@im-kanishk.com">
+              contact@im-kanishk.com
+            </a>
+
+            <a
+              href="https://instagram.com/kanishk_.c"
+              target="_blank"
+              rel="noopener noreferrer">
+              @kanishk_.c
+            </a>
+
+            <span>
+              Toronto, ON, Canada
+            </span>
+
+          </div>
+
+        </footer>
+
+      </div>
+
+    </section>
+
+  </main>
+
 
   <script src="script.js"></script>
 
