@@ -7,8 +7,8 @@
     --header-height: 80px;
 
     --black: #050505;
-    --white: #ffffff;
-    --orange: #ff5a00;
+    --white: #ff0000;
+    --orange: #ff0000;
 
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -77,11 +77,18 @@ button {
 
     transition:
         opacity 0.8s var(--ease),
+        transform 0.8s var(--ease),
         visibility 0.8s ease;
 }
 
 .splash.is-hidden {
     opacity: 0;
+
+    /* Slides the whole intro up and off the top of the
+       viewport, like a curtain lifting, instead of just
+       fading in place. */
+    transform: translateY(-100%);
+
     visibility: hidden;
     pointer-events: none;
 }
@@ -185,6 +192,12 @@ button {
     width: 100%;
 
     height: auto;
+
+    /* Auto-inverts against whatever section is scrolled
+       underneath the fixed header: white PNG -> renders
+       black on a white section, white on a black section,
+       and an inverted tone on anything else (e.g. orange). */
+    mix-blend-mode: difference;
 }
 
 
@@ -207,6 +220,12 @@ button {
 }
 
 .main-nav a {
+    color: #ffffff;
+
+    /* Same auto-invert trick as the logo, so the nav text
+       stays legible no matter which section is behind it. */
+    mix-blend-mode: difference;
+
     transition:
         opacity 0.25s ease;
 }
