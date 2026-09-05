@@ -1,811 +1,405 @@
 /* =========================================================
-   KANISHK CALlychurn PORTFOLIO
-   SCRIPT
-========================================================= */
+   KANISHK CALLYCHURN — PORTFOLIO SCRIPT
+   ========================================================= */
 
+(function () {
+    "use strict";
 
-/* =========================================================
-   SPLASH
-========================================================= */
+    /* =======================================================
+       SPLASH
+       ======================================================= */
 
-window.addEventListener("load", function () {
+    function initSplash() {
 
-  const splash = document.getElementById("splash");
+        const splash = document.getElementById("splash");
 
-  if (!splash) return;
-
-  const reduceMotion =
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-  const delay = reduceMotion ? 300 : 1300;
-
-  setTimeout(function () {
-
-    splash.classList.add("is-hidden");
-
-    setTimeout(function () {
-      splash.remove();
-    }, 800);
-
-  }, delay);
-
-});
-
-
-/* =========================================================
-   LIVE CLOCKS
-========================================================= */
-
-function updateClocks() {
-
-  const now = new Date();
-
-
-  const toronto = new Intl.DateTimeFormat(
-    "en-CA",
-    {
-      timeZone: "America/Toronto",
-
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-
-      hour12: false
-    }
-  ).format(now);
-
-
-  const mauritius = new Intl.DateTimeFormat(
-    "en-GB",
-    {
-      timeZone: "Indian/Mauritius",
-
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-
-      hour12: false
-    }
-  ).format(now);
-
-
-  const torontoElement =
-    document.getElementById("toronto-time");
-
-  const mauritiusElement =
-    document.getElementById("mauritius-time");
-
-
-  if (torontoElement) {
-    torontoElement.textContent = toronto;
-  }
-
-
-  if (mauritiusElement) {
-    mauritiusElement.textContent = mauritius;
-  }
-
-}
-
-
-updateClocks();
-
-setInterval(updateClocks, 1000);
-
-
-/* =========================================================
-   SIGNAL WAVEFORM
-========================================================= */
-
-function animateSignal() {
-
-  const canvas =
-    document.getElementById("signal-canvas");
-
-  if (!canvas) return;
-
-
-  const ctx = canvas.getContext("2d");
-
-  const reduceMotion =
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-
-  let time = 0;
-
-
-  function draw() {
-
-    const width = canvas.width;
-    const height = canvas.height;
-
-
-    ctx.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-
-
-    ctx.beginPath();
-
-    ctx.strokeStyle = "#222222";
-    ctx.lineWidth = 1.5;
-
-
-    for (
-      let x = 0;
-      x <= width;
-      x += 2
-    ) {
-
-      const y =
-        height / 2
-        +
-        Math.sin(
-          x * 0.065 + time
-        ) * 10
-        +
-        Math.sin(
-          x * 0.13 + time * 0.7
-        ) * 4;
-
-
-      if (x === 0) {
-
-        ctx.moveTo(x, y);
-
-      } else {
-
-        ctx.lineTo(x, y);
-
-      }
-
-    }
-
-
-    ctx.stroke();
-
-
-    if (!reduceMotion) {
-
-      time += 0.045;
-
-      requestAnimationFrame(draw);
-
-    }
-
-  }
-
-
-  draw();
-
-}
-
-
-animateSignal();
-
-
-/* =========================================================
-   BARCODE GENERATOR
-========================================================= */
-
-function createBarcode(svg) {
-
-  if (!svg) return;
-
-
-  svg.innerHTML = "";
-
-
-  const widths = [
-    2, 1, 1, 2,
-    1, 3, 1, 1,
-    2, 1, 1, 3,
-    2, 1, 1, 2,
-    1, 1, 3, 1,
-    2, 1, 1, 2,
-    1, 3, 1, 1,
-    2, 1, 2
-  ];
-
-
-  let x = 0;
-
-
-  widths.forEach(function (width, index) {
-
-    if (index % 2 === 0) {
-
-      const rect =
-        document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          "rect"
-        );
-
-
-      rect.setAttribute(
-        "x",
-        x
-      );
-
-      rect.setAttribute(
-        "y",
-        0
-      );
-
-      rect.setAttribute(
-        "width",
-        width
-      );
-
-      rect.setAttribute(
-        "height",
-        34
-      );
-
-      rect.setAttribute(
-        "fill",
-        "currentColor"
-      );
-
-
-      svg.appendChild(rect);
-
-    }
-
-
-    x += width;
-
-  });
-
-
-  svg.setAttribute(
-    "viewBox",
-    `0 0 ${x} 34`
-  );
-
-}
-
-
-document
-  .querySelectorAll(
-    ".barcode-svg, .footer-barcode-svg"
-  )
-  .forEach(createBarcode);
-
-
-/* =========================================================
-   WORKS DATA
-========================================================= */
-
-const works = [
-
-  {
-  id: "bmw",
-
-  title: "BMW - SPEC AD",
-
-  category: "3D Animation",
-
-  description:
-    "Designed and produced a fully 3D spec ad for BMW, highlighting the brand’s essence of performance, precision, and luxury. The project combined cinematic storytelling with advanced 3D design, animation, and rendering to create a sleek and visually striking concept piece. This work showcases my ability to use 3D as a medium for high-end commercial storytelling.",
-
-  hero: "assets/images/png-vphfk_wawa-min.png",
-
-  gallery: [
-    "assets/images/png-vphfk_wawa-min.png",
-    "assets/images/png-bxzp2_3-min.png",
-    "assets/images/png-ldsv1_Denoised beauty-min.png",
-    "assets/images/png-tjlz1_Beauty2-min.png",
-        "assets/images/png-z3bq4_7-min.png"
-  ]
-},
-
-
-  {
-    id: "culture",
-
-    title: "Culture",
-
-    category: "Typography",
-
-    description:
-      "A typography-focused visual project.",
-
-    hero: null,
-
-    gallery: [
-      null,
-      null
-    ]
-  },
-
-
-  {
-    id: "nike",
-
-    title: "Nike Air",
-
-    category: "3D Animation",
-
-    description:
-      "A conceptual Nike Air visual project.",
-
-    hero: null,
-
-    gallery: [
-      null,
-      null
-    ]
-  },
-
-
-  {
-    id: "casela",
-
-    title: "Casela Adventure",
-
-    category: "Brand Style Guidelines",
-
-    description:
-      "A visual identity and brand style project developed for Casela Adventure.",
-
-    hero: null,
-
-    gallery: [
-      null,
-      null
-    ]
-  }
-
-];
-
-
-/* =========================================================
-   BUILD WORKS
-========================================================= */
-
-const worksGrid =
-  document.getElementById("works-grid");
-
-
-function createWorkCard(work) {
-
-  const button =
-    document.createElement("button");
-
-
-  button.type = "button";
-
-  button.className = "work-card";
-
-
-  const imageWrapper =
-    document.createElement("div");
-
-  imageWrapper.className =
-    "work-image";
-
-
-  if (work.hero) {
-
-    imageWrapper.classList.add(
-      "has-photo"
-    );
-
-
-    const image =
-      document.createElement("img");
-
-
-    image.src =
-      encodeURI(work.hero);
-
-    image.alt =
-      work.title;
-
-
-    imageWrapper.appendChild(image);
-
-  }
-
-
-  const info =
-    document.createElement("div");
-
-  info.className =
-    "work-info";
-
-
-  const title =
-    document.createElement("div");
-
-  title.className =
-    "work-title";
-
-  title.textContent =
-    work.title;
-
-
-  const category =
-    document.createElement("div");
-
-  category.className =
-    "work-category";
-
-  category.textContent =
-    work.category;
-
-
-  info.appendChild(title);
-
-  info.appendChild(category);
-
-
-  button.appendChild(imageWrapper);
-
-  button.appendChild(info);
-
-
-  button.addEventListener(
-    "click",
-    function () {
-
-      openProject(work);
-
-    }
-  );
-
-
-  return button;
-
-}
-
-
-if (worksGrid) {
-
-  works.forEach(function (work) {
-
-    worksGrid.appendChild(
-      createWorkCard(work)
-    );
-
-  });
-
-}
-
-
-/* =========================================================
-   PROJECT DETAIL ELEMENTS
-========================================================= */
-
-const projectDetail =
-  document.getElementById(
-    "project-detail"
-  );
-
-const detailTitle =
-  document.getElementById(
-    "detail-title"
-  );
-
-const detailCategory =
-  document.getElementById(
-    "detail-category"
-  );
-
-const detailDescription =
-  document.getElementById(
-    "detail-description"
-  );
-
-const detailHero =
-  document.getElementById(
-    "detail-hero"
-  );
-
-const detailGallery =
-  document.getElementById(
-    "detail-gallery"
-  );
-
-const galleryDots =
-  document.getElementById(
-    "gallery-dots"
-  );
-
-const backButton =
-  document.getElementById(
-    "back-button"
-  );
-
-
-/* =========================================================
-   OPEN PROJECT
-========================================================= */
-
-function openProject(work) {
-
-  if (!projectDetail) return;
-
-
-  detailTitle.textContent =
-    work.title;
-
-
-  detailCategory.textContent =
-    work.category;
-
-
-  detailDescription.textContent =
-    work.description;
-
-
-  /* Hero */
-
-  detailHero.innerHTML = "";
-
-  detailHero.classList.remove(
-    "has-image"
-  );
-
-
-  if (work.hero) {
-
-    detailHero.classList.add(
-      "has-image"
-    );
-
-
-    const image =
-      document.createElement("img");
-
-
-    image.src =
-      encodeURI(work.hero);
-
-    image.alt =
-      work.title;
-
-
-    detailHero.appendChild(image);
-
-  }
-
-
-  /* Gallery */
-
-  detailGallery.innerHTML = "";
-
-
-  work.gallery.forEach(
-    function (file) {
-
-      const item =
-        document.createElement("div");
-
-
-      item.className =
-        "gallery-item";
-
-
-      if (file) {
-
-        const image =
-          document.createElement("img");
-
-
-        image.src =
-          encodeURI(file);
-
-        image.alt =
-          work.title;
-
-
-        item.appendChild(image);
-
-      } else {
-
-        item.classList.add(
-          "gallery-placeholder"
-        );
-
-      }
-
-
-      detailGallery.appendChild(item);
-
-    }
-  );
-
-
-  /* Dots */
-
-  galleryDots.innerHTML = "";
-
-
-  work.gallery.forEach(
-    function (_, index) {
-
-      const dot =
-        document.createElement("span");
-
-
-      dot.className =
-        "gallery-dot";
-
-
-      if (index === 0) {
-
-        dot.classList.add(
-          "active"
-        );
-
-      }
-
-
-      galleryDots.appendChild(dot);
-
-    }
-  );
-
-
-  /* Show */
-
-  projectDetail.classList.add(
-    "is-open"
-  );
-
-
-  projectDetail.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-
-  document.body.classList.add(
-    "no-scroll"
-  );
-
-
-  projectDetail.scrollTop = 0;
-
-}
-
-
-/* =========================================================
-   CLOSE PROJECT
-========================================================= */
-
-function closeProject() {
-
-  if (!projectDetail) return;
-
-
-  projectDetail.classList.remove(
-    "is-open"
-  );
-
-
-  projectDetail.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-
-  document.body.classList.remove(
-    "no-scroll"
-  );
-
-}
-
-
-if (backButton) {
-
-  backButton.addEventListener(
-    "click",
-    closeProject
-  );
-
-}
-
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  function (event) {
-
-    if (
-      event.key === "Escape" &&
-      projectDetail &&
-      projectDetail.classList.contains(
-        "is-open"
-      )
-    ) {
-
-      closeProject();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-document
-  .querySelectorAll(
-    ".main-nav a, .brand"
-  )
-  .forEach(function (link) {
-
-    link.addEventListener(
-      "click",
-      function () {
-
-        if (
-          projectDetail &&
-          projectDetail.classList.contains(
-            "is-open"
-          )
-        ) {
-
-          closeProject();
-
+        if (!splash) {
+            document.body.classList.remove("is-loading");
+            return;
         }
 
-      }
-    );
+        /*
+         * Always allow the page to recover.
+         * Even if another part of the site fails, the intro
+         * should never remain permanently stuck.
+         */
 
-  });
+        const hideSplash = function () {
 
+            if (!splash || splash.classList.contains("is-hidden")) {
+                return;
+            }
 
-/* =========================================================
-   HANDLE HASH ON LOAD
-========================================================= */
+            splash.classList.add("is-hidden");
+            document.body.classList.remove("is-loading");
 
-window.addEventListener(
-  "load",
-  function () {
+            /*
+             * Remove the splash completely after the fade.
+             */
 
-    if (
-      window.location.hash &&
-      window.location.hash !== "#home"
-    ) {
+            window.setTimeout(function () {
 
-      setTimeout(
-        function () {
+                if (splash && splash.parentNode) {
+                    splash.parentNode.removeChild(splash);
+                }
 
-          const target =
-            document.querySelector(
-              window.location.hash
-            );
+            }, 900);
+        };
 
+        /*
+         * Give the logo a moment to appear before closing.
+         */
 
-          if (target) {
+        window.setTimeout(hideSplash, 1300);
 
-            target.scrollIntoView({
-              behavior: "instant"
-            });
+        /*
+         * Absolute safety fallback.
+         *
+         * If the browser hangs or something prevents the normal
+         * timer from firing, remove it anyway.
+         */
 
-          }
+        window.setTimeout(hideSplash, 3500);
 
-        },
-        100
-      );
+        /*
+         * Clicking the intro closes it immediately.
+         */
 
+        splash.addEventListener("click", hideSplash);
+
+        /*
+         * Keyboard accessibility.
+         */
+
+        document.addEventListener("keydown", function (event) {
+
+            if (
+                event.key === "Escape" ||
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+                hideSplash();
+            }
+
+        });
     }
 
-  }
-);
+
+    /* =======================================================
+       NAVIGATION
+       ======================================================= */
+
+    function initNavigation() {
+
+        const links = document.querySelectorAll(
+            'a[href^="#"]'
+        );
+
+        links.forEach(function (link) {
+
+            link.addEventListener("click", function (event) {
+
+                const targetID = link.getAttribute("href");
+
+                if (!targetID || targetID === "#") {
+                    return;
+                }
+
+                const target = document.querySelector(targetID);
+
+                if (!target) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            });
+
+        });
+    }
+
+
+    /* =======================================================
+       SCROLL REVEALS
+       ======================================================= */
+
+    function initReveal() {
+
+        const elements = document.querySelectorAll(".reveal");
+
+        if (!elements.length) {
+            return;
+        }
+
+        /*
+         * If IntersectionObserver is unavailable,
+         * simply show everything.
+         */
+
+        if (!("IntersectionObserver" in window)) {
+
+            elements.forEach(function (element) {
+                element.classList.add("is-visible");
+            });
+
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    entry.target.classList.add("is-visible");
+
+                    observer.unobserve(entry.target);
+
+                });
+
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
+            }
+        );
+
+        elements.forEach(function (element) {
+            observer.observe(element);
+        });
+    }
+
+
+    /* =======================================================
+       HEADER / BACKGROUND INVERSION
+       ======================================================= */
+
+    function initHeader() {
+
+        const header = document.querySelector(".site-header");
+
+        if (!header) {
+            return;
+        }
+
+        /*
+         * CSS mix-blend-mode:difference handles the actual
+         * inversion.
+         *
+         * This JS only detects the current section so you can
+         * add section-specific behaviour later if needed.
+         */
+
+        const sections = document.querySelectorAll(
+            "section[data-theme]"
+        );
+
+        if (!sections.length) {
+            return;
+        }
+
+        if (!("IntersectionObserver" in window)) {
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    const theme =
+                        entry.target.getAttribute("data-theme");
+
+                    document.body.setAttribute(
+                        "data-theme",
+                        theme || "light"
+                    );
+
+                });
+
+            },
+            {
+                threshold: 0.2
+            }
+        );
+
+        sections.forEach(function (section) {
+            observer.observe(section);
+        });
+    }
+
+
+    /* =======================================================
+       IMAGE LOADING
+       ======================================================= */
+
+    function initImages() {
+
+        const images = document.querySelectorAll("img");
+
+        images.forEach(function (image) {
+
+            image.addEventListener(
+                "error",
+                function () {
+
+                    console.warn(
+                        "Image failed to load:",
+                        image.src
+                    );
+
+                    /*
+                     * Don't let a missing image break the
+                     * remainder of the website.
+                     */
+
+                    image.classList.add("image-error");
+
+                }
+            );
+
+        });
+    }
+
+
+    /* =======================================================
+       CURRENT YEAR
+       ======================================================= */
+
+    function initYear() {
+
+        const yearElements =
+            document.querySelectorAll("[data-current-year]");
+
+        if (!yearElements.length) {
+            return;
+        }
+
+        const year = new Date().getFullYear();
+
+        yearElements.forEach(function (element) {
+            element.textContent = year;
+        });
+    }
+
+
+    /* =======================================================
+       INITIALIZATION
+       ======================================================= */
+
+    /*
+     * SPLASH IS INITIALIZED FIRST.
+     *
+     * This is important.
+     *
+     * If another feature later throws an error, the splash
+     * still has its own independent removal timer.
+     */
+
+    initSplash();
+
+
+    /*
+     * Initialize the remaining features independently.
+     *
+     * Each one gets its own try/catch so one broken component
+     * doesn't stop the entire website.
+     */
+
+    try {
+        initNavigation();
+    } catch (error) {
+        console.error(
+            "Navigation initialization failed:",
+            error
+        );
+    }
+
+    try {
+        initReveal();
+    } catch (error) {
+        console.error(
+            "Reveal animation initialization failed:",
+            error
+        );
+    }
+
+    try {
+        initHeader();
+    } catch (error) {
+        console.error(
+            "Header initialization failed:",
+            error
+        );
+    }
+
+    try {
+        initImages();
+    } catch (error) {
+        console.error(
+            "Image initialization failed:",
+            error
+        );
+    }
+
+    try {
+        initYear();
+    } catch (error) {
+        console.error(
+            "Year initialization failed:",
+            error
+        );
+    }
+
+
+    /* =======================================================
+       FINAL FALLBACK
+       ======================================================= */
+
+    /*
+     * If somehow the splash is still present after 4 seconds,
+     * force it away.
+     */
+
+    window.setTimeout(function () {
+
+        const splash =
+            document.getElementById("splash");
+
+        if (splash) {
+
+            splash.classList.add("is-hidden");
+
+            document.body.classList.remove(
+                "is-loading"
+            );
+
+            window.setTimeout(function () {
+
+                if (
+                    splash &&
+                    splash.parentNode
+                ) {
+                    splash.parentNode.removeChild(
+                        splash
+                    );
+                }
+
+            }, 900);
+        }
+
+    }, 4000);
+
+})();
