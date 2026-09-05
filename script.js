@@ -296,15 +296,15 @@ const works = [
     description:
       "Designed and produced a fully 3D spec ad for BMW, highlighting the brand’s essence of performance, precision, and luxury. The project combined cinematic storytelling with advanced 3D design, animation, and rendering to create a sleek and visually striking concept piece. This work showcases my ability to use 3D as a medium for high-end commercial storytelling.",
 
-    hero: "./assets/3D works/png-vphfk_wawa-min.png",
+    hero: "./assets/images/png-vphfk_wawa-min.png",
 
-gallery: [
-  "./assets/3D works/png-vphfk_wawa-min.png",
-  "./assets/3D works/png-bxzp2_3-min.png",
-  "./assets/3D works/png-ldsv1_Denoised beauty-min.png",
-  "./assets/3D works/png-tjlz1_Beauty2-min.png",
-  "./assets/3D works/png-z3bq4_7-min.png"
-]
+    gallery: [
+      "./assets/images/png-vphfk_wawa-min.png",
+      "./assets/images/png-bxzp2_3-min.png",
+      "./assets/images/png-ldsv1_Denoised beauty-min.png",
+      "./assets/images/png-tjlz1_Beauty2-min.png",
+      "./assets/images/png-z3bq4_7-min.png"
+    ]
   },
 
 
