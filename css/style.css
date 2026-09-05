@@ -7,8 +7,8 @@
     --header-height: 80px;
 
     --black: #050505;
-    --white: #ff0000;
-    --orange: #ff0000;
+    --white: #ffffff;
+    --orange: #ff5a00;
 
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -57,6 +57,9 @@ button {
 
 /* =========================================================
    SPLASH
+   Straight vertical "curtain" exit: the whole panel slides
+   up and off the top of the viewport in one motion, revealing
+   Home underneath it. No cross-fade — just enter, then lift.
    ========================================================= */
 
 .splash {
@@ -73,20 +76,17 @@ button {
     align-items: center;
     justify-content: center;
 
-    opacity: 1;
+    transform: translateY(0);
 
     transition:
-        opacity 0.8s var(--ease),
         transform 0.8s var(--ease),
-        visibility 0.8s ease;
+        visibility 0s linear 0.8s;
 }
 
 .splash.is-hidden {
-    opacity: 0;
-
     /* Slides the whole intro up and off the top of the
-       viewport, like a curtain lifting, instead of just
-       fading in place. */
+       viewport, like a curtain lifting, so Home is revealed
+       underneath it rather than cross-fading into view. */
     transform: translateY(-100%);
 
     visibility: hidden;
@@ -166,6 +166,12 @@ button {
     align-items: center;
     justify-content: space-between;
 
+    /* No background, no backdrop-filter and no opacity < 1 here —
+       any of those would break the mix-blend-mode invert trick
+       on the logo/nav below, because the blend needs to see the
+       section content directly behind it. */
+    background: transparent;
+
     pointer-events: none;
 }
 
@@ -181,7 +187,7 @@ button {
 .brand {
     display: block;
 
-    width: 11px;
+    width: 115px;
 
     line-height: 0;
 }
@@ -189,14 +195,18 @@ button {
 .brand-logo {
     display: block;
 
-    width: 10px;
+    width: 100%;
 
-    height: 10px;
+    height: auto;
 
     /* Auto-inverts against whatever section is scrolled
-       underneath the fixed header: white PNG -> renders
-       black on a white section, white on a black section,
-       and an inverted tone on anything else (e.g. orange). */
+       underneath the fixed header, on EVERY page/section:
+         - white section  -> renders black  (negative of white)
+         - black section  -> renders white  (negative of black)
+         - orange hatch   -> renders as the difference colour,
+                             so it never disappears into it either
+       No need for a second black logo file — same white PNG
+       is reused everywhere. */
     mix-blend-mode: difference;
 }
 
@@ -339,12 +349,14 @@ button {
 /*
    IMPORTANT:
 
-   The black Kanishk PNG is used directly.
+   Only one asset is used for this logo now:
+   kanishk_typeface_white.png.
 
-   This is intentionally MUCH smaller than the previous
-   88vw / 92vw versions.
-
-   It keeps the same image proportions as the white logo.
+   It's recoloured to black with `filter: invert(1)` below,
+   instead of loading a separate kanishk_typeface_black.png.
+   The wrapper's size/position rules are unchanged from before,
+   so the logo keeps the exact same footprint on the page and
+   can't overlap or push other elements around.
 */
 
 .hero-logo-wrapper {
@@ -373,6 +385,14 @@ button {
     max-width: 570px;
 
     object-fit: contain;
+}
+
+.hero-logo-img {
+    /* Turns the white glyph black. Because it's a plain filter
+       (not mix-blend-mode), it always renders solid black here
+       regardless of what's behind it — correct for this section,
+       which always sits on the white home background. */
+    filter: invert(1);
 }
 
 
@@ -977,6 +997,11 @@ button {
     width: 100px;
 
     height: auto;
+
+    /* These footers sit on the dark (#050505) project-detail /
+       contact backgrounds, so the plain white PNG is already
+       correct here — no invert needed (inverting it would turn
+       it black-on-black and make it disappear). */
 }
 
 .footer-logo small {

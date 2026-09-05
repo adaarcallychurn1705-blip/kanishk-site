@@ -34,7 +34,8 @@
             document.body.classList.remove("is-loading");
 
             /*
-             * Remove the splash completely after the fade.
+             * Remove the splash completely after it has
+             * finished sliding up and off the top.
              */
 
             window.setTimeout(function () {

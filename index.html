@@ -10,25 +10,28 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="is-loading">
 
   <!-- =====================================================
        SPLASH / INTRO
+       Slides straight up and off the top of the viewport
+       (like a curtain lifting) to reveal Home underneath.
+       See script.js -> initSplash() and style.css -> .splash
   ====================================================== -->
 
- <div class="splash" id="splash">
+  <div class="splash" id="splash">
 
-  <div class="splash-inner">
+    <div class="splash-inner">
 
-    <img
-      src="./assets/images/kanishk_typeface_white.png"
-      alt="Kanishk"
-      class="splash-logo"
-    >
+      <img
+        src="./assets/images/kanishk_typeface_white.png"
+        alt="Kanishk"
+        class="splash-logo"
+      >
+
+    </div>
 
   </div>
-
-</div>
 
 
   <!-- =====================================================
@@ -42,30 +45,34 @@
        HEADER
   ====================================================== -->
 
- <header class="site-header">
+  <header class="site-header">
 
-  <a href="#home" class="brand" aria-label="Kanishk Callychurn home">
+    <a href="#home" class="brand" aria-label="Kanishk Callychurn home">
 
-    <!-- White PNG on purpose — mix-blend-mode: difference (in style.css)
-         recolors this automatically against whatever section is behind
-         the fixed header: black on white sections, white on black
-         sections, an inverted tone on anything else (like the orange
-         hatch). No need for a second black version here anymore. -->
-    <img
-      src="./assets/images/kanishk_typeface_white.png"
-      alt="Kanishk"
-      class="brand-logo"
-    >
+      <!-- White PNG on purpose — mix-blend-mode: difference (in
+           style.css) recolors this automatically against whatever
+           section is scrolled behind the fixed header:
+             - black background  -> reads white  (negative of black)
+             - white background  -> reads black  (negative of white)
+             - orange/red hatch  -> reads as its difference colour
+           so it stays legible on every section without swapping
+           images or writing per-section overrides. Same trick is
+           used on .main-nav a below. No second (black) logo file
+           is needed for the header. -->
+      <img
+        src="./assets/images/kanishk_typeface_white.png"
+        alt="Kanishk"
+        class="brand-logo"
+      >
+    </a>
 
-  </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-  <nav class="main-nav" aria-label="Main navigation">
-    <a href="#about">About</a>
-    <a href="#works">Works</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-</header>
+  </header>
 
 
   <!-- =====================================================
@@ -100,9 +107,9 @@
 
         <div class="third-eye">
           <img
-  src="./assets/images/Third-eye-trip.png"
-  alt=""
->
+            src="./assets/images/Third-eye-trip.png"
+            alt=""
+          >
         </div>
 
       </div>
@@ -111,9 +118,17 @@
       <!-- Giant logo -->
       <div class="hero-logo-wrapper">
 
+        <!-- Same single white asset used everywhere else on the
+             site (header, splash, footer). Recoloured to black
+             purely with CSS (filter: invert(1) in style.css), so
+             there's no second "black" PNG to keep in sync. The
+             wrapper's size/position rules are unchanged, so the
+             logo sits exactly where it did before and can't
+             overlap or break the layout. -->
         <img
-  src="./assets/images/kanishk_typeface_black.png"
-  alt="Kanishk">
+          src="./assets/images/kanishk_typeface_white.png"
+          alt="Kanishk"
+          class="hero-logo-img">
 
       </div>
 
@@ -362,8 +377,8 @@
           <div class="footer-logo">
 
             <img
-  src="./assets/images/kanishk_typeface_white.png"
-  alt="Kanishk">
+              src="./assets/images/kanishk_typeface_white.png"
+              alt="Kanishk">
 
             <small>
               © 2026 Kanishk Callychurn. All rights reserved.
