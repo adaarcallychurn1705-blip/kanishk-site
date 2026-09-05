@@ -181,17 +181,18 @@ button {
 
 .brand {
     display: block;
-
-    width: 105px;
-
-    flex-shrink: 0;
+    width: 50px;
+    height: auto;
 }
 
 .brand-logo {
-    width: 100%;
+    display: block;
+    width: 65px;
     height: auto;
+}
 
-    object-fit: contain;
+.brand:hover {
+    opacity: 0.6;
 }
 
 
