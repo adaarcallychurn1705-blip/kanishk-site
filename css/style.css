@@ -387,7 +387,7 @@ body[data-theme="dark"] .main-nav a {
 
     top: 47%;
 
-    width: min(570px, 48vw);
+    width: min(1100px, 82vw);
 
     padding: 0;
 
@@ -403,7 +403,7 @@ body[data-theme="dark"] .main-nav a {
 
     height: auto;
 
-    max-width: 570px;
+    max-width: 1100px;
 
     object-fit: contain;
 }
@@ -1239,7 +1239,7 @@ body[data-theme="dark"] .main-nav a {
     .hero-logo-wrapper {
         left: var(--page-padding);
 
-        width: min(500px, 55vw);
+        width: min(850px, 78vw);
     }
 
     .hero-description {
