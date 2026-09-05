@@ -181,13 +181,13 @@ button {
 
 .brand {
     display: block;
-    width: 40px;
+    width: auto;
     height: auto;
 }
 
 .brand-logo {
     display: block;
-    width: 40px;
+    width: 120px; /* change this number */
     height: auto;
 }
 
