@@ -113,14 +113,14 @@ button {
 .splash-logo {
     display: block;
 
-    width: min(20px, 75vw);
+    width: min(520px, 75vw);
 
-    height: 20px;
+    height: auto;
 
     object-fit: contain;
 
     /* Stage 1: starts hidden/small, pops up to full size. */
-    opacity: 0;
+    opacity: 100;
 
     transform: scale(0.75);
 
