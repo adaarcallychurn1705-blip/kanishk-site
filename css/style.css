@@ -113,9 +113,9 @@ button {
 .splash-logo {
     display: block;
 
-    width: min(520px, 75vw);
+    width: min(20px, 75vw);
 
-    height: auto;
+    height: 20px;
 
     object-fit: contain;
 
