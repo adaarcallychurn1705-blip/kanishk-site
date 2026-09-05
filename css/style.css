@@ -219,10 +219,17 @@ button {
 
     height: auto;
 
-    /* Single static asset — no swap logic. This sits over both
-       light and dark sections since the header is position:
-       fixed, so pick a version that reads well enough across
-       both if you revisit this later. */
+    /* White artwork + difference blend: reads black over a light
+       backdrop, white over a dark one, and inverts as it crosses
+       any boundary underneath — no section-tracking needed. */
+    mix-blend-mode: difference;
+}
+
+body.is-loading .brand-logo {
+    /* The splash is saturated red, not pure black/white, so
+       difference against it gives an off color — force plain
+       white here while the intro is up. */
+    mix-blend-mode: normal;
 }
 
 
