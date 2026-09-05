@@ -10,7 +10,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="is-loading">
+
+  <!-- =====================================================
+       SPLASH / INTRO
+       1) Red background, logo pops in (scale + fade).
+       2) After a beat, whole panel slides up and off the
+          top of the viewport (curtain lift) to reveal Home.
+       See script.js -> initSplash() and style.css -> .splash
+  ====================================================== -->
+
+  <div class="splash" id="splash">
+
+    <div class="splash-inner">
+
+      <img
+        src="./assets/images/kanishk_typeface_white.png"
+        alt="Kanishk"
+        class="splash-logo"
+      >
+
+    </div>
+
+  </div>
+
 
   <!-- =====================================================
        LEFT HATCH
@@ -29,8 +52,8 @@
 
       <!-- Two real files, swapped by script.js (initHeader/applyHeaderTheme)
            depending on what's behind the fixed header:
-             - white asset while a dark section (Intro / Project Detail /
-               Contact) is in view
+             - white asset while the red intro is showing, or while a
+               dark section (Project Detail / Contact) is in view
              - black asset while a light section (Home/About/Works)
                is in view
            data-logo-light / data-logo-dark just tell the JS which
@@ -53,43 +76,11 @@
   </header>
 
 
+  <!-- =====================================================
+       HOME
+  ====================================================== -->
+
   <main>
-
-    <!-- =====================================================
-         INTRO
-         A normal first section in the page flow — red
-         background, centered logo — sitting directly above
-         Home. The visitor reaches Home by scrolling/swiping
-         the page the ordinary way; there is no fixed overlay,
-         timer, or forced "curtain lift" to fight with that
-         scroll. See style.css -> .intro-section and
-         script.js -> initHeader() for how the header inverts
-         as this section scrolls past.
-    ====================================================== -->
-
-    <section id="intro" class="intro-section" data-theme="dark" aria-label="Intro">
-
-      <div class="intro-inner">
-
-        <img
-          src="./assets/images/kanishk_typeface_white.png"
-          alt="Kanishk"
-          class="intro-logo"
-        >
-
-      </div>
-
-      <div class="scroll-cue" aria-hidden="true">
-        <span>Scroll</span>
-        <span class="scroll-cue-arrow">↓</span>
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         HOME
-    ====================================================== -->
 
     <section id="home" class="home-section" data-theme="light">
 
@@ -129,7 +120,7 @@
       <div class="hero-logo-wrapper">
 
         <!-- Real black asset used directly — no filter. The white
-             asset is only for dark backgrounds (Intro, header on
+             asset is only for dark backgrounds (splash, header on
              dark sections); this section is always white, so the
              black file goes straight in. -->
         <img
