@@ -230,7 +230,7 @@ button {
 }
 
 .main-nav a {
-    color: #ffffff;
+    color: #ff0000;
 
     /* Same auto-invert trick as the logo, so the nav text
        stays legible no matter which section is behind it. */
