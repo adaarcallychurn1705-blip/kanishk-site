@@ -177,8 +177,8 @@ button {
   min-height: 100vh;
   height: 100vh;
 
-  background: #ffffff;
-  color: #050505;
+  background: #050505;
+  color: #ffffff;
 
   overflow: hidden;
 }
@@ -1367,4 +1367,45 @@ button {
     transition-duration: 0.01ms !important;
   }
 
+}
+
+
+/* =========================================================
+   HERO OVERRIDES — WHITE ACCENTS ON BLACK
+========================================================= */
+
+.profile-info {
+  border-color: #ffffff;
+}
+
+.view-button {
+  border-color: #ffffff;
+}
+
+.view-button:hover {
+  background: #ffffff;
+  color: #050505;
+}
+
+.barcode-svg {
+  color: #ffffff;
+}
+
+.signal-box {
+  border-color: #ffffff;
+}
+
+.live-dot {
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   HEADER NAV — AUTO-INVERT
+========================================================= */
+
+.brand,
+.main-nav a {
+  color: #ffffff;
+  mix-blend-mode: difference;
 }
