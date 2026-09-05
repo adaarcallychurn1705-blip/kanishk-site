@@ -79,16 +79,6 @@ img {
    HEADER
    ========================================================= */
 
-/*
-   IMPORTANT:
-
-   mix-blend-mode: difference makes the header automatically
-   invert against whatever is behind it.
-
-   White background -> black header
-   Black background -> white header
-*/
-
 .site-header {
     position: fixed;
     top: 0;
@@ -129,12 +119,6 @@ img {
         opacity 0.4s var(--ease),
         transform 0.4s var(--ease);
 }
-
-/*
-   Because the image itself is black, invert it to white.
-   mix-blend-mode:difference then makes it appear correctly
-   against the page background.
-*/
 
 .site-logo:hover {
     opacity: 0.7;
@@ -225,7 +209,9 @@ img {
     pointer-events: none;
 }
 
-/* Intro inner */
+/* =========================================================
+   SPLASH INNER
+   ========================================================= */
 
 .splash-inner {
     width: 100%;
@@ -239,15 +225,13 @@ img {
     text-align: center;
 }
 
-/* Intro logo */
+/* =========================================================
+   SPLASH LOGO
+   ========================================================= */
 
 .splash-logo {
     width: min(72vw, 720px);
     height: auto;
-
-    /*
-       Black source image stays black on white splash.
-    */
 
     filter: none;
 
@@ -264,7 +248,9 @@ img {
     transform: translateY(-30px);
 }
 
-/* Intro text */
+/* =========================================================
+   INTRO TEXT
+   ========================================================= */
 
 .splash-kicker {
     margin-top: 28px;
@@ -309,6 +295,36 @@ img {
     flex-direction: column;
     justify-content: flex-end;
 }
+
+/* =========================================================
+   HERO LOGO
+   ========================================================= */
+
+/*
+   Controls the white hero logo.
+
+   This keeps the logo proportional while preventing it
+   from becoming excessively large.
+*/
+
+.hero-logo-wrapper {
+    width: min(72vw, 720px);
+
+    margin: 0 auto;
+}
+
+.hero-logo-wrapper img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-width: 100%;
+}
+
+/* =========================================================
+   HERO CONTENT
+   ========================================================= */
 
 .hero-content {
     width: 100%;
@@ -724,6 +740,18 @@ img {
 
     .hero {
         padding-bottom: 35px;
+    }
+
+    /* Mobile hero logo */
+
+    .hero-logo-wrapper {
+        width: min(82vw, 500px);
+        margin: 0 auto;
+    }
+
+    .hero-logo-wrapper img {
+        width: 100%;
+        height: auto;
     }
 
     .hero-title {
