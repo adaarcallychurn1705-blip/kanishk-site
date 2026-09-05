@@ -1,83 +1,299 @@
-/* ---- Live timezone clocks ----
-   Intl.DateTimeFormat with a `timeZone` reads the correct local time
-   for that place regardless of where the visitor is browsing from. */
-function updateClocks(){
+/* =========================
+   LIVE CLOCKS
+========================= */
+
+function updateClocks() {
+
   const now = new Date();
-  const toronto = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'America/Toronto', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+
+
+  const toronto = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Toronto",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
   }).format(now);
-  const mauritius = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Indian/Mauritius', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+
+
+  const mauritius = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Indian/Mauritius",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
   }).format(now);
-  document.getElementById('toronto-time').textContent = toronto;
-  document.getElementById('mauritius-time').textContent = mauritius;
+
+
+  const torontoClock =
+    document.getElementById("toronto-time");
+
+  const mauritiusClock =
+    document.getElementById("mauritius-time");
+
+
+  if (torontoClock) {
+    torontoClock.textContent = toronto;
+  }
+
+
+  if (mauritiusClock) {
+    mauritiusClock.textContent = mauritius;
+  }
+
 }
+
+
 updateClocks();
+
 setInterval(updateClocks, 1000);
 
-/* ---- Works data ----
-   Add a new project by adding an object here — the carousel and detail
-   view are both built from this array. `gallery` is how many placeholder
-   tiles to render; swap in real <img> tags once you have final renders. */
+
+/* =========================
+   WORKS
+========================= */
+
 const works = [
+
   {
-    id: 'bmw',
-    title: 'BMW — Spec Ad',
-    category: '3D Animation',
-    description: "Designed and produced a fully 3D spec ad for BMW, highlighting the brand's essence of performance, precision, and luxury. The project combined cinematic storytelling with advanced 3D design, animation, and rendering to create a sleek, visually striking concept piece.",
+    id: "bmw",
+
+    title: "BMW — Spec Ad",
+
+    category: "3D Animation",
+
+    description:
+      "Designed and produced a fully 3D spec ad for BMW, highlighting the brand's essence of performance, precision, and luxury. The project combined cinematic storytelling with advanced 3D design, animation, and rendering to create a sleek, visually striking concept piece.",
+
     gallery: 4
   },
+
+
   {
-    id: 'title-ad-1',
-    title: 'Title Ad',
-    category: 'Typography',
-    description: 'Replace this with your typography project description.',
+    id: "title-ad-1",
+
+    title: "Title Ad",
+
+    category: "Typography",
+
+    description:
+      "Replace this description with your typography project description.",
+
     gallery: 3
   },
+
+
   {
-    id: 'title-ad-2',
-    title: 'Title Ad',
-    category: 'Typography',
-    description: 'Replace this with your typography project description.',
+    id: "title-ad-2",
+
+    title: "Title Ad",
+
+    category: "Typography",
+
+    description:
+      "Replace this description with your typography project description.",
+
     gallery: 3
   }
+
 ];
 
-const carousel = document.getElementById('carousel');
-works.forEach(w => {
-  const card = document.createElement('button');
-  card.className = 'work-card';
-  card.innerHTML = `
-    <div class="thumb"></div>
-    <div class="info">
-      <div class="cat">${w.category}</div>
-      <div class="title">${w.title}</div>
-    </div>`;
-  card.addEventListener('click', () => openDetail(w));
-  carousel.appendChild(card);
-});
 
-function scrollCarousel(direction){
-  carousel.scrollBy({ left: direction * 360, behavior: 'smooth' });
+/* =========================
+   BUILD WORK CARDS
+========================= */
+
+const carousel =
+  document.getElementById("carousel");
+
+
+if (carousel) {
+
+  works.forEach(function (work) {
+
+    const card =
+      document.createElement("button");
+
+
+    card.type = "button";
+
+    card.className = "work-card";
+
+
+    card.setAttribute(
+      "aria-label",
+      `View ${work.title}`
+    );
+
+
+    card.innerHTML = `
+      <div class="thumb"></div>
+
+      <div class="info">
+
+        <div class="cat">
+          ${work.category}
+        </div>
+
+        <div class="title">
+          ${work.title}
+        </div>
+
+      </div>
+    `;
+
+
+    card.addEventListener(
+      "click",
+      function () {
+        openDetail(work);
+      }
+    );
+
+
+    carousel.appendChild(card);
+
+  });
+
 }
 
-/* ---- Detail + gallery view ----
-   Clicking a card fills the hidden panel with that project's content
-   and slides it up over the page, with a "back to works" control. */
-function openDetail(work){
-  document.getElementById('detail-title').textContent = work.title;
-  document.getElementById('detail-cat').textContent = work.category;
-  document.getElementById('detail-desc').textContent = work.description;
-  const gallery = document.getElementById('detail-gallery');
-  gallery.innerHTML = '';
-  for (let i = 0; i < work.gallery; i++){
-    gallery.appendChild(document.createElement('div'));
+
+/* =========================
+   CAROUSEL
+========================= */
+
+function scrollCarousel(direction) {
+
+  if (!carousel) {
+    return;
   }
-  document.getElementById('detail').classList.add('is-open');
-  document.body.style.overflow = 'hidden';
+
+
+  carousel.scrollBy({
+    left: direction * 360,
+    behavior: "smooth"
+  });
+
 }
 
-function closeDetail(){
-  document.getElementById('detail').classList.remove('is-open');
-  document.body.style.overflow = '';
+
+/* =========================
+   OPEN PROJECT
+========================= */
+
+function openDetail(work) {
+
+  const detail =
+    document.getElementById("detail");
+
+  const title =
+    document.getElementById("detail-title");
+
+  const category =
+    document.getElementById("detail-cat");
+
+  const description =
+    document.getElementById("detail-desc");
+
+  const gallery =
+    document.getElementById("detail-gallery");
+
+
+  if (
+    !detail ||
+    !title ||
+    !category ||
+    !description ||
+    !gallery
+  ) {
+    return;
+  }
+
+
+  title.textContent = work.title;
+
+  category.textContent = work.category;
+
+  description.textContent =
+    work.description;
+
+
+  gallery.innerHTML = "";
+
+
+  for (
+    let i = 0;
+    i < work.gallery;
+    i++
+  ) {
+
+    const item =
+      document.createElement("div");
+
+
+    item.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+
+    gallery.appendChild(item);
+
+  }
+
+
+  detail.classList.add("is-open");
+
+  detail.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+
+  document.body.style.overflow = "hidden";
+
 }
+
+
+/* =========================
+   CLOSE PROJECT
+========================= */
+
+function closeDetail() {
+
+  const detail =
+    document.getElementById("detail");
+
+
+  if (!detail) {
+    return;
+  }
+
+
+  detail.classList.remove("is-open");
+
+  detail.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  document.body.style.overflow = "";
+
+}
+
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function (event) {
+
+    if (event.key === "Escape") {
+      closeDetail();
+    }
+
+  }
+);
