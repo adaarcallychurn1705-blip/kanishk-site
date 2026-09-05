@@ -2,15 +2,20 @@
    KANISHK CALLYCHURN — PORTFOLIO
    ========================================================= */
 
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
 :root {
     --page-padding: 60px;
-    --header-height: 80px;
+    --header-height: 70px;
 
     --black: #050505;
     --white: #ffffff;
-    --red: #e5382d;
+    --orange: #e43b2f;
 
-    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
@@ -29,20 +34,20 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-
     background: var(--white);
     color: var(--black);
 
-    overflow-x: hidden;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
 }
 
 img {
     max-width: 100%;
-    height: auto;
+    display: block;
 }
 
 a {
@@ -52,7 +57,6 @@ a {
 
 button {
     font: inherit;
-    color: inherit;
 }
 
 ::selection {
@@ -71,7 +75,7 @@ button {
 
     z-index: 9999;
 
-    background: var(--red);
+    background: var(--orange);
     color: var(--white);
 
     display: flex;
@@ -79,6 +83,7 @@ button {
     justify-content: center;
 
     opacity: 1;
+    visibility: visible;
 
     transition:
         opacity 0.8s var(--ease),
@@ -94,9 +99,7 @@ button {
 .splash-inner {
     width: 100%;
 
-    padding:
-        40px
-        var(--page-padding);
+    padding: 40px;
 
     display: flex;
     align-items: center;
@@ -104,13 +107,12 @@ button {
 }
 
 .splash-logo {
-    width: 82vw;
-
-    max-width: 1200px;
+    width: 78vw;
+    max-width: 1050px;
 
     height: auto;
 
-    display: block;
+    object-fit: contain;
 }
 
 
@@ -121,21 +123,21 @@ button {
 .hatch {
     position: fixed;
 
-    left: 0;
     top: 0;
+    left: 0;
     bottom: 0;
 
-    z-index: 1000;
+    width: 14px;
 
-    width: 5px;
+    z-index: 100;
 
     background:
         repeating-linear-gradient(
-            135deg,
-            var(--black) 0px,
-            var(--black) 3px,
-            transparent 3px,
-            transparent 9px
+            -45deg,
+            var(--black) 0,
+            var(--black) 5px,
+            transparent 5px,
+            transparent 10px
         );
 
     pointer-events: none;
@@ -153,9 +155,9 @@ button {
     left: 0;
     right: 0;
 
-    z-index: 900;
-
     height: var(--header-height);
+
+    z-index: 500;
 
     padding:
         0
@@ -168,35 +170,37 @@ button {
     color: var(--black);
 
     mix-blend-mode: difference;
+
+    pointer-events: none;
+}
+
+.site-header a {
+    pointer-events: auto;
 }
 
 .brand {
+    width: 105px;
+
     display: block;
-
-    width: 100px;
-
-    flex-shrink: 0;
 }
 
 .brand-logo {
-    display: block;
-
     width: 100%;
     height: auto;
 }
 
 .main-nav {
     display: flex;
-
     flex-direction: column;
 
     align-items: flex-end;
 
     gap: 5px;
 
-    font-size: 11px;
-
+    font-size: 12px;
     line-height: 1;
+
+    text-align: right;
 }
 
 .main-nav a {
@@ -221,7 +225,7 @@ button {
     padding:
         var(--header-height)
         var(--page-padding)
-        50px;
+        40px;
 
     background: var(--white);
 
@@ -240,26 +244,26 @@ button {
     right: var(--page-padding);
 
     display: flex;
+    align-items: stretch;
 
-    align-items: center;
-
-    gap: 12px;
+    gap: 14px;
 
     z-index: 10;
 }
 
 .profile-info {
-    width: 150px;
+    width: 220px;
 
-    padding: 10px 11px;
+    padding: 12px 14px;
 
     border: 1px solid var(--black);
 
-    border-radius: 12px;
+    border-radius: 14px;
 
-    font-size: 11px;
+    font-size: 13px;
+    line-height: 1.6;
 
-    line-height: 1.5;
+    background: var(--white);
 }
 
 .profile-row {
@@ -267,23 +271,29 @@ button {
 
     justify-content: space-between;
 
-    gap: 15px;
+    gap: 20px;
 }
 
 .profile-row span:last-child {
     text-align: right;
 }
 
+
+/* =========================================================
+   THIRD EYE
+   ========================================================= */
+
 .third-eye {
-    width: 80px;
-    height: 60px;
+    width: 120px;
+    height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     overflow: hidden;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
+    background: var(--black);
 }
 
 .third-eye img {
@@ -291,8 +301,6 @@ button {
     height: 100%;
 
     object-fit: cover;
-
-    display: block;
 }
 
 
@@ -301,37 +309,42 @@ button {
    ========================================================= */
 
 /*
-   DESKTOP SIZE
+   IMPORTANT:
+   This is the black KANISHK on the white homepage.
 
-   The black Kanishk logo on the homepage is deliberately
-   smaller than before.
-
-   62vw = approximately 950px on a 1536px-wide screen.
-
-   This is the main fix for the oversized black logo.
+   It is intentionally:
+   - LEFT aligned
+   - smaller
+   - positioned higher
+   - NOT centered
+   - similar to your Illustrator reference
 */
 
 .hero-logo-wrapper {
+    position: relative;
+
     width: 100%;
 
-    padding-top: 240px;
+    padding-top: 285px;
+    padding-left: 25px;
 
     display: flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
 
     overflow: visible;
 }
 
 .hero-logo-wrapper img {
-    width: 62vw;
+    display: block;
 
-    max-width: 950px;
+    width: 60vw;
+    max-width: 920px;
 
     height: auto;
 
-    display: block;
+    flex-shrink: 0;
 }
 
 
@@ -342,28 +355,31 @@ button {
 .hero-description {
     position: absolute;
 
-    left: var(--page-padding);
-    bottom: 145px;
+    left: calc(var(--page-padding) + 25px);
+    bottom: 105px;
 
-    width: 250px;
+    width: 310px;
 
-    font-size: 12px;
-
+    font-size: 13px;
     line-height: 1.45;
 }
 
 .hero-description p {
-    max-width: 240px;
+    max-width: 280px;
 }
 
-.hero-actions {
-    display: flex;
 
+/* =========================================================
+   HERO ACTIONS
+   ========================================================= */
+
+.hero-actions {
+    margin-top: 22px;
+
+    display: flex;
     align-items: center;
 
     gap: 45px;
-
-    margin-top: 20px;
 }
 
 
@@ -372,9 +388,8 @@ button {
    ========================================================= */
 
 .view-button {
-    min-width: 88px;
-
-    height: 28px;
+    min-width: 100px;
+    height: 36px;
 
     padding:
         0
@@ -385,20 +400,18 @@ button {
     border-radius: 999px;
 
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
 
-    font-size: 11px;
+    font-size: 12px;
 
     transition:
-        background 0.25s ease,
-        color 0.25s ease;
+        background 0.3s ease,
+        color 0.3s ease;
 }
 
 .view-button:hover {
     background: var(--black);
-
     color: var(--white);
 }
 
@@ -408,7 +421,7 @@ button {
    ========================================================= */
 
 .barcode {
-    width: 90px;
+    width: 95px;
     height: 34px;
 
     overflow: hidden;
@@ -417,8 +430,6 @@ button {
 .barcode-svg {
     width: 100%;
     height: 100%;
-
-    display: block;
 }
 
 
@@ -430,37 +441,33 @@ button {
     position: absolute;
 
     right: var(--page-padding);
-    bottom: 145px;
+    bottom: 105px;
 
-    width: 150px;
-    height: 62px;
+    width: 220px;
+    height: 90px;
 
-    padding:
-        8px
-        10px;
+    padding: 12px 14px;
 
     border: 1px solid var(--black);
 
-    border-radius: 10px;
+    border-radius: 14px;
 
     background: var(--white);
 }
 
 .signal-header {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .signal-live {
     display: flex;
-
     align-items: center;
 
-    gap: 5px;
+    gap: 6px;
 }
 
 .live-dot {
@@ -473,10 +480,12 @@ button {
 }
 
 #signal-canvas {
-    width: 100%;
-    height: 38px;
-
     display: block;
+
+    width: 100%;
+    height: 48px;
+
+    margin-top: 6px;
 }
 
 
@@ -487,12 +496,16 @@ button {
 .timezone {
     position: absolute;
 
-    left: var(--page-padding);
-    bottom: 35px;
+    left: calc(var(--page-padding) + 25px);
+    bottom: 30px;
 
-    font-size: 10px;
+    display: flex;
+    flex-direction: column;
 
-    line-height: 1.45;
+    gap: 5px;
+
+    font-size: 12px;
+    line-height: 1.35;
 }
 
 .timezone strong {
@@ -514,13 +527,10 @@ button {
         var(--page-padding);
 
     background: var(--white);
-
-    border-top: 1px solid var(--black);
 }
 
 .section-inner {
     width: 100%;
-
     max-width: 1600px;
 
     margin: 0 auto;
@@ -535,21 +545,21 @@ button {
 }
 
 .about-title-column {
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .small-heading {
     margin-bottom: 45px;
 
-    font-size: 11px;
+    font-size: 12px;
 
     text-transform: uppercase;
-
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
 }
 
 .about-title-column h1 {
-    font-size: clamp(70px, 9vw, 145px);
+    font-size: clamp(70px, 9vw, 150px);
 
     line-height: 0.82;
 
@@ -559,53 +569,49 @@ button {
 .section-rule {
     width: 100%;
 
-    height: 1px;
-
     margin-top: 100px;
+    margin-bottom: 30px;
 
-    background: var(--black);
+    border-top: 1px solid currentColor;
 }
 
 .about-title-column h2 {
-    margin-top: 30px;
+    margin-bottom: 30px;
 
     font-size: 14px;
 
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .education {
-    margin-top: 30px;
-
     display: flex;
-
     flex-direction: column;
 
-    gap: 25px;
+    gap: 30px;
 }
 
-.education-item {
-    font-size: 11px;
-
+.education-item p {
+    font-size: 13px;
     line-height: 1.5;
 }
 
 .education-item p + p {
-    margin-top: 3px;
+    opacity: 0.55;
 }
 
 .about-copy {
-    padding-top: 90px;
+    padding-top: 100px;
 }
 
 .about-copy p {
     max-width: 650px;
 
-    font-size: clamp(22px, 2.3vw, 36px);
+    font-size: clamp(24px, 3vw, 46px);
 
     line-height: 1.05;
 
-    letter-spacing: -0.025em;
+    letter-spacing: -0.04em;
 }
 
 
@@ -614,8 +620,6 @@ button {
    ========================================================= */
 
 .works-section {
-    position: relative;
-
     min-height: 100vh;
 
     padding:
@@ -623,13 +627,10 @@ button {
         var(--page-padding);
 
     background: var(--white);
-
-    border-top: 1px solid var(--black);
 }
 
 .works-heading {
     display: flex;
-
     align-items: flex-end;
     justify-content: space-between;
 
@@ -637,26 +638,29 @@ button {
 }
 
 .works-heading h2 {
-    font-size: clamp(90px, 14vw, 210px);
+    font-size: clamp(90px, 13vw, 210px);
 
     line-height: 0.75;
 
     letter-spacing: -0.075em;
 }
 
+
+/* =========================================================
+   ORANGE HATCH
+   ========================================================= */
+
 .orange-hatch {
     width: 100px;
     height: 50px;
 
-    border: 1px solid currentColor;
-
     background:
         repeating-linear-gradient(
-            135deg,
-            currentColor 0px,
-            currentColor 2px,
-            transparent 2px,
-            transparent 8px
+            -45deg,
+            var(--orange) 0,
+            var(--orange) 6px,
+            transparent 6px,
+            transparent 13px
         );
 }
 
@@ -672,17 +676,14 @@ button {
 .work-card {
     display: grid;
 
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 2fr;
 
-    gap: 30px;
+    gap: 40px;
 
     padding:
-        30px
-        0;
+        35px 0;
 
     border-top: 1px solid var(--black);
-
-    cursor: pointer;
 }
 
 .work-card:last-child {
@@ -690,7 +691,7 @@ button {
 }
 
 .work-card h3 {
-    font-size: clamp(40px, 6vw, 90px);
+    font-size: clamp(40px, 6vw, 100px);
 
     line-height: 0.85;
 
@@ -698,13 +699,9 @@ button {
 }
 
 .work-card p {
-    font-size: 11px;
+    font-size: 14px;
 
-    line-height: 1.4;
-}
-
-.work-card:hover {
-    opacity: 0.5;
+    line-height: 1.5;
 }
 
 
@@ -719,32 +716,42 @@ button {
 
     padding:
         150px
-        var(--page-padding)
-        60px;
+        var(--page-padding);
 
-    background: var(--white);
+    background: var(--black);
+    color: var(--white);
 
-    border-top: 1px solid var(--black);
+    display: none;
+}
+
+.project-detail.is-active {
+    display: block;
 }
 
 .project-detail-inner {
     width: 100%;
-
     max-width: 1600px;
 
     margin: 0 auto;
 }
 
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
 .back-button {
+    padding: 0;
+
     border: 0;
 
     background: transparent;
 
+    color: inherit;
+
     cursor: pointer;
 
-    font-size: 11px;
-
-    padding: 0;
+    font-size: 13px;
 
     margin-bottom: 80px;
 }
@@ -753,69 +760,102 @@ button {
     opacity: 0.5;
 }
 
+
+/* =========================================================
+   PROJECT HEADING
+   ========================================================= */
+
 .project-heading {
     display: grid;
 
     grid-template-columns: 2fr 1fr;
 
-    gap: 50px;
+    gap: 60px;
 
-    margin-bottom: 70px;
+    margin-bottom: 80px;
 }
 
 .project-heading h1 {
-    font-size: clamp(70px, 10vw, 160px);
+    font-size: clamp(70px, 10vw, 170px);
 
-    line-height: 0.8;
+    line-height: 0.78;
 
-    letter-spacing: -0.07em;
+    letter-spacing: -0.075em;
 }
 
 .project-heading p {
-    font-size: 12px;
+    font-size: 13px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
+
+
+/* =========================================================
+   PROJECT HERO
+   ========================================================= */
 
 .project-hero {
     width: 100%;
 
-    min-height: 600px;
+    min-height: 650px;
 
-    background: #eeeeee;
+    margin-bottom: 80px;
+
+    background: #111;
+
+    overflow: hidden;
 }
 
-.project-description {
-    max-width: 700px;
+.project-hero img {
+    width: 100%;
+    height: 100%;
 
-    margin:
-        70px
-        0
-        100px;
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   PROJECT DESCRIPTION
+   ========================================================= */
+
+.project-description {
+    max-width: 750px;
+
+    margin-bottom: 120px;
 }
 
 .project-description p {
     font-size: 22px;
 
-    line-height: 1.15;
+    line-height: 1.35;
 }
 
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
 .gallery-title {
-    font-size: 12px;
+    margin-bottom: 40px;
+
+    font-size: 14px;
 
     text-transform: uppercase;
-
-    margin-bottom: 30px;
+    letter-spacing: 0.05em;
 }
 
 .gallery {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
 
-    gap: 15px;
+    gap: 20px;
 }
 
 .gallery img {
     width: 100%;
+    height: auto;
 
     display: block;
 }
@@ -824,17 +864,44 @@ button {
     grid-column: span 2;
 }
 
-.gallery-dots {
-    margin-top: 25px;
 
+/* =========================================================
+   GALLERY DOTS
+   ========================================================= */
+
+.gallery-dots {
     display: flex;
 
-    gap: 7px;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 30px;
+}
+
+.gallery-dots button {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+
+    border: 1px solid var(--white);
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.gallery-dots button.active {
+    background: var(--white);
 }
 
 
 /* =========================================================
-   FOOTER
+   PROJECT FOOTER
    ========================================================= */
 
 .project-footer,
@@ -854,17 +921,14 @@ button {
     border-top: 1px solid currentColor;
 
     font-size: 11px;
-
     line-height: 1.4;
 
     text-transform: uppercase;
-
     letter-spacing: 0.05em;
 }
 
 .footer-logo {
     display: flex;
-
     flex-direction: column;
 
     align-items: flex-start;
@@ -874,15 +938,11 @@ button {
 
 .footer-logo img {
     width: 100px;
-
     height: auto;
-
-    display: block;
 }
 
 .footer-logo small {
     font-size: 9px;
-
     line-height: 1.4;
 
     opacity: 0.6;
@@ -890,7 +950,6 @@ button {
 
 .footer-barcode {
     display: flex;
-
     align-items: flex-start;
     justify-content: center;
 }
@@ -902,7 +961,6 @@ button {
 
 .footer-contact {
     display: flex;
-
     flex-direction: column;
 
     align-items: flex-end;
@@ -929,18 +987,15 @@ button {
         var(--page-padding)
         50px;
 
-    background: #050505;
-
-    color: #ffffff;
+    background: var(--black);
+    color: var(--white);
 
     display: flex;
-
     flex-direction: column;
 }
 
 .contact-heading {
     display: flex;
-
     align-items: flex-end;
     justify-content: space-between;
 }
@@ -954,7 +1009,14 @@ button {
 }
 
 .contact-heading .orange-hatch {
-    color: #ffffff;
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            var(--white) 0,
+            var(--white) 6px,
+            transparent 6px,
+            transparent 13px
+        );
 }
 
 
@@ -977,7 +1039,8 @@ button {
 
     padding-bottom: 8px;
 
-    transition: opacity 0.3s ease;
+    transition:
+        opacity 0.3s ease;
 }
 
 .contact-email:hover {
@@ -1054,31 +1117,55 @@ button {
         --page-padding: 40px;
     }
 
-    .profile-box {
-        top: 125px;
+
+    /* HEADER */
+
+    .site-header {
+        padding:
+            0
+            var(--page-padding);
     }
+
+
+    /* PROFILE */
+
+    .profile-box {
+        top: 135px;
+    }
+
+    .profile-info {
+        width: 190px;
+    }
+
+    .third-eye {
+        width: 100px;
+        height: 80px;
+    }
+
+
+    /* HERO */
 
     .hero-logo-wrapper {
-        padding-top: 190px;
+        padding-top: 235px;
+        padding-left: 15px;
     }
 
-    /*
-       Tablet logo
-    */
-
     .hero-logo-wrapper img {
-        width: 65vw;
-
-        max-width: 800px;
+        width: 62vw;
+        max-width: 760px;
     }
 
     .hero-description {
-        bottom: 120px;
+        left: calc(var(--page-padding) + 15px);
+        bottom: 110px;
     }
 
     .signal-box {
-        bottom: 135px;
+        bottom: 110px;
     }
+
+
+    /* ABOUT */
 
     .about-section .section-inner {
         grid-template-columns: 1fr 1fr;
@@ -1088,6 +1175,34 @@ button {
 
     .about-copy {
         padding-top: 60px;
+    }
+
+
+    /* WORKS */
+
+    .works-section {
+        padding:
+            120px
+            var(--page-padding);
+    }
+
+
+    /* PROJECT */
+
+    .project-detail {
+        padding:
+            120px
+            var(--page-padding);
+    }
+
+
+    /* CONTACT */
+
+    .contact-section {
+        padding:
+            120px
+            var(--page-padding)
+            50px;
     }
 }
 
@@ -1119,7 +1234,7 @@ button {
     }
 
     .main-nav {
-        gap: 14px;
+        gap: 6px;
 
         font-size: 10px;
     }
@@ -1140,7 +1255,6 @@ button {
 
     .splash-logo {
         width: 82vw;
-
         max-width: none;
 
         max-height: 45vh;
@@ -1162,8 +1276,6 @@ button {
     /* PROFILE */
 
     .profile-box {
-        position: absolute;
-
         top: 95px;
         right: var(--page-padding);
 
@@ -1173,13 +1285,15 @@ button {
     .profile-info {
         width: 145px;
 
-        padding:
-            9px
-            10px;
+        padding: 9px 10px;
 
         font-size: 10px;
 
         border-radius: 12px;
+    }
+
+    .profile-row {
+        gap: 10px;
     }
 
     .third-eye {
@@ -1194,6 +1308,12 @@ button {
         width: 100%;
 
         padding-top: 200px;
+        padding-left: 0;
+
+        display: flex;
+
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
     .hero-logo-wrapper img {
@@ -1207,7 +1327,6 @@ button {
 
     .hero-description {
         left: var(--page-padding);
-
         bottom: 105px;
 
         width: 220px;
@@ -1219,6 +1338,9 @@ button {
         max-width: 210px;
     }
 
+
+    /* ACTIONS */
+
     .hero-actions {
         gap: 25px;
 
@@ -1227,7 +1349,6 @@ button {
 
     .view-button {
         min-width: 92px;
-
         height: 32px;
 
         font-size: 11px;
@@ -1242,16 +1363,12 @@ button {
 
     .signal-box {
         right: var(--page-padding);
-
         bottom: 105px;
 
         width: 145px;
-
         height: 64px;
 
-        padding:
-            8px
-            10px;
+        padding: 8px 10px;
     }
 
     .signal-header {
@@ -1267,7 +1384,6 @@ button {
 
     .timezone {
         left: var(--page-padding);
-
         bottom: 25px;
 
         font-size: 10px;
@@ -1342,9 +1458,7 @@ button {
 
         gap: 12px;
 
-        padding:
-            22px
-            0;
+        padding: 22px 0;
     }
 
     .work-card h3 {
@@ -1458,6 +1572,8 @@ button {
 
 @media (max-width: 480px) {
 
+    /* PROFILE */
+
     .profile-box {
         top: 90px;
     }
@@ -1473,13 +1589,20 @@ button {
         height: 54px;
     }
 
+
+    /* HERO */
+
     .hero-logo-wrapper {
         padding-top: 180px;
+        padding-left: 0;
     }
 
     .hero-logo-wrapper img {
         width: 82vw;
     }
+
+
+    /* DESCRIPTION */
 
     .hero-description {
         bottom: 100px;
@@ -1489,11 +1612,17 @@ button {
         font-size: 10px;
     }
 
+
+    /* SIGNAL */
+
     .signal-box {
         width: 125px;
 
         bottom: 100px;
     }
+
+
+    /* ACTIONS */
 
     .hero-actions {
         gap: 15px;
@@ -1519,15 +1648,12 @@ button {
     *::before,
     *::after {
         animation-duration: 0.01ms !important;
-
         animation-iteration-count: 1 !important;
-
         transition-duration: 0.01ms !important;
     }
 
     .reveal {
         opacity: 1;
-
         transform: none;
     }
 }
