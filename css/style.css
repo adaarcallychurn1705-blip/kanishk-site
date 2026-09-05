@@ -7,8 +7,8 @@
     --header-height: 80px;
 
     --black: #050505;
-    --white: #ffffff;
-    --orange: #ff5a00;
+    --white: #ff0000;
+    --orange: #ff0000;
 
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
