@@ -2,14 +2,24 @@
    KANISHK CALLYCHURN — PORTFOLIO
    ========================================================= */
 
+:root {
+    --page-padding: 70px;
+    --header-height: 80px;
+
+    --black: #050505;
+    --white: #ffffff;
+    --orange: #ff5a00;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
 /* =========================================================
    RESET
    ========================================================= */
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 html {
@@ -32,7 +42,6 @@ body {
 }
 
 img {
-    display: block;
     max-width: 100%;
 }
 
@@ -47,50 +56,6 @@ button {
 
 
 /* =========================================================
-   VARIABLES
-   ========================================================= */
-
-:root {
-    --page-padding: 60px;
-    --header-height: 70px;
-
-    --black: #050505;
-    --white: #ffffff;
-    --red: #e83b2f;
-
-    --ease: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-
-/* =========================================================
-   LEFT HATCH
-   ========================================================= */
-
-.hatch {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 14px;
-    height: 100vh;
-
-    z-index: 1000;
-
-    background:
-        repeating-linear-gradient(
-            135deg,
-            #050505 0px,
-            #050505 5px,
-            transparent 5px,
-            transparent 11px
-        );
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
    SPLASH
    ========================================================= */
 
@@ -101,14 +66,14 @@ button {
 
     z-index: 9999;
 
-    background: var(--red);
+    background: #050505;
+    color: #ffffff;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     opacity: 1;
-    visibility: visible;
 
     transition:
         opacity 0.8s var(--ease),
@@ -124,9 +89,7 @@ button {
 .splash-inner {
     width: 100%;
 
-    padding:
-        40px
-        var(--page-padding);
+    padding: 40px;
 
     display: flex;
     align-items: center;
@@ -134,11 +97,41 @@ button {
 }
 
 .splash-logo {
-    width: min(78vw, 1100px);
+    display: block;
+
+    width: min(520px, 75vw);
 
     height: auto;
 
     object-fit: contain;
+}
+
+
+/* =========================================================
+   LEFT HATCH
+   ========================================================= */
+
+.hatch {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 14px;
+
+    z-index: 1000;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            #050505 0,
+            #050505 2px,
+            transparent 2px,
+            transparent 7px
+        );
+
+    pointer-events: none;
 }
 
 
@@ -151,21 +144,20 @@ button {
 
     top: 0;
     left: 0;
+    right: 0;
 
-    width: 100%;
     height: var(--header-height);
-
-    z-index: 900;
 
     padding:
         0
         var(--page-padding);
 
+    z-index: 900;
+
     display: flex;
+
     align-items: center;
     justify-content: space-between;
-
-    color: var(--black);
 
     pointer-events: none;
 }
@@ -181,18 +173,18 @@ button {
 
 .brand {
     display: block;
-    width: auto;
-    height: auto;
+
+    width: 115px;
+
+    line-height: 0;
 }
 
 .brand-logo {
     display: block;
-    width: 120px; /* change this number */
-    height: auto;
-}
 
-.brand:hover {
-    opacity: 0.6;
+    width: 100%;
+
+    height: auto;
 }
 
 
@@ -202,20 +194,21 @@ button {
 
 .main-nav {
     display: flex;
-    flex-direction: column;
 
-    align-items: flex-end;
+    align-items: center;
 
-    gap: 6px;
+    gap: 30px;
 
     font-size: 11px;
-    line-height: 1;
 
-    text-transform: none;
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
 }
 
 .main-nav a {
-    transition: opacity 0.25s ease;
+    transition:
+        opacity 0.25s ease;
 }
 
 .main-nav a:hover {
@@ -230,7 +223,6 @@ button {
 .home-section {
     position: relative;
 
-    width: 100%;
     min-height: 100vh;
 
     min-height: 100svh;
@@ -238,65 +230,56 @@ button {
     padding:
         var(--header-height)
         var(--page-padding)
-        40px;
-
-    background: #ffffff;
+        50px;
 
     overflow: hidden;
 }
 
 
 /* =========================================================
-   PROFILE BOX
+   PROFILE
    ========================================================= */
 
 .profile-box {
     position: absolute;
 
-    top: 145px;
+    top: 125px;
     right: var(--page-padding);
 
     display: flex;
-    align-items: center;
 
-    gap: 15px;
+    align-items: flex-start;
 
-    z-index: 10;
+    gap: 12px;
+
+    z-index: 5;
 }
 
-
-/* =========================================================
-   PROFILE INFORMATION
-   ========================================================= */
-
 .profile-info {
-    width: 220px;
+    width: 190px;
 
-    padding:
-        11px
-        13px;
+    padding: 12px 14px;
 
-    border: 1px solid #111111;
+    background: #050505;
+    color: #ffffff;
 
-    border-radius: 15px;
+    border-radius: 16px;
 
-    display: flex;
-    flex-direction: column;
+    font-size: 11px;
 
-    gap: 7px;
+    text-transform: uppercase;
 
-    background: #ffffff;
-
-    font-size: 12px;
-    line-height: 1.2;
+    letter-spacing: 0.04em;
 }
 
 .profile-row {
-    display: grid;
+    display: flex;
 
-    grid-template-columns: 1fr auto;
+    justify-content: space-between;
 
     gap: 20px;
+
+    padding: 5px 0;
 }
 
 .profile-row span:last-child {
@@ -309,10 +292,11 @@ button {
    ========================================================= */
 
 .third-eye {
-    width: 120px;
-    height: 88px;
+    width: 85px;
+    height: 78px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -320,6 +304,8 @@ button {
 }
 
 .third-eye img {
+    display: block;
+
     width: 100%;
     height: 100%;
 
@@ -334,38 +320,38 @@ button {
 /*
    IMPORTANT:
 
-   This is the main fix.
+   The black Kanishk PNG is used directly.
 
-   Do NOT use 88vw / 92vw here.
-   That was making the black logo dominate the entire screen.
+   This is intentionally MUCH smaller than the previous
+   88vw / 92vw versions.
 
-   The reference design is approximately 60% of the
-   available content width.
+   It keeps the same image proportions as the white logo.
 */
 
 .hero-logo-wrapper {
-    width: 100%;
+    position: absolute;
 
-    padding-top: 360px;
+    left: var(--page-padding);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 47%;
 
-    overflow: visible;
+    width: min(570px, 48vw);
+
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    z-index: 2;
 }
 
 .hero-logo-wrapper img {
     display: block;
 
-    /*
-     * Desktop reference size
-     */
-    width: min(62vw, 920px);
+    width: 100%;
 
     height: auto;
 
-    max-width: 920px;
+    max-width: 570px;
 
     object-fit: contain;
 }
@@ -379,16 +365,21 @@ button {
     position: absolute;
 
     left: var(--page-padding);
-    bottom: 125px;
+    bottom: 70px;
 
-    width: 280px;
+    width: 270px;
 
     font-size: 13px;
-    line-height: 1.45;
+
+    line-height: 1.4;
+
+    z-index: 5;
 }
 
 .hero-description p {
-    max-width: 260px;
+    margin: 0;
+
+    max-width: 250px;
 }
 
 
@@ -398,9 +389,10 @@ button {
 
 .hero-actions {
     display: flex;
+
     align-items: center;
 
-    gap: 40px;
+    gap: 30px;
 
     margin-top: 22px;
 }
@@ -412,20 +404,25 @@ button {
 
 .view-button {
     min-width: 105px;
-    height: 38px;
 
-    padding:
-        0
-        16px;
+    height: 36px;
 
-    border: 1px solid #111111;
-    border-radius: 20px;
+    padding: 0 15px;
 
-    display: inline-flex;
+    display: flex;
+
     align-items: center;
     justify-content: center;
 
-    font-size: 12px;
+    border: 1px solid #050505;
+
+    border-radius: 100px;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
 
     transition:
         background 0.25s ease,
@@ -434,6 +431,7 @@ button {
 
 .view-button:hover {
     background: #050505;
+
     color: #ffffff;
 }
 
@@ -443,10 +441,8 @@ button {
    ========================================================= */
 
 .barcode {
-    width: 90px;
+    width: 100px;
     height: 34px;
-
-    overflow: hidden;
 }
 
 .barcode-svg {
@@ -463,20 +459,18 @@ button {
     position: absolute;
 
     right: var(--page-padding);
-    bottom: 125px;
+    bottom: 75px;
 
-    width: 220px;
-    height: 90px;
+    width: 180px;
+    height: 82px;
 
-    padding:
-        10px
-        13px;
+    padding: 10px 12px;
 
-    border: 1px solid #111111;
+    border: 1px solid #050505;
 
-    border-radius: 15px;
+    border-radius: 12px;
 
-    background: #ffffff;
+    z-index: 5;
 }
 
 .signal-header {
@@ -485,20 +479,24 @@ button {
     align-items: center;
     justify-content: space-between;
 
-    font-size: 12px;
-    line-height: 1;
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
 }
 
 .signal-live {
     display: flex;
+
     align-items: center;
 
-    gap: 6px;
+    gap: 5px;
 }
 
 .live-dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
 
     border-radius: 50%;
 
@@ -509,33 +507,68 @@ button {
     display: block;
 
     width: 100%;
-    height: 52px;
 
-    margin-top: 8px;
+    height: 48px;
+
+    margin-top: 3px;
 }
 
 
 /* =========================================================
-   TIME ZONE
+   TIMEZONE
    ========================================================= */
 
 .timezone {
     position: absolute;
 
     left: var(--page-padding);
-    bottom: 35px;
+    bottom: 25px;
 
     display: flex;
-    flex-direction: column;
 
-    gap: 8px;
+    gap: 35px;
 
-    font-size: 11px;
-    line-height: 1.25;
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+
+    line-height: 1.4;
 }
 
 .timezone strong {
-    font-weight: 400;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
+
+.about-section,
+.works-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        150px
+        var(--page-padding)
+        100px;
+}
+
+
+/* =========================================================
+   SECTION INNER
+   ========================================================= */
+
+.section-inner {
+    width: 100%;
+
+    max-width: 1600px;
+
+    margin: 0 auto;
 }
 
 
@@ -544,25 +577,10 @@ button {
    ========================================================= */
 
 .about-section {
-    position: relative;
-
-    min-height: 100vh;
-
-    padding:
-        150px
-        var(--page-padding);
-
     background: #ffffff;
+
+    color: #050505;
 }
-
-.section-inner {
-    width: 100%;
-}
-
-
-/* =========================================================
-   ABOUT LAYOUT
-   ========================================================= */
 
 .about-section .section-inner {
     display: grid;
@@ -572,47 +590,27 @@ button {
     gap: 100px;
 }
 
-.about-title-column {
-    min-width: 0;
-}
-
-.about-copy {
-    padding-top: 100px;
-}
-
-
-/* =========================================================
-   SMALL HEADING
-   ========================================================= */
-
 .small-heading {
-    margin-bottom: 45px;
+    margin-bottom: 50px;
 
-    font-size: 12px;
+    font-size: 11px;
 
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+
+    letter-spacing: 0.1em;
 }
 
-
-/* =========================================================
-   ABOUT TITLE
-   ========================================================= */
-
 .about-title-column h1 {
-    font-size: clamp(70px, 9vw, 145px);
+    margin: 0;
+
+    font-size: clamp(65px, 9vw, 150px);
 
     line-height: 0.82;
 
-    letter-spacing: -0.065em;
+    letter-spacing: -0.07em;
 
-    font-weight: 500;
+    font-weight: 700;
 }
-
-
-/* =========================================================
-   SECTION RULE
-   ========================================================= */
 
 .section-rule {
     width: 100%;
@@ -624,33 +622,45 @@ button {
     background: currentColor;
 }
 
+.about-title-column h2 {
+    margin-top: 30px;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+}
+
 
 /* =========================================================
    EDUCATION
    ========================================================= */
 
-.about-title-column h2 {
-    margin-top: 30px;
-
-    font-size: 14px;
-
-    font-weight: 400;
-
-    text-transform: uppercase;
-}
-
 .education {
     display: flex;
+
     flex-direction: column;
 
-    gap: 25px;
+    gap: 30px;
 
     margin-top: 30px;
 }
 
 .education-item {
-    font-size: 12px;
-    line-height: 1.5;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+    padding-top: 12px;
+}
+
+.education-item p {
+    margin: 0 0 6px;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-transform: uppercase;
 }
 
 
@@ -658,12 +668,18 @@ button {
    ABOUT COPY
    ========================================================= */
 
+.about-copy {
+    padding-top: 120px;
+}
+
 .about-copy p {
     max-width: 650px;
 
-    font-size: clamp(22px, 2.7vw, 42px);
+    margin: 0;
 
-    line-height: 1.08;
+    font-size: clamp(24px, 3vw, 44px);
+
+    line-height: 1.05;
 
     letter-spacing: -0.035em;
 }
@@ -674,37 +690,29 @@ button {
    ========================================================= */
 
 .works-section {
-    min-height: 100vh;
-
-    padding:
-        150px
-        var(--page-padding);
-
     background: #ffffff;
+
+    color: #050505;
 }
-
-
-/* =========================================================
-   WORKS HEADING
-   ========================================================= */
 
 .works-heading {
     display: flex;
 
     align-items: flex-end;
+
     justify-content: space-between;
 
-    margin-bottom: 90px;
+    margin-bottom: 100px;
 }
 
 .works-heading h2 {
-    font-size: clamp(90px, 14vw, 210px);
+    margin: 0;
+
+    font-size: clamp(90px, 15vw, 230px);
 
     line-height: 0.75;
 
     letter-spacing: -0.08em;
-
-    font-weight: 500;
 }
 
 
@@ -713,16 +721,16 @@ button {
    ========================================================= */
 
 .orange-hatch {
-    width: 110px;
-    height: 55px;
+    width: 100px;
+    height: 50px;
 
     background:
         repeating-linear-gradient(
             135deg,
-            currentColor 0px,
-            currentColor 5px,
-            transparent 5px,
-            transparent 12px
+            #ff5a00 0,
+            #ff5a00 3px,
+            transparent 3px,
+            transparent 10px
         );
 }
 
@@ -738,18 +746,22 @@ button {
 .work-card {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
 
-    gap: 50px;
+    gap: 30px;
 
-    padding:
-        35px
-        0;
+    padding: 35px 0;
 
     border-top: 1px solid currentColor;
 }
 
+.work-card:last-child {
+    border-bottom: 1px solid currentColor;
+}
+
 .work-card h3 {
+    margin: 0;
+
     font-size: clamp(40px, 6vw, 90px);
 
     line-height: 0.85;
@@ -768,11 +780,13 @@ button {
     min-height: 100vh;
 
     padding:
-        140px
+        150px
         var(--page-padding)
-        60px;
+        80px;
 
-    background: #ffffff;
+    background: #050505;
+
+    color: #ffffff;
 }
 
 .project-detail.is-active {
@@ -780,34 +794,28 @@ button {
 }
 
 .project-detail-inner {
-    width: 100%;
+    max-width: 1600px;
+
+    margin: 0 auto;
 }
 
-
-/* =========================================================
-   BACK BUTTON
-   ========================================================= */
-
 .back-button {
+    padding: 0;
+
     border: 0;
 
-    background: none;
+    background: transparent;
+
+    color: inherit;
 
     cursor: pointer;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    margin-bottom: 80px;
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
 }
-
-.back-button:hover {
-    opacity: 0.5;
-}
-
-
-/* =========================================================
-   PROJECT HEADING
-   ========================================================= */
 
 .project-heading {
     display: grid;
@@ -816,11 +824,15 @@ button {
 
     gap: 50px;
 
-    margin-bottom: 70px;
+    margin:
+        80px 0
+        70px;
 }
 
 .project-heading h1 {
-    font-size: clamp(70px, 10vw, 150px);
+    margin: 0;
+
+    font-size: clamp(65px, 10vw, 160px);
 
     line-height: 0.8;
 
@@ -828,40 +840,33 @@ button {
 }
 
 .project-heading p {
-    font-size: 13px;
+    margin: 0;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
 }
-
-
-/* =========================================================
-   PROJECT HERO
-   ========================================================= */
 
 .project-hero {
     width: 100%;
 
     min-height: 600px;
 
-    background: #eeeeee;
+    background: #151515;
 }
 
-
-/* =========================================================
-   PROJECT DESCRIPTION
-   ========================================================= */
-
 .project-description {
-    max-width: 800px;
+    max-width: 700px;
 
     margin:
-        70px
-        0
+        70px 0
         100px;
 }
 
 .project-description p {
-    font-size: 24px;
+    font-size: 22px;
 
-    line-height: 1.15;
+    line-height: 1.3;
 }
 
 
@@ -872,9 +877,11 @@ button {
 .gallery-title {
     margin-bottom: 30px;
 
-    font-size: 14px;
+    font-size: 13px;
 
     text-transform: uppercase;
+
+    letter-spacing: 0.08em;
 }
 
 .gallery {
@@ -886,7 +893,10 @@ button {
 }
 
 .gallery img {
+    display: block;
+
     width: 100%;
+
     height: auto;
 }
 
@@ -894,17 +904,12 @@ button {
     grid-column: span 2;
 }
 
-
-/* =========================================================
-   GALLERY DOTS
-   ========================================================= */
-
 .gallery-dots {
     display: flex;
 
     justify-content: center;
 
-    gap: 7px;
+    gap: 8px;
 
     margin-top: 25px;
 }
@@ -931,16 +936,13 @@ button {
     border-top: 1px solid currentColor;
 
     font-size: 11px;
+
     line-height: 1.4;
 
     text-transform: uppercase;
+
     letter-spacing: 0.05em;
 }
-
-
-/* =========================================================
-   FOOTER LOGO
-   ========================================================= */
 
 .footer-logo {
     display: flex;
@@ -966,27 +968,19 @@ button {
     opacity: 0.6;
 }
 
-
-/* =========================================================
-   FOOTER BARCODE
-   ========================================================= */
-
 .footer-barcode {
     display: flex;
 
     align-items: flex-start;
+
     justify-content: center;
 }
 
 .footer-barcode-svg {
     width: 120px;
+
     height: 34px;
 }
-
-
-/* =========================================================
-   FOOTER CONTACT
-   ========================================================= */
 
 .footer-contact {
     display: flex;
@@ -1028,12 +1022,11 @@ button {
 
 .contact-section .section-inner {
     width: 100%;
+
+    max-width: 1600px;
+
+    margin: 0 auto;
 }
-
-
-/* =========================================================
-   CONTACT HEADING
-   ========================================================= */
 
 .contact-heading {
     display: flex;
@@ -1044,17 +1037,24 @@ button {
 }
 
 .contact-heading h1 {
+    margin: 0;
+
     font-size: clamp(70px, 14vw, 210px);
 
     line-height: 0.78;
 
     letter-spacing: -0.075em;
-
-    font-weight: 500;
 }
 
 .contact-heading .orange-hatch {
-    color: #ffffff;
+    background:
+        repeating-linear-gradient(
+            135deg,
+            #ffffff 0,
+            #ffffff 3px,
+            transparent 3px,
+            transparent 10px
+        );
 }
 
 
@@ -1075,7 +1075,8 @@ button {
 
     padding-bottom: 8px;
 
-    transition: opacity 0.3s ease;
+    transition:
+        opacity 0.3s ease;
 }
 
 .contact-email:hover {
@@ -1092,19 +1093,19 @@ button {
 }
 
 .contact-copy h2 {
+    margin: 0 0 25px;
+
     font-size: clamp(32px, 5vw, 70px);
 
     line-height: 0.9;
 
     letter-spacing: -0.04em;
-
-    margin-bottom: 25px;
-
-    font-weight: 500;
 }
 
 .contact-copy p {
     max-width: 500px;
+
+    margin: 0;
 
     font-size: 16px;
 
@@ -1169,24 +1170,14 @@ button {
         top: 125px;
     }
 
-    .profile-info {
-        width: 190px;
-    }
-
-    .third-eye {
-        width: 100px;
-        height: 75px;
-    }
-
     /*
-     * Smaller hero logo on tablets
-     */
-    .hero-logo-wrapper {
-        padding-top: 330px;
-    }
+       Smaller hero logo on tablet.
+    */
 
-    .hero-logo-wrapper img {
-        width: min(64vw, 760px);
+    .hero-logo-wrapper {
+        left: var(--page-padding);
+
+        width: min(500px, 55vw);
     }
 
     .hero-description {
@@ -1194,9 +1185,7 @@ button {
     }
 
     .signal-box {
-        bottom: 120px;
-
-        width: 190px;
+        bottom: 135px;
     }
 
     .about-section .section-inner {
@@ -1219,6 +1208,7 @@ button {
 
     :root {
         --page-padding: 18px;
+
         --header-height: 64px;
     }
 
@@ -1238,7 +1228,7 @@ button {
     }
 
     .main-nav {
-        gap: 7px;
+        gap: 14px;
 
         font-size: 10px;
     }
@@ -1291,39 +1281,44 @@ button {
     .profile-info {
         width: 145px;
 
-        padding:
-            9px
-            10px;
+        padding: 9px 10px;
 
         font-size: 10px;
 
         border-radius: 12px;
     }
 
-    .profile-row {
-        gap: 10px;
-    }
-
     .third-eye {
         width: 70px;
+
         height: 64px;
     }
 
 
-    /* HERO LOGO */
+    /* =====================================================
+       MOBILE HERO KANISHK
+       ===================================================== */
 
     .hero-logo-wrapper {
-        width: 100%;
+        left: var(--page-padding);
 
-        padding-top: 250px;
+        top: 45%;
 
-        justify-content: center;
+        width: 72vw;
+
+        max-width: none;
+
+        padding: 0;
+
+        transform: translateY(-50%);
     }
 
     .hero-logo-wrapper img {
-        width: 72vw;
+        display: block;
 
-        max-width: 520px;
+        width: 100%;
+
+        height: auto;
     }
 
 
@@ -1373,9 +1368,7 @@ button {
 
         height: 64px;
 
-        padding:
-            8px
-            10px;
+        padding: 8px 10px;
     }
 
     .signal-header {
@@ -1417,11 +1410,7 @@ button {
     }
 
     .about-title-column h1 {
-        font-size: clamp(
-            55px,
-            17vw,
-            100px
-        );
+        font-size: clamp(55px, 17vw, 100px);
     }
 
     .section-rule {
@@ -1457,11 +1446,7 @@ button {
     }
 
     .works-heading h2 {
-        font-size: clamp(
-            70px,
-            20vw,
-            120px
-        );
+        font-size: clamp(70px, 20vw, 120px);
     }
 
     .orange-hatch {
@@ -1475,17 +1460,11 @@ button {
 
         gap: 12px;
 
-        padding:
-            22px
-            0;
+        padding: 22px 0;
     }
 
     .work-card h3 {
-        font-size: clamp(
-            30px,
-            9vw,
-            55px
-        );
+        font-size: clamp(30px, 9vw, 55px);
     }
 
 
@@ -1506,11 +1485,7 @@ button {
     }
 
     .project-heading h1 {
-        font-size: clamp(
-            55px,
-            15vw,
-            100px
-        );
+        font-size: clamp(55px, 15vw, 100px);
     }
 
     .project-hero {
@@ -1572,11 +1547,7 @@ button {
     }
 
     .contact-heading h1 {
-        font-size: clamp(
-            65px,
-            18vw,
-            115px
-        );
+        font-size: clamp(65px, 18vw, 115px);
     }
 
     .contact-email {
@@ -1592,11 +1563,7 @@ button {
     }
 
     .contact-copy h2 {
-        font-size: clamp(
-            35px,
-            10vw,
-            60px
-        );
+        font-size: clamp(35px, 10vw, 60px);
     }
 }
 
@@ -1606,10 +1573,6 @@ button {
    ========================================================= */
 
 @media (max-width: 480px) {
-
-    .brand {
-        width: 82px;
-    }
 
     .profile-box {
         top: 90px;
@@ -1623,21 +1586,29 @@ button {
 
     .third-eye {
         width: 58px;
+
         height: 54px;
     }
 
-    /*
-     * Keep logo controlled on small phones
-     */
+
+    /* SMALL MOBILE KANISHK */
+
     .hero-logo-wrapper {
-        padding-top: 205px;
+        left: var(--page-padding);
+
+        top: 44%;
+
+        width: 78vw;
+
+        padding: 0;
     }
 
     .hero-logo-wrapper img {
-        width: 76vw;
+        width: 100%;
 
-        max-width: 390px;
+        height: auto;
     }
+
 
     .hero-description {
         bottom: 100px;
