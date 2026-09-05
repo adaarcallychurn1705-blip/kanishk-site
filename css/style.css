@@ -57,6 +57,12 @@ img {
     --page-padding: 32px;
     --header-height: 80px;
 
+    /*
+       ONE SIZE FOR BOTH SPLASH + HERO LOGOS
+       This guarantees they render at exactly the same width.
+    */
+    --logo-width: min(72vw, 720px);
+
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -230,7 +236,7 @@ img {
    ========================================================= */
 
 .splash-logo {
-    width: min(72vw, 720px);
+    width: var(--logo-width);
     height: auto;
 
     filter: none;
@@ -298,17 +304,11 @@ img {
 
 /* =========================================================
    HERO LOGO
+   EXACT SAME SIZE AS SPLASH LOGO
    ========================================================= */
 
-/*
-   Controls the white hero logo.
-
-   This keeps the logo proportional while preventing it
-   from becoming excessively large.
-*/
-
 .hero-logo-wrapper {
-    width: min(72vw, 720px);
+    width: var(--logo-width);
 
     margin: 0 auto;
 }
@@ -723,6 +723,13 @@ img {
     :root {
         --page-padding: 18px;
         --header-height: 64px;
+
+        /*
+           IMPORTANT:
+           Keep the SAME logo width on mobile.
+           Splash and hero remain identical.
+        */
+        --logo-width: min(72vw, 720px);
     }
 
     .site-header {
@@ -742,10 +749,13 @@ img {
         padding-bottom: 35px;
     }
 
-    /* Mobile hero logo */
+    /*
+       DO NOT change the hero logo size here.
+       It inherits --logo-width, exactly like splash.
+    */
 
     .hero-logo-wrapper {
-        width: min(82vw, 500px);
+        width: var(--logo-width);
         margin: 0 auto;
     }
 
@@ -871,4 +881,21 @@ img {
         opacity: 1;
         transform: none;
     }
+}
+The key change
+
+Both now use exactly the same variable:
+
+--logo-width: min(72vw, 720px);
+
+Splash:
+
+.splash-logo {
+    width: var(--logo-width);
+}
+
+Hero:
+
+.hero-logo-wrapper {
+    width: var(--logo-width);
 }
