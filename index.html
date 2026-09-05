@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanishk Callychurn — Graphic Designer & Animator</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="hatch" aria-hidden="true"></div>
+
+<header>
+  <!-- Drop kanishk_typeface_black.png in assets/images/ — this shows on the white nav bar -->
+  <a href="#home"><img src="assets/images/kanishk_typeface_black.png" alt="Kanishk" class="wordmark"></a>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="home">
+  <div class="hero-top">
+    <!-- Bigger version of the same wordmark as the hero centerpiece -->
+    <img src="assets/images/kanishk_typeface_black.png" alt="Kanishk" class="hero-logo">
+    <div class="meta-box" aria-label="Profile summary">
+      <div><span>Role</span><span>Graphics Designer</span></div>
+      <div><span>Based</span><span>Mauritius</span></div>
+      <div><span>Since</span><span>2021</span></div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div>
+      <!-- Placeholder — write your own one-line intro here -->
+      <p class="tagline">Portfolio of graphic design, animation, and visual effects work.</p>
+      <button class="view-works-btn" onclick="document.getElementById('works').scrollIntoView()">View Works</button>
+    </div>
+    <div class="clocks">
+      <div>Toronto, ON, Canada<br><strong id="toronto-time">--:--:--</strong></div>
+      <div>Mauritius<br><strong id="mauritius-time">--:--:--</strong></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <!-- Placeholder headline — write your own instead of reusing borrowed copy -->
+  <h2>Design, animation, and motion.</h2>
+  <div>
+    <p>A multidisciplinary graphic designer and animator with a strong focus on 2D/3D animation and visual effects. I work at the intersection of creativity and technology, transforming ideas into visually compelling digital experiences that communicate meaning and emotion. My approach is centered on combining artistic creativity with technical precision to produce engaging and purposeful visual work.</p>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="school">Humber College</div>
+        <div class="when">Jan 2026 – Apr 2027 · Diploma in Advertising and Graphic Design</div>
+      </div>
+      <div class="edu-item">
+        <div class="school">Polytechnics Mauritius</div>
+        <div class="when">Apr 2024 – Mar 2025 · Certificate in  IT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="works">
+  <h2>Works</h2>
+  <div class="carousel-wrap">
+    <div class="carousel" id="carousel"></div>
+    <div class="carousel-nav">
+      <button aria-label="Previous" onclick="scrollCarousel(-1)">&larr;</button>
+      <button aria-label="Next" onclick="scrollCarousel(1)">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Drop me a Hello</h2>
+  <p>Have a project in mind or want to collaborate? I'd love to hear from you.</p>
+  <div class="contact-links">
+    <a href="mailto:contact@im-kanishk.com">contact@im-kanishk.com</a>
+    <a href="https://instagram.com/kanishk_.c" target="_blank" rel="noopener">@kanishk_.c</a>
+  </div>
+  <footer>&copy; 2026 Kanishk Callychurn. All rights reserved. Toronto, ON, Canada</footer>
+</section>
+
+<!-- Detail overlay, filled in and toggled by JS -->
+<div class="detail" id="detail">
+  <button class="back-btn" onclick="closeDetail()">&larr; Back to works</button>
+  <h3 id="detail-title"></h3>
+  <div class="cat" id="detail-cat"></div>
+  <p id="detail-desc"></p>
+  <div class="gallery" id="detail-gallery"></div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
