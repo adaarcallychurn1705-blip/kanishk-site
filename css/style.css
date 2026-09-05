@@ -245,21 +245,24 @@ button {
 }
 
 .main-nav a {
-    color: #050505;
+    color: #ffffff;
 
-    /* Explicit theme-driven color instead of mix-blend-mode, which
-       doesn't reliably blend against content behind a position:
-       fixed header. White while the red intro is up (body.is-loading)
-       or while a dark section (Project Detail / Contact) is in view;
-       black otherwise. */
-    transition:
-        color 0.3s ease,
-        opacity 0.25s ease;
+    /* Automatic invert: white text differenced against whatever
+       is behind the fixed header reads as black on a white
+       section and white on a dark one, with no need to track
+       which section is in view. */
+    mix-blend-mode: difference;
+
+    transition: opacity 0.25s ease;
 }
 
-body.is-loading .main-nav a,
-body[data-theme="dark"] .main-nav a {
+body.is-loading .main-nav a {
+    /* The splash is a saturated red, not pure black/white, so
+       difference against it produces an off color — force white
+       here instead, matching the logo, while the intro is up. */
     color: #ffffff;
+
+    mix-blend-mode: normal;
 }
 
 .main-nav a:hover {
