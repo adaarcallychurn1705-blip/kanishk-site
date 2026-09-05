@@ -14,8 +14,9 @@
 
   <!-- =====================================================
        SPLASH / INTRO
-       Slides straight up and off the top of the viewport
-       (like a curtain lifting) to reveal Home underneath.
+       1) Red background, logo pops in (scale + fade).
+       2) After a beat, whole panel slides up and off the
+          top of the viewport (curtain lift) to reveal Home.
        See script.js -> initSplash() and style.css -> .splash
   ====================================================== -->
 
@@ -81,7 +82,7 @@
 
   <main>
 
-    <section id="home" class="home-section">
+    <section id="home" class="home-section" data-theme="light">
 
       <!-- Profile information -->
       <div class="profile-box">
@@ -121,12 +122,9 @@
         <!-- Same single white asset used everywhere else on the
              site (header, splash, footer). Recoloured to black
              purely with CSS (filter: invert(1) in style.css), so
-             there's no second "black" PNG to keep in sync. The
-             wrapper's size/position rules are unchanged, so the
-             logo sits exactly where it did before and can't
-             overlap or break the layout. -->
+             there's no second "black" PNG to keep in sync. -->
         <img
-          src="./assets/images/kanishk_typeface_black.png"
+          src="./assets/images/kanishk_typeface_white.png"
           alt="Kanishk"
           class="hero-logo-img">
 
@@ -205,7 +203,7 @@
          ABOUT
     ==================================================== -->
 
-    <section id="about" class="about-section">
+    <section id="about" class="about-section" data-theme="light">
 
       <div class="section-inner">
 
@@ -279,7 +277,7 @@
          WORKS
     ==================================================== -->
 
-    <section id="works" class="works-section">
+    <section id="works" class="works-section" data-theme="light">
 
       <div class="section-inner">
 
@@ -312,6 +310,7 @@
     <section
       id="project-detail"
       class="project-detail"
+      data-theme="dark"
       aria-hidden="true">
 
       <div class="project-detail-inner">
@@ -428,7 +427,7 @@
          CONTACT
     ==================================================== -->
 
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section" data-theme="dark">
 
       <div class="section-inner">
 

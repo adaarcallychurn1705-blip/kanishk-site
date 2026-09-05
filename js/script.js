@@ -7,6 +7,12 @@
 
     /* =======================================================
        SPLASH
+       Stage 1: red panel is already visible on load. Shortly
+                after, the logo pops in (scale + fade), driven
+                by .splash-logo.is-visible in style.css.
+       Stage 2: after the logo has held for a moment, the whole
+                panel slides up and off the top of the viewport
+                (curtain lift), driven by .splash.is-hidden.
        ======================================================= */
 
     function initSplash() {
@@ -17,6 +23,8 @@
             document.body.classList.remove("is-loading");
             return;
         }
+
+        const logo = splash.querySelector(".splash-logo");
 
         /*
          * Always allow the page to recover.
@@ -48,10 +56,25 @@
         };
 
         /*
-         * Give the logo a moment to appear before closing.
+         * Stage 1 — pop the logo in a beat after load, so the
+         * red background is seen first, then the mark appears.
          */
 
-        window.setTimeout(hideSplash, 1300);
+        const showLogo = function () {
+
+            if (logo) {
+                logo.classList.add("is-visible");
+            }
+        };
+
+        window.setTimeout(showLogo, 150);
+
+        /*
+         * Stage 2 — hold on the popped-in logo, then lift the
+         * curtain into Home.
+         */
+
+        window.setTimeout(hideSplash, 1900);
 
         /*
          * Absolute safety fallback.
@@ -193,10 +216,13 @@
 
         /*
          * CSS mix-blend-mode:difference handles the actual
-         * inversion.
+         * inversion of the logo/nav against whatever section
+         * is behind the fixed header.
          *
-         * This JS only detects the current section so you can
-         * add section-specific behaviour later if needed.
+         * This observer just tags <body data-theme="..."> to
+         * match the current section, in case other elements
+         * (not covered by the blend trick) need to react to
+         * light vs. dark sections later.
          */
 
         const sections = document.querySelectorAll(

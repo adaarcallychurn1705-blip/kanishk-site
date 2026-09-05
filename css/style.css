@@ -7,8 +7,9 @@
     --header-height: 80px;
 
     --black: #050505;
-    --white: #ff0000;
-    --orange: #ff0000;
+    --white: #ffffff;
+    --orange: #ff5a00;
+    --splash-red: #d0021b;
 
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -57,9 +58,15 @@ button {
 
 /* =========================================================
    SPLASH
-   Straight vertical "curtain" exit: the whole panel slides
-   up and off the top of the viewport in one motion, revealing
-   Home underneath it. No cross-fade — just enter, then lift.
+   Two-stage intro:
+     1) Red panel is already on screen. The logo pops in
+        (scale + fade) a beat after load.
+     2) After the logo has held for a moment, the whole panel
+        slides straight up and off the top of the viewport
+        (like a curtain lifting), revealing Home underneath.
+   Stage 1 is driven by the .is-visible class on .splash-logo
+   (added shortly after load). Stage 2 is driven by
+   .is-hidden on .splash itself. See script.js -> initSplash().
    ========================================================= */
 
 .splash {
@@ -69,7 +76,7 @@ button {
 
     z-index: 9999;
 
-    background: #050505;
+    background: var(--splash-red);
     color: #ffffff;
 
     display: flex;
@@ -111,6 +118,21 @@ button {
     height: auto;
 
     object-fit: contain;
+
+    /* Stage 1: starts hidden/small, pops up to full size. */
+    opacity: 0;
+
+    transform: scale(0.75);
+
+    transition:
+        opacity 0.55s var(--ease),
+        transform 0.55s var(--ease);
+}
+
+.splash-logo.is-visible {
+    opacity: 1;
+
+    transform: scale(1);
 }
 
 
@@ -230,10 +252,12 @@ button {
 }
 
 .main-nav a {
-    color: #ff0000;
+    color: #ffffff;
 
     /* Same auto-invert trick as the logo, so the nav text
-       stays legible no matter which section is behind it. */
+       stays legible no matter which section is behind it:
+         - white section -> reads black
+         - black section -> reads white */
     mix-blend-mode: difference;
 
     transition:
@@ -347,16 +371,12 @@ button {
    ========================================================= */
 
 /*
-   IMPORTANT:
-
-   Only one asset is used for this logo now:
-   kanishk_typeface_white.png.
-
-   It's recoloured to black with `filter: invert(1)` below,
-   instead of loading a separate kanishk_typeface_black.png.
-   The wrapper's size/position rules are unchanged from before,
-   so the logo keeps the exact same footprint on the page and
-   can't overlap or push other elements around.
+   Only one asset is used for this logo: kanishk_typeface_white.png.
+   It's recoloured to black with `filter: invert(1)` below, instead
+   of loading a separate kanishk_typeface_black.png. Do NOT swap the
+   <img src> to the black PNG in HTML while this filter is in place —
+   black + invert(1) = white, which disappears on this section's
+   white background. Pick exactly one of the two approaches.
 */
 
 .hero-logo-wrapper {
@@ -766,8 +786,8 @@ button {
     background:
         repeating-linear-gradient(
             135deg,
-            #ff5a00 0,
-            #ff5a00 3px,
+            var(--orange) 0,
+            var(--orange) 3px,
             transparent 3px,
             transparent 10px
         );
@@ -1702,5 +1722,13 @@ button {
         opacity: 1;
 
         transform: none;
+    }
+
+    .splash-logo {
+        opacity: 1;
+
+        transform: none;
+
+        transition: none;
     }
 }
