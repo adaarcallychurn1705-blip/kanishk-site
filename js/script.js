@@ -120,7 +120,7 @@
          * dismissed it another way.
          */
 
-        window.setTimeout(hideSplash, 1900);
+        window.setTimeout(hideSplash, 5000);
 
         /*
          * Absolute safety fallback.
@@ -129,7 +129,7 @@
          * timer from firing, remove it anyway.
          */
 
-        window.setTimeout(hideSplash, 3500);
+        window.setTimeout(hideSplash, 6000);
 
         /*
          * Clicking the intro closes it immediately.
@@ -467,7 +467,7 @@
        ======================================================= */
 
     /*
-     * If somehow the splash is still present after 4 seconds,
+     * If somehow the splash is still present after 7 seconds,
      * force it away.
      */
 
@@ -500,6 +500,6 @@
             }, 900);
         }
 
-    }, 4000);
+    }, 7000);
 
 })();
