@@ -189,9 +189,9 @@ button {
 .brand-logo {
     display: block;
 
-    width: 100%;
+    width: 10px;
 
-    height: auto;
+    height: 10px;
 
     /* Auto-inverts against whatever section is scrolled
        underneath the fixed header: white PNG -> renders
