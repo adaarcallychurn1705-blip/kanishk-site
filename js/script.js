@@ -1,6 +1,6 @@
 /* =========================================================
    KANISHK CALLYCHURN — PORTFOLIO SCRIPT
-   ========================================================= */
+========================================================= */
 
 (function () {
 
@@ -33,6 +33,7 @@
         const splash =
             document.getElementById("splash");
 
+
         if (!splash) {
 
             document.body.classList.remove(
@@ -42,6 +43,7 @@
             applyHeaderTheme("light");
 
             return;
+
         }
 
 
@@ -59,7 +61,9 @@
                 !splash ||
                 splash.classList.contains("is-hidden")
             ) {
+
                 return;
+
             }
 
 
@@ -76,7 +80,12 @@
             );
 
 
-            applyHeaderTheme("light");
+            /*
+             * Immediately determine the correct
+             * header theme after splash.
+             */
+
+            updateHeaderTheme();
 
 
             window.setTimeout(function () {
@@ -239,8 +248,11 @@
 
 
                     target.scrollIntoView({
+
                         behavior: "smooth",
+
                         block: "start"
+
                     });
 
                 }
@@ -344,15 +356,20 @@
        HEADER / SECTION THEME
     ======================================================= */
 
-    function initHeader() {
+    function updateHeaderTheme() {
 
-        const header =
-            document.querySelector(
-                ".site-header"
-            );
+        /*
+         * Keep header light while splash
+         * is covering the page.
+         */
 
+        if (
+            document.body.classList.contains(
+                "is-loading"
+            )
+        ) {
 
-        if (!header) {
+            applyHeaderTheme("light");
 
             return;
 
@@ -361,87 +378,86 @@
 
         const sections =
             document.querySelectorAll(
-                "section[data-theme]"
+                "main > section[data-theme]"
             );
 
 
         if (!sections.length) {
 
-            return;
-
-        }
-
-
-        if (
-            !("IntersectionObserver" in window)
-        ) {
+            applyHeaderTheme("light");
 
             return;
 
         }
 
 
-        const observer =
-            new IntersectionObserver(
-                function (entries) {
+        /*
+         * The header is 80px high.
+         * Check the page at the center of
+         * the header.
+         */
 
-                    /*
-                     * Do not change theme while splash
-                     * is covering the page.
-                     */
+        const headerPoint = 40;
 
-                    if (
-                        document.body.classList.contains(
-                            "is-loading"
-                        )
-                    ) {
-
-                        return;
-
-                    }
+        let activeTheme = "light";
 
 
-                    entries.forEach(
-                        function (entry) {
+        sections.forEach(function (section) {
 
-                            if (
-                                !entry.isIntersecting
-                            ) {
-
-                                return;
-
-                            }
+            const rect =
+                section.getBoundingClientRect();
 
 
-                            const theme =
-                                entry.target.getAttribute(
-                                    "data-theme"
-                                );
+            if (
+                rect.top <= headerPoint &&
+                rect.bottom > headerPoint
+            ) {
 
-
-                            applyHeaderTheme(
-                                theme || "light"
-                            );
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.2
-                }
-            );
-
-
-        sections.forEach(
-            function (section) {
-
-                observer.observe(
-                    section
-                );
+                activeTheme =
+                    section.getAttribute(
+                        "data-theme"
+                    ) || "light";
 
             }
+
+        });
+
+
+        applyHeaderTheme(activeTheme);
+
+    }
+
+
+    function initHeader() {
+
+        /*
+         * Scroll listener.
+         */
+
+        window.addEventListener(
+            "scroll",
+            updateHeaderTheme,
+            {
+                passive: true
+            }
         );
+
+
+        /*
+         * Resize listener.
+         */
+
+        window.addEventListener(
+            "resize",
+            updateHeaderTheme
+        );
+
+
+        /*
+         * Initial check.
+         */
+
+        updateHeaderTheme();
 
     }
 
@@ -460,11 +476,6 @@
 
         images.forEach(
             function (image) {
-
-
-                /*
-                 * Check source exists.
-                 */
 
                 const source =
                     image.getAttribute(
@@ -707,9 +718,7 @@
                 );
 
 
-                applyHeaderTheme(
-                    "light"
-                );
+                updateHeaderTheme();
 
 
                 window.setTimeout(

@@ -36,6 +36,7 @@ img {
 .splash {
   position: fixed;
   inset: 0;
+
   z-index: 9999;
 
   display: flex;
@@ -60,6 +61,7 @@ img {
 
 .splash-inner {
   width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,6 +70,7 @@ img {
 .splash-logo {
   width: min(70vw, 700px);
   height: auto;
+
   opacity: 1;
 }
 
@@ -78,6 +81,7 @@ img {
 
 .hatch {
   position: fixed;
+
   top: 0;
   left: 0;
 
@@ -101,10 +105,7 @@ img {
 
 /* =========================================================
    HEADER
-========================================================= */
-
-/* =========================================================
-   HEADER
+   AUTOMATIC LIGHT / DARK THEME
 ========================================================= */
 
 .site-header {
@@ -127,49 +128,6 @@ img {
   pointer-events: none;
 }
 
-.brand {
-  display: block;
-  pointer-events: auto;
-}
-
-.brand-logo {
-  width: 120px;
-  height: auto;
-
-  mix-blend-mode: difference;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-
-  pointer-events: auto;
-}
-
-.main-nav a {
-  position: relative;
-
-  color: #fff;
-
-  mix-blend-mode: difference;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-
-  text-decoration: none;
-
-  z-index: 1000;
-
-  transition: opacity 0.2s ease;
-}
-
-.main-nav a:hover {
-  opacity: 0.5;
-}
 
 /* =========================================================
    BRAND
@@ -187,9 +145,10 @@ img {
   width: 120px;
   height: auto;
 
-  color: #fff;
+  filter: none;
 
-  mix-blend-mode: difference;
+  transition:
+    filter 0.25s ease;
 }
 
 
@@ -206,16 +165,12 @@ img {
   pointer-events: auto;
 }
 
-
-/* Individual links must do the blending */
 .main-nav a {
   position: relative;
 
   display: inline-block;
 
-  color: #fff;
-
-  mix-blend-mode: difference;
+  color: #000;
 
   font-size: 12px;
   font-weight: 700;
@@ -225,16 +180,33 @@ img {
 
   text-decoration: none;
 
-  z-index: 1000;
-
-  transition: opacity 0.2s ease;
+  transition:
+    color 0.25s ease,
+    opacity 0.2s ease;
 }
 
 
-/* Hover */
+/* =========================================================
+   DARK SECTIONS
+========================================================= */
+
+body[data-theme="dark"] .main-nav a {
+  color: #fff;
+}
+
+body[data-theme="dark"] .brand-logo {
+  filter: invert(1);
+}
+
+
+/* =========================================================
+   NAV HOVER
+========================================================= */
+
 .main-nav a:hover {
   opacity: 0.5;
 }
+
 
 /* =========================================================
    HOME
@@ -255,12 +227,11 @@ img {
 
 /* =========================================================
    HERO LOGO
-   6723 × 1155 source ratio
-
-   LEFT SIDE ONLY
 ========================================================= */
+
 .home-section .hero-logo-wrapper {
   position: absolute !important;
+
   left: 50px !important;
   top: 125% !important;
 
@@ -273,9 +244,11 @@ img {
   transform: translateY(-50%) !important;
 
   display: block !important;
+
   overflow: visible !important;
 
   z-index: 2 !important;
+
   pointer-events: none !important;
 }
 
@@ -301,11 +274,13 @@ img {
   scale: 1 !important;
 
   mix-blend-mode: difference !important;
+
   opacity: 1 !important;
 }
+
+
 /* =========================================================
    PROFILE
-   RIGHT SIDE
 ========================================================= */
 
 .profile-box {
@@ -372,12 +347,14 @@ img {
   justify-content: center !important;
 
   background: transparent !important;
+
   border: none !important;
   border-radius: 0 !important;
 
   overflow: visible !important;
 
   z-index: 21 !important;
+
   pointer-events: none !important;
 }
 
@@ -395,13 +372,13 @@ img {
   object-fit: contain !important;
 
   mix-blend-mode: difference !important;
+
   opacity: 1 !important;
 }
 
 
 /* =========================================================
    HERO DESCRIPTION
-   RIGHT / CENTRE
 ========================================================= */
 
 .hero-description {
@@ -412,9 +389,6 @@ img {
 
   transform: translateY(-50%);
 
-  /*
-     Right side has its own space.
-  */
   width: min(30vw, 400px);
 
   z-index: 20;
@@ -447,6 +421,7 @@ img {
 
 .view-button {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
@@ -497,7 +472,6 @@ img {
 
 /* =========================================================
    SIGNAL
-   BOTTOM RIGHT
 ========================================================= */
 
 .signal-box {
@@ -528,6 +502,7 @@ img {
 .signal-live {
   display: flex;
   align-items: center;
+
   gap: 6px;
 }
 
@@ -555,7 +530,6 @@ img {
 
 /* =========================================================
    TIMEZONE
-   BOTTOM LEFT
 ========================================================= */
 
 .timezone {
@@ -565,6 +539,7 @@ img {
   bottom: 5vh;
 
   display: flex;
+
   gap: 35px;
 
   z-index: 10;
@@ -575,6 +550,14 @@ img {
 
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.timezone div {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 20px;
 }
 
 .timezone strong {
@@ -649,6 +632,7 @@ img {
 
 .education {
   display: flex;
+
   flex-direction: column;
 
   gap: 20px;
@@ -694,6 +678,7 @@ img {
 
 .works-heading {
   display: flex;
+
   align-items: flex-end;
   justify-content: space-between;
 
@@ -741,6 +726,7 @@ img {
   padding: 120px 0 80px;
 
   background: #000;
+
   color: #fff;
 }
 
@@ -878,7 +864,9 @@ img {
 
 .footer-contact {
   display: flex;
+
   flex-direction: column;
+
   align-items: flex-end;
 
   gap: 5px;
@@ -891,6 +879,7 @@ img {
 
 .footer-contact a {
   color: inherit;
+
   text-decoration: none;
 }
 
@@ -905,11 +894,13 @@ img {
   padding: 120px 0 50px;
 
   background: #000;
+
   color: #fff;
 }
 
 .contact-heading {
   display: flex;
+
   align-items: flex-end;
   justify-content: space-between;
 
@@ -992,6 +983,7 @@ img.image-error {
   .hero-description,
   .signal-box {
     right: 4vw;
+
     width: 34vw;
   }
 
@@ -1002,6 +994,7 @@ img.image-error {
   .about-section .section-inner {
     gap: 6vw;
   }
+
 }
 
 
@@ -1042,19 +1035,15 @@ img.image-error {
   }
 
 
-  /*
-     Keep logo LEFT.
-     Smaller width prevents it from
-     reaching the right-side content.
-  */
-
   .hero-logo-wrapper {
     left: 5vw;
+
     top: 40%;
 
     transform: translateY(-50%);
 
     width: 58vw;
+
     max-width: 380px;
   }
 
@@ -1100,6 +1089,7 @@ img.image-error {
 
   .hero-description {
     top: auto;
+
     right: 5vw;
     bottom: 19vh;
 
@@ -1147,6 +1137,7 @@ img.image-error {
 
   .signal-box {
     right: 5vw;
+
     bottom: 3vh;
 
     width: 42vw;
@@ -1167,11 +1158,16 @@ img.image-error {
 
   .timezone {
     left: 5vw;
+
     bottom: 6vh;
 
     gap: 15px;
 
     font-size: 7px;
+  }
+
+  .timezone div {
+    gap: 10px;
   }
 
   .timezone strong {
@@ -1277,6 +1273,7 @@ img.image-error {
   .contact-email a {
     font-size: 25px;
   }
+
 }
 
 
@@ -1309,6 +1306,7 @@ img.image-error {
   .timezone {
     gap: 10px;
   }
+
 }
 
 
@@ -1329,4 +1327,5 @@ img.image-error {
     animation-iteration-count: 1 !important;
     transition-duration: 0.05ms !important;
   }
+
 }
