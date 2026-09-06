@@ -188,9 +188,8 @@ img {
 ========================================================= */
 .home-section .hero-logo-wrapper {
   position: absolute !important;
-
- left: 60px !important;
- top: 60% !important;
+  left: 60px !important;
+  top: 50% !important;
 
   width: 100px !important;
   height: auto !important;
