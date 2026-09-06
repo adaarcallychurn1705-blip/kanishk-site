@@ -1,6 +1,11 @@
 /* =========================================================
    RESET
 ========================================================= */
+.about-copy {
+  max-width: 600px;
+  margin-left: auto;
+  text-align: right;
+}
 
 * {
   box-sizing: border-box;
