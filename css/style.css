@@ -103,8 +103,13 @@ img {
    HEADER
 ========================================================= */
 
+/* =========================================================
+   HEADER
+========================================================= */
+
 .site-header {
   position: fixed;
+
   top: 0;
   left: 0;
 
@@ -118,44 +123,72 @@ img {
   justify-content: space-between;
 
   z-index: 9999;
-  pointer-events: none;
 
-  isolation: auto;
+  pointer-events: none;
 }
+
+
+/* =========================================================
+   BRAND
+========================================================= */
 
 .brand {
   display: block;
+
   pointer-events: auto;
 }
 
 .brand-logo {
+  display: block;
+
   width: 120px;
   height: auto;
+
+  color: #fff;
+
   mix-blend-mode: difference;
 }
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .main-nav {
   display: flex;
   align-items: center;
+
   gap: 28px;
 
   pointer-events: auto;
 }
 
+
+/* Individual links must do the blending */
 .main-nav a {
+  position: relative;
+
+  display: inline-block;
+
+  color: #fff;
+
+  mix-blend-mode: difference;
+
   font-size: 12px;
   font-weight: 700;
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
 
-  color: #fff;
+  text-decoration: none;
 
-  mix-blend-mode: difference;
+  z-index: 1000;
 
   transition: opacity 0.2s ease;
 }
 
+
+/* Hover */
 .main-nav a:hover {
   opacity: 0.5;
 }
