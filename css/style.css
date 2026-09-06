@@ -1,4 +1,4 @@
-```css
+
 /* =========================================================
    KANISHK CALLYCHURN — PORTFOLIO
    ========================================================= */
@@ -1329,8 +1329,3 @@ img.image-error {
     transition-duration: 0.01ms !important;
   }
 }
-```
-
-**Important:** this CSS assumes your existing HTML is the HTML you showed me earlier. The key change is the hero layout: the `KANISHK` logo gets a maximum **48vw / 700px** left-side area, while the profile, description, and signal have their own right-side areas.
-
-If the **KANISHK letters themselves still look too large**, the next thing to check is the actual `kanishk_typeface_black.png` file—especially transparent padding around the artwork. You can upload that PNG and I can check it directly.
