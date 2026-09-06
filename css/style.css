@@ -1072,7 +1072,7 @@ img.image-error {
 
   .signal-box {
     right: 5vw;
-    bottom: 6vh;
+    bottom: 3vh;
 
     width: 42vw;
   }
@@ -1250,8 +1250,8 @@ img.image-error {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.05ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.05ms !important;
   }
 }
