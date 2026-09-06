@@ -186,52 +186,33 @@ img {
 
    LEFT SIDE ONLY
 ========================================================= */
-
 .hero-logo-wrapper {
   position: absolute;
-
-  left: 4vw;
+  left: 60px;
   top: 50%;
-
   transform: translateY(-50%);
 
-  /*
-     The original image is 6723 × 1155.
-     Keep the displayed width controlled.
-  */
-  width: min(45vw, 672px);
-
+  width: 480px;
   height: auto;
 
   display: block;
-
   z-index: 2;
-
   pointer-events: none;
 }
 
 .hero-logo-img {
   display: block;
 
-  width: 100%;
+  width: 480px;
   height: auto;
 
-  /*
-     NEVER stretch the image.
-  */
-  max-width: 100%;
-
+  max-width: none;
   object-fit: contain;
   object-position: left center;
 
-  /*
-     Keep this because you specifically wanted it.
-  */
   mix-blend-mode: difference;
-
   opacity: 1;
 }
-
 
 /* =========================================================
    PROFILE
