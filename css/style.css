@@ -187,31 +187,36 @@ img {
    LEFT SIDE ONLY
 ========================================================= */
 .hero-logo-wrapper {
-  position: absolute;
-  left: 60px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: absolute !important;
+  left: 60px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
 
-  width: 100px;
-  height: auto;
+  width: 100px !important;
+  height: auto !important;
+  max-width: 100px !important;
 
-  display: block;
-  z-index: 2;
+  display: block !important;
+  z-index: 2 !important;
   pointer-events: none;
+  overflow: visible !important;
 }
 
 .hero-logo-img {
-  display: block;
+  display: block !important;
 
-  width: 100px;
-  height: auto;
+  width: 100px !important;
+  height: auto !important;
 
-  max-width: none;
-  object-fit: contain;
-  object-position: left center;
+  min-width: 0 !important;
+  max-width: 100px !important;
+  max-height: none !important;
 
-  mix-blend-mode: difference;
-  opacity: 1;
+  object-fit: contain !important;
+  object-position: left center !important;
+
+  mix-blend-mode: difference !important;
+  opacity: 1 !important;
 }
 
 /* =========================================================
