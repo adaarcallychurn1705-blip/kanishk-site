@@ -144,15 +144,12 @@ img {
 }
 
 .main-nav a {
-  color: #000;
-  text-decoration: none;
-
   font-size: 12px;
   font-weight: 700;
-
   text-transform: uppercase;
   letter-spacing: 0.08em;
 
+  color: #000;
   mix-blend-mode: difference;
 
   transition: opacity 0.2s ease;
@@ -161,7 +158,6 @@ img {
 .main-nav a:hover {
   opacity: 0.5;
 }
-
 
 /* =========================================================
    HOME
@@ -188,7 +184,7 @@ img {
 ========================================================= */
 .home-section .hero-logo-wrapper {
   position: absolute !important;
-  left: 60px !important;
+  left: 50px !important;
   top: 50% !important;
 
   width: 100px !important;
