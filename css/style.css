@@ -108,24 +108,23 @@ img {
    AUTOMATIC LIGHT / DARK THEME
 ========================================================= */
 
+/* AUTO-INVERTING HEADER */
 .site-header {
-  position: fixed;
+  isolation: isolate;
+}
 
-  top: 0;
-  left: 0;
+.site-header .brand-logo,
+.site-header .main-nav a {
+  mix-blend-mode: difference;
+}
 
-  width: 100%;
-  height: 80px;
+.site-header .main-nav a {
+  color: #fff;
+}
 
-  padding: 22px 5vw;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  z-index: 9999;
-
-  pointer-events: none;
+.site-header .brand-logo {
+  width: 120px;
+  filter: none;
 }
 
 
