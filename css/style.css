@@ -127,6 +127,49 @@ img {
   pointer-events: none;
 }
 
+.brand {
+  display: block;
+  pointer-events: auto;
+}
+
+.brand-logo {
+  width: 120px;
+  height: auto;
+
+  mix-blend-mode: difference;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  pointer-events: auto;
+}
+
+.main-nav a {
+  position: relative;
+
+  color: #fff;
+
+  mix-blend-mode: difference;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  text-decoration: none;
+
+  z-index: 1000;
+
+  transition: opacity 0.2s ease;
+}
+
+.main-nav a:hover {
+  opacity: 0.5;
+}
 
 /* =========================================================
    BRAND
