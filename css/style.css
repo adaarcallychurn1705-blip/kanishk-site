@@ -282,45 +282,43 @@ img {
 ========================================================= */
 
 .third-eye {
-  position: absolute;
+  position: absolute !important;
 
-  top: 0;
-  right: 0;
+  top: 0 !important;
+  right: 0 !important;
 
-  width: 78px;
-  height: 78px;
+  width: 78px !important;
+  height: 78px !important;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-  background: transparent;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
 
-  border: 0;
-  border-radius: 0;
+  overflow: visible !important;
 
-  overflow: visible;
-
-  z-index: 21;
-
-  pointer-events: none;
+  z-index: 21 !important;
+  pointer-events: none !important;
 }
 
 .third-eye img {
-  display: block;
+  display: block !important;
 
-  width: 78px;
-  height: 78px;
+  width: 78px !important;
+  height: 78px !important;
 
-  max-width: none;
+  max-width: none !important;
+  max-height: none !important;
 
-  object-fit: contain;
+  background: transparent !important;
 
-  background: transparent;
+  object-fit: contain !important;
 
-  mix-blend-mode: difference;
-
-  opacity: 1;
+  mix-blend-mode: difference !important;
+  opacity: 1 !important;
 }
 
 
@@ -1056,12 +1054,12 @@ img.image-error {
   }
 
   .barcode {
-    width: 110px;
+    width: 220px;
     height: 25px;
   }
 
   .barcode-svg {
-    width: 110px;
+    width: 220px;
     height: 25px;
   }
 
