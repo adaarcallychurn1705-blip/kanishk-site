@@ -186,39 +186,51 @@ img {
 
    LEFT SIDE ONLY
 ========================================================= */
-.hero-logo-wrapper {
+.home-section .hero-logo-wrapper {
   position: absolute !important;
+
   left: 60px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
+ top: 53% !important;
 
   width: 100px !important;
   height: auto !important;
-  max-width: 100px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  transform: translateY(-50%) !important;
 
   display: block !important;
-  z-index: 2 !important;
-  pointer-events: none;
   overflow: visible !important;
+
+  z-index: 2 !important;
+  pointer-events: none !important;
 }
 
-.hero-logo-img {
+.home-section .hero-logo-wrapper .hero-logo-img {
   display: block !important;
 
   width: 100px !important;
   height: auto !important;
 
   min-width: 0 !important;
+  min-height: 0 !important;
+
   max-width: 100px !important;
   max-height: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   object-fit: contain !important;
   object-position: left center !important;
 
+  transform: none !important;
+  scale: 1 !important;
+
   mix-blend-mode: difference !important;
   opacity: 1 !important;
 }
-
 /* =========================================================
    PROFILE
    RIGHT SIDE
