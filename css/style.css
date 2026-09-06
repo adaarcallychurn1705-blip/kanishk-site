@@ -395,14 +395,14 @@ img {
 
 .barcode {
   width: 200px;
-  height: 34px;
+  height: 10px;
 
   overflow: hidden;
 }
 
 .barcode-svg {
-  width: 150px;
-  height: 34px;
+  width: 200px;
+  height: 10px;
 
   display: block;
 }
