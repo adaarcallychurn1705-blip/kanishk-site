@@ -159,7 +159,11 @@
 
 
     /* =========================================================
-       AUTOMATIC HEADER LIGHT / DARK
+       HEADER THEME TRACKING
+       Only tracks which section is behind the fixed header and
+       stamps body[data-theme] with it. The actual black/white
+       inversion of the logo and nav links is handled purely by
+       mix-blend-mode in CSS, so no inline styles are set here.
     ========================================================= */
 
     function initHeader() {
@@ -168,9 +172,6 @@
         if (!header) {
             return;
         }
-
-        const brandLogo = header.querySelector(".brand-logo");
-        const navLinks = header.querySelectorAll(".main-nav a");
 
         function updateHeader() {
             const sections = document.querySelectorAll(
@@ -192,31 +193,6 @@
                         section.getAttribute("data-theme") || "light";
                 }
             });
-
-            if (currentTheme === "dark") {
-
-                /* BLACK SECTION → WHITE HEADER */
-
-                if (brandLogo) {
-                    brandLogo.style.filter = "invert(1)";
-                }
-
-                navLinks.forEach(function (link) {
-                    link.style.color = "#fff";
-                });
-
-            } else {
-
-                /* WHITE SECTION → BLACK HEADER */
-
-                if (brandLogo) {
-                    brandLogo.style.filter = "invert(0)";
-                }
-
-                navLinks.forEach(function (link) {
-                    link.style.color = "#000";
-                });
-            }
 
             applyHeaderTheme(currentTheme);
         }

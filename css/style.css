@@ -110,12 +110,12 @@ img {
 
 /* =========================================================
    HEADER
-   AUTOMATIC LIGHT / DARK THEME
-========================================================= */
-
-/* =========================================================
-   HEADER
-   AUTOMATIC INVERSION
+   Auto-inverts via mix-blend-mode: difference (white text
+   over a black backdrop reads black, and vice versa) — no
+   JS color-switching needed. This only works because the
+   header does NOT create its own isolated blending context,
+   so keep it free of `isolation`, `opacity < 1`, `filter`,
+   or `transform` on .site-header itself.
 ========================================================= */
 
 .site-header {
@@ -124,9 +124,9 @@ img {
   left: 0;
 
   width: 100%;
-  height: 80px;
+  height: 92px;
 
-  padding: 22px 5vw;
+  padding: 24px 5vw;
 
   display: flex;
   align-items: center;
@@ -135,8 +135,6 @@ img {
   z-index: 9999;
 
   pointer-events: none;
-
-  isolation: isolate;
 }
 
 .brand {
@@ -147,43 +145,10 @@ img {
 .brand-logo {
   display: block;
 
-  width: 120px;
+  width: 150px;
   height: auto;
 
   mix-blend-mode: difference;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-
-  gap: 28px;
-
-  pointer-events: auto;
-}
-
-.main-nav a {
-  position: relative;
-
-  display: inline-block;
-
-  color: #fff;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-
-  text-decoration: none;
-
-  mix-blend-mode: difference;
-
-  transition: opacity 0.2s ease;
-}
-
-.main-nav a:hover {
-  opacity: 0.5;
 }
 
 
@@ -195,7 +160,7 @@ img {
   display: flex;
   align-items: center;
 
-  gap: 28px;
+  gap: 34px;
 
   pointer-events: auto;
 }
@@ -205,38 +170,20 @@ img {
 
   display: inline-block;
 
-  color: #000;
+  color: #fff;
 
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
 
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 
   text-decoration: none;
 
-  transition:
-    color 0.25s ease,
-    opacity 0.2s ease;
+  mix-blend-mode: difference;
+
+  transition: opacity 0.2s ease;
 }
-
-
-/* =========================================================
-   DARK SECTIONS
-========================================================= */
-
-body[data-theme="dark"] .main-nav a {
-  color: #fff;
-}
-
-body[data-theme="dark"] .brand-logo {
-  filter: invert(1);
-}
-
-
-/* =========================================================
-   NAV HOVER
-========================================================= */
 
 .main-nav a:hover {
   opacity: 0.5;
@@ -265,52 +212,27 @@ body[data-theme="dark"] .brand-logo {
 ========================================================= */
 
 .home-section .hero-logo-wrapper {
-  position: absolute !important;
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
 
-  left: 50px !important;
-  top: 125% !important;
+  width: 70px;
+  height: auto;
 
-  width: 100px !important;
-  height: auto !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  transform: translateY(-50%) !important;
-
-  display: block !important;
-
-  overflow: visible !important;
-
-  z-index: 2 !important;
-
-  pointer-events: none !important;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .home-section .hero-logo-wrapper .hero-logo-img {
-  display: block !important;
+  display: block;
+  width: 100%;
+  height: auto;
 
-  width: 100px !important;
-  height: auto !important;
+  object-fit: contain;
+  object-position: left center;
 
-  min-width: 0 !important;
-  min-height: 0 !important;
-
-  max-width: 100px !important;
-  max-height: none !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  object-fit: contain !important;
-  object-position: left center !important;
-
-  transform: none !important;
-  scale: 1 !important;
-
-  mix-blend-mode: difference !important;
-
-  opacity: 1 !important;
+  mix-blend-mode: difference;
 }
 
 
@@ -1010,8 +932,7 @@ img.image-error {
   .hero-logo-wrapper {
     left: 4vw;
 
-    width: 45vw;
-    max-width: 520px;
+    width: 55px;
   }
 
   .profile-box,
@@ -1040,21 +961,21 @@ img.image-error {
 @media (max-width: 650px) {
 
   .site-header {
-    height: 65px;
+    height: 76px;
 
-    padding: 18px 5vw;
+    padding: 20px 5vw;
   }
 
   .brand-logo {
-    width: 95px;
+    width: 110px;
   }
 
   .main-nav {
-    gap: 15px;
+    gap: 16px;
   }
 
   .main-nav a {
-    font-size: 9px;
+    font-size: 11px;
   }
 
 
@@ -1077,14 +998,9 @@ img.image-error {
 
     transform: translateY(-50%);
 
-    width: 58vw;
+    width: 35vw;
 
-    max-width: 380px;
-  }
-
-  .hero-logo-img {
-    width: 100%;
-    height: auto;
+    max-width: 140px;
   }
 
 
