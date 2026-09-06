@@ -1209,7 +1209,7 @@ img.image-error {
    VERY SMALL PHONES
 ========================================================= */
 
-@media (max-width: 400px) {
+@media (max-width: 100px) {
 
   .hero-logo-wrapper {
     width: 55vw;
