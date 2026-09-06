@@ -103,13 +103,8 @@ img {
    HEADER
 ========================================================= */
 
-/* =========================================================
-   HEADER
-========================================================= */
-
 .site-header {
   position: fixed;
-
   top: 0;
   left: 0;
 
@@ -122,9 +117,10 @@ img {
   align-items: center;
   justify-content: space-between;
 
-  z-index: 100;
-
+  z-index: 9999;
   pointer-events: none;
+
+  isolation: auto;
 }
 
 .brand {
@@ -135,36 +131,27 @@ img {
 .brand-logo {
   width: 120px;
   height: auto;
-
   mix-blend-mode: difference;
 }
 
 .main-nav {
-  position: relative;
-
   display: flex;
   align-items: center;
   gap: 28px;
 
-  z-index: 9999;
-
   pointer-events: auto;
-
-  mix-blend-mode: difference;
 }
 
 .main-nav a {
-  position: relative;
-
   font-size: 12px;
   font-weight: 700;
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
 
-  color: #fff !important;
+  color: #fff;
 
-  mix-blend-mode: difference !important;
+  mix-blend-mode: difference;
 
   transition: opacity 0.2s ease;
 }
