@@ -1,12 +1,6 @@
-
-/* =========================================================
-   KANISHK CALLYCHURN — PORTFOLIO
-   ========================================================= */
-
-
 /* =========================================================
    RESET
-   ========================================================= */
+========================================================= */
 
 * {
   box-sizing: border-box;
@@ -20,8 +14,8 @@ html {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff;
-  color: #000000;
+  background: #fff;
+  color: #000;
   overflow-x: hidden;
 }
 
@@ -30,24 +24,29 @@ body.is-loading {
 }
 
 img {
+  display: block;
   max-width: 100%;
 }
 
 
 /* =========================================================
-   SPLASH SCREEN
-   ========================================================= */
+   SPLASH
+========================================================= */
 
 .splash {
   position: fixed;
   inset: 0;
-  background: #000000;
+  z-index: 9999;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+
+  background: #000;
+
   opacity: 1;
   visibility: visible;
+
   transition:
     opacity 0.7s ease,
     visibility 0.7s ease;
@@ -60,15 +59,14 @@ img {
 }
 
 .splash-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .splash-logo {
-  display: block;
-  width: min(70vw, 650px);
+  width: min(70vw, 700px);
   height: auto;
   opacity: 1;
 }
@@ -76,35 +74,38 @@ img {
 
 /* =========================================================
    HATCH
-   ========================================================= */
+========================================================= */
 
 .hatch {
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
-  height: 6px;
+  height: 5px;
+
+  z-index: 500;
+
+  pointer-events: none;
 
   background:
     repeating-linear-gradient(
       135deg,
-      #000000 0,
-      #000000 2px,
+      #000 0,
+      #000 2px,
       transparent 2px,
       transparent 6px
     );
-
-  z-index: 500;
-  pointer-events: none;
 }
 
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 .site-header {
   position: fixed;
+
   top: 0;
   left: 0;
 
@@ -123,16 +124,11 @@ img {
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-
+  display: block;
   pointer-events: auto;
-  text-decoration: none;
 }
 
 .brand-logo {
-  display: block;
-
   width: 120px;
   height: auto;
 
@@ -148,13 +144,14 @@ img {
 }
 
 .main-nav a {
-  color: #000000;
+  color: #000;
   text-decoration: none;
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 
   mix-blend-mode: difference;
 
@@ -167,50 +164,28 @@ img {
 
 
 /* =========================================================
-   GENERAL SECTIONS
-   ========================================================= */
-
-section {
-  position: relative;
-}
-
-.section-inner {
-  width: 90%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-
-/* =========================================================
-   HOME / HERO
-   ========================================================= */
+   HOME
+========================================================= */
 
 .home-section {
   position: relative;
 
+  width: 100%;
   min-height: 100vh;
   height: 100vh;
 
-  width: 100%;
-
   overflow: hidden;
 
-  background: #ffffff;
+  background: #fff;
 }
 
 
 /* =========================================================
-   GIANT KANISHK LOGO
-   ========================================================= */
+   HERO LOGO
+   6723 × 1155 source ratio
 
-/*
-   IMPORTANT:
-
-   The logo owns the LEFT side of the hero.
-
-   It has a maximum width and height so it can never
-   grow across the entire screen.
-*/
+   LEFT SIDE ONLY
+========================================================= */
 
 .hero-logo-wrapper {
   position: absolute;
@@ -220,13 +195,15 @@ section {
 
   transform: translateY(-50%);
 
-  width: min(48vw, 700px);
+  /*
+     The original image is 6723 × 1155.
+     Keep the displayed width controlled.
+  */
+  width: min(45vw, 672px);
 
-  max-height: 58vh;
+  height: auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  display: block;
 
   z-index: 2;
 
@@ -239,12 +216,17 @@ section {
   width: 100%;
   height: auto;
 
-  max-width: 700px;
-  max-height: 58vh;
+  /*
+     NEVER stretch the image.
+  */
+  max-width: 100%;
 
   object-fit: contain;
   object-position: left center;
 
+  /*
+     Keep this because you specifically wanted it.
+  */
   mix-blend-mode: difference;
 
   opacity: 1;
@@ -252,8 +234,9 @@ section {
 
 
 /* =========================================================
-   PROFILE BOX
-   ========================================================= */
+   PROFILE
+   RIGHT SIDE
+========================================================= */
 
 .profile-box {
   position: absolute;
@@ -261,15 +244,9 @@ section {
   top: 100px;
   right: 5vw;
 
-  width: min(30vw, 390px);
+  width: min(30vw, 400px);
 
   z-index: 20;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  gap: 20px;
 
   background: transparent;
 }
@@ -279,18 +256,21 @@ section {
 }
 
 .profile-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  width: 100%;
 
-  gap: 25px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  gap: 20px;
 
   padding: 8px 0;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.4;
+
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -306,7 +286,7 @@ section {
 
 /* =========================================================
    THIRD EYE
-   ========================================================= */
+========================================================= */
 
 .third-eye {
   position: absolute;
@@ -317,11 +297,13 @@ section {
   width: 78px;
   height: 78px;
 
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background: transparent;
 
-  border: none;
+  border: 0;
   border-radius: 0;
 
   overflow: visible;
@@ -331,8 +313,7 @@ section {
   pointer-events: none;
 }
 
-.third-eye img,
-.third-eye-image {
+.third-eye img {
   display: block;
 
   width: 78px;
@@ -344,8 +325,6 @@ section {
 
   background: transparent;
 
-  border: none;
-
   mix-blend-mode: difference;
 
   opacity: 1;
@@ -354,65 +333,65 @@ section {
 
 /* =========================================================
    HERO DESCRIPTION
-   ========================================================= */
-
-/*
-   This is deliberately placed in the RIGHT half.
-
-   The giant logo occupies the left half.
-*/
+   RIGHT / CENTRE
+========================================================= */
 
 .hero-description {
   position: absolute;
 
-  right: 5vw;
   top: 50%;
+  right: 5vw;
 
   transform: translateY(-50%);
 
-  width: min(30vw, 390px);
+  /*
+     Right side has its own space.
+  */
+  width: min(30vw, 400px);
 
   z-index: 20;
 }
 
 .hero-description p {
-  max-width: 360px;
+  width: 100%;
+  max-width: 380px;
 
   font-size: clamp(18px, 2vw, 28px);
 
-  line-height: 1.1;
+  line-height: 1.08;
 
-  font-weight: 500;
+  letter-spacing: -0.02em;
 
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 
 /* =========================================================
-   HERO BUTTONS
-   ========================================================= */
+   HERO ACTIONS
+========================================================= */
 
 .hero-actions {
   display: flex;
   align-items: center;
+
   gap: 20px;
 }
 
 .view-button {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
-  padding: 12px 18px;
+  padding: 11px 17px;
 
-  border: 1px solid #000000;
+  border: 1px solid #000;
 
-  color: #000000;
+  color: #000;
+  background: transparent;
 
   text-decoration: none;
 
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
 
   text-transform: uppercase;
@@ -424,14 +403,14 @@ section {
 }
 
 .view-button:hover {
-  background: #000000;
-  color: #ffffff;
+  background: #000;
+  color: #fff;
 }
 
 
 /* =========================================================
    BARCODE
-   ========================================================= */
+========================================================= */
 
 .barcode {
   width: 150px;
@@ -441,16 +420,17 @@ section {
 }
 
 .barcode-svg {
-  display: block;
-
   width: 150px;
   height: 34px;
+
+  display: block;
 }
 
 
 /* =========================================================
-   SIGNAL BOX
-   ========================================================= */
+   SIGNAL
+   BOTTOM RIGHT
+========================================================= */
 
 .signal-box {
   position: absolute;
@@ -458,7 +438,7 @@ section {
   right: 5vw;
   bottom: 5vh;
 
-  width: min(30vw, 390px);
+  width: min(30vw, 400px);
 
   z-index: 20;
 }
@@ -471,11 +451,10 @@ section {
   margin-bottom: 8px;
 
   font-size: 10px;
+  font-weight: 700;
 
   text-transform: uppercase;
   letter-spacing: 0.1em;
-
-  font-weight: 700;
 }
 
 .signal-live {
@@ -485,14 +464,14 @@ section {
 }
 
 .live-dot {
+  display: inline-block;
+
   width: 6px;
   height: 6px;
 
   border-radius: 50%;
 
-  background: #000000;
-
-  display: inline-block;
+  background: #000;
 }
 
 #signal-canvas {
@@ -501,14 +480,15 @@ section {
   width: 100%;
   height: 48px;
 
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 
 /* =========================================================
    TIMEZONE
-   ========================================================= */
+   BOTTOM LEFT
+========================================================= */
 
 .timezone {
   position: absolute;
@@ -516,35 +496,43 @@ section {
   left: 5vw;
   bottom: 5vh;
 
-  z-index: 10;
-
   display: flex;
   gap: 35px;
+
+  z-index: 10;
 
   font-size: 9px;
 
   line-height: 1.5;
 
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
 }
 
 .timezone strong {
   font-size: 12px;
-  letter-spacing: 0.04em;
 }
 
 
 /* =========================================================
    ABOUT
-   ========================================================= */
+========================================================= */
 
 .about-section {
+  position: relative;
+
   min-height: 100vh;
 
   padding: 140px 0 100px;
 
-  background: #ffffff;
+  background: #fff;
+}
+
+.section-inner {
+  width: 90%;
+  max-width: 1400px;
+
+  margin: 0 auto;
 }
 
 .about-section .section-inner {
@@ -556,22 +544,19 @@ section {
 }
 
 .small-heading {
+  margin-bottom: 30px;
+
   font-size: 10px;
+  font-weight: 700;
 
   text-transform: uppercase;
   letter-spacing: 0.12em;
-
-  font-weight: 700;
-
-  margin-bottom: 30px;
 }
 
 .about-title-column h1 {
-  font-size: clamp(45px, 6vw, 95px);
+  font-size: clamp(48px, 6vw, 95px);
 
   line-height: 0.9;
-
-  font-weight: 700;
 
   letter-spacing: -0.05em;
 }
@@ -580,23 +565,24 @@ section {
   width: 100%;
   height: 1px;
 
-  background: #000000;
-
   margin: 50px 0 30px;
+
+  background: #000;
 }
 
 .about-title-column h2 {
+  margin-bottom: 25px;
+
   font-size: 11px;
 
   text-transform: uppercase;
   letter-spacing: 0.1em;
-
-  margin-bottom: 25px;
 }
 
 .education {
   display: flex;
   flex-direction: column;
+
   gap: 20px;
 }
 
@@ -606,7 +592,6 @@ section {
   line-height: 1.5;
 
   text-transform: uppercase;
-
   letter-spacing: 0.04em;
 }
 
@@ -629,14 +614,14 @@ section {
 
 /* =========================================================
    WORKS
-   ========================================================= */
+========================================================= */
 
 .works-section {
   min-height: 100vh;
 
   padding: 120px 0;
 
-  background: #ffffff;
+  background: #fff;
 }
 
 .works-heading {
@@ -662,8 +647,8 @@ section {
   background:
     repeating-linear-gradient(
       135deg,
-      #000000 0,
-      #000000 2px,
+      #000 0,
+      #000 2px,
       transparent 2px,
       transparent 7px
     );
@@ -680,16 +665,15 @@ section {
 
 /* =========================================================
    PROJECT DETAIL
-   ========================================================= */
+========================================================= */
 
 .project-detail {
   min-height: 100vh;
 
   padding: 120px 0 80px;
 
-  background: #000000;
-
-  color: #ffffff;
+  background: #000;
+  color: #fff;
 }
 
 .project-detail[aria-hidden="true"] {
@@ -704,10 +688,12 @@ section {
 }
 
 .back-button {
-  border: none;
-  background: transparent;
+  margin-bottom: 60px;
 
-  color: #ffffff;
+  border: 0;
+
+  background: transparent;
+  color: #fff;
 
   font-family: inherit;
 
@@ -717,8 +703,6 @@ section {
   letter-spacing: 0.08em;
 
   cursor: pointer;
-
-  margin-bottom: 60px;
 }
 
 .project-heading h1 {
@@ -739,9 +723,9 @@ section {
 }
 
 .project-hero {
-  margin-top: 70px;
-
   width: 100%;
+
+  margin-top: 70px;
 }
 
 .project-description {
@@ -755,13 +739,12 @@ section {
 }
 
 .gallery-title {
+  margin-bottom: 25px;
+
   font-size: 11px;
 
   text-transform: uppercase;
-
   letter-spacing: 0.1em;
-
-  margin-bottom: 25px;
 }
 
 .gallery {
@@ -782,8 +765,8 @@ section {
 
 
 /* =========================================================
-   PROJECT FOOTER
-   ========================================================= */
+   FOOTERS
+========================================================= */
 
 .project-footer,
 .contact-footer {
@@ -797,14 +780,12 @@ section {
 
   grid-template-columns: 1fr auto 1fr;
 
-  align-items: end;
-
   gap: 30px;
+
+  align-items: end;
 }
 
 .footer-logo img {
-  display: block;
-
   width: 120px;
   height: auto;
 
@@ -815,7 +796,6 @@ section {
   font-size: 8px;
 
   text-transform: uppercase;
-
   letter-spacing: 0.05em;
 }
 
@@ -830,9 +810,7 @@ section {
 
 .footer-contact {
   display: flex;
-
   flex-direction: column;
-
   align-items: flex-end;
 
   gap: 5px;
@@ -840,36 +818,31 @@ section {
   font-size: 9px;
 
   text-transform: uppercase;
-
   letter-spacing: 0.05em;
 }
 
 .footer-contact a {
   color: inherit;
-
   text-decoration: none;
 }
 
 
 /* =========================================================
    CONTACT
-   ========================================================= */
+========================================================= */
 
 .contact-section {
   min-height: 100vh;
 
   padding: 120px 0 50px;
 
-  background: #000000;
-
-  color: #ffffff;
+  background: #000;
+  color: #fff;
 }
 
 .contact-heading {
   display: flex;
-
   align-items: flex-end;
-
   justify-content: space-between;
 
   gap: 30px;
@@ -888,7 +861,7 @@ section {
 }
 
 .contact-email a {
-  color: #ffffff;
+  color: #fff;
 
   text-decoration: none;
 
@@ -902,15 +875,15 @@ section {
 }
 
 .contact-copy {
-  margin-top: 100px;
-
   max-width: 500px;
+
+  margin-top: 100px;
 }
 
 .contact-copy h2 {
-  font-size: 28px;
-
   margin-bottom: 15px;
+
+  font-size: 28px;
 }
 
 .contact-copy p {
@@ -922,7 +895,7 @@ section {
 
 /* =========================================================
    IMAGE ERROR
-   ========================================================= */
+========================================================= */
 
 img.image-error {
   opacity: 0.2;
@@ -931,7 +904,7 @@ img.image-error {
 
 /* =========================================================
    TABLET
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 900px) {
 
@@ -943,32 +916,14 @@ img.image-error {
   .hero-logo-wrapper {
     left: 4vw;
 
-    width: 48vw;
-
-    max-width: 500px;
-
-    max-height: 50vh;
+    width: 45vw;
+    max-width: 520px;
   }
 
-  .hero-logo-img {
-    max-height: 50vh;
-  }
-
-  .profile-box {
-    right: 4vw;
-
-    width: 34vw;
-  }
-
-  .hero-description {
-    right: 4vw;
-
-    width: 34vw;
-  }
-
+  .profile-box,
+  .hero-description,
   .signal-box {
     right: 4vw;
-
     width: 34vw;
   }
 
@@ -984,13 +939,9 @@ img.image-error {
 
 /* =========================================================
    MOBILE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 650px) {
-
-  body {
-    overflow-x: hidden;
-  }
 
   .site-header {
     height: 65px;
@@ -1012,66 +963,54 @@ img.image-error {
 
 
   /* -----------------------------------------
-     HERO
-     ----------------------------------------- */
+     MOBILE HERO
+  ----------------------------------------- */
 
   .home-section {
-    min-height: 100svh;
-    height: auto;
-
-    padding-top: 80px;
-    padding-bottom: 100px;
+    height: 100svh;
+    min-height: 650px;
 
     overflow: hidden;
   }
 
 
   /*
-     Logo becomes a controlled left-side element.
+     Keep logo LEFT.
+     Smaller width prevents it from
+     reaching the right-side content.
   */
 
   .hero-logo-wrapper {
-    position: absolute;
-
     left: 5vw;
-    top: 28%;
+    top: 40%;
 
-    transform: none;
+    transform: translateY(-50%);
 
-    width: 62vw;
-
-    max-width: 400px;
-
-    max-height: 32vh;
-
-    z-index: 2;
+    width: 58vw;
+    max-width: 380px;
   }
 
   .hero-logo-img {
     width: 100%;
     height: auto;
-
-    max-height: 32vh;
   }
 
 
   /* -----------------------------------------
      PROFILE
-     ----------------------------------------- */
+  ----------------------------------------- */
 
   .profile-box {
     top: 85px;
     right: 5vw;
 
-    width: 30vw;
-
-    gap: 8px;
+    width: 31vw;
   }
 
   .profile-row {
-    font-size: 7px;
-
     padding: 5px 0;
+
+    font-size: 7px;
 
     gap: 8px;
   }
@@ -1081,8 +1020,7 @@ img.image-error {
     height: 58px;
   }
 
-  .third-eye img,
-  .third-eye-image {
+  .third-eye img {
     width: 58px;
     height: 58px;
   }
@@ -1090,25 +1028,20 @@ img.image-error {
 
   /* -----------------------------------------
      DESCRIPTION
-     ----------------------------------------- */
+  ----------------------------------------- */
 
   .hero-description {
-    position: absolute;
-
-    right: 5vw;
     top: auto;
-
+    right: 5vw;
     bottom: 19vh;
 
     transform: none;
 
     width: 42vw;
-
-    z-index: 20;
   }
 
   .hero-description p {
-    font-size: 15px;
+    font-size: 14px;
 
     line-height: 1.1;
 
@@ -1142,7 +1075,7 @@ img.image-error {
 
   /* -----------------------------------------
      SIGNAL
-     ----------------------------------------- */
+  ----------------------------------------- */
 
   .signal-box {
     right: 5vw;
@@ -1162,7 +1095,7 @@ img.image-error {
 
   /* -----------------------------------------
      TIMEZONE
-     ----------------------------------------- */
+  ----------------------------------------- */
 
   .timezone {
     left: 5vw;
@@ -1180,7 +1113,7 @@ img.image-error {
 
   /* -----------------------------------------
      ABOUT
-     ----------------------------------------- */
+  ----------------------------------------- */
 
   .about-section {
     padding: 90px 0 70px;
@@ -1205,7 +1138,7 @@ img.image-error {
 
   /* -----------------------------------------
      WORKS
-     ----------------------------------------- */
+  ----------------------------------------- */
 
   .works-section {
     padding: 80px 0;
@@ -1227,7 +1160,7 @@ img.image-error {
 
   /* -----------------------------------------
      PROJECT
-     ----------------------------------------- */
+  ----------------------------------------- */
 
   .project-detail {
     padding: 90px 0 60px;
@@ -1251,7 +1184,7 @@ img.image-error {
 
   /* -----------------------------------------
      CONTACT
-     ----------------------------------------- */
+  ----------------------------------------- */
 
   .contact-section {
     padding: 90px 0 40px;
@@ -1281,20 +1214,20 @@ img.image-error {
 
 /* =========================================================
    VERY SMALL PHONES
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 400px) {
 
   .hero-logo-wrapper {
-    width: 60vw;
+    width: 55vw;
   }
 
   .profile-box {
-    width: 31vw;
+    width: 32vw;
   }
 
   .hero-description {
-    width: 43vw;
+    width: 44vw;
   }
 
   .hero-description p {
@@ -1302,7 +1235,7 @@ img.image-error {
   }
 
   .signal-box {
-    width: 43vw;
+    width: 44vw;
   }
 
   .timezone {
@@ -1313,7 +1246,7 @@ img.image-error {
 
 /* =========================================================
    REDUCED MOTION
-   ========================================================= */
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
