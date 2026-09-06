@@ -159,11 +159,14 @@
 
 
     /* =========================================================
-       HEADER THEME TRACKING
-       Only tracks which section is behind the fixed header and
-       stamps body[data-theme] with it. The actual black/white
-       inversion of the logo and nav links is handled purely by
-       mix-blend-mode in CSS, so no inline styles are set here.
+       HEADER THEME + ACTIVE NAV TRACKING
+       Tracks which section is behind the fixed header and:
+         1. Stamps body[data-theme] with it (the light/dark
+            logo+nav inversion is handled purely via
+            mix-blend-mode in CSS).
+         2. Toggles an .active class on the matching nav link
+            so it lights up and gets the underline (see
+            .main-nav a.active in style.css).
     ========================================================= */
 
     function initHeader() {
@@ -171,6 +174,19 @@
 
         if (!header) {
             return;
+        }
+
+        const navLinks = document.querySelectorAll(".main-nav a");
+
+        function updateActiveNav(currentId) {
+            navLinks.forEach(function (link) {
+                const href = link.getAttribute("href");
+
+                link.classList.toggle(
+                    "active",
+                    href === "#" + currentId
+                );
+            });
         }
 
         function updateHeader() {
@@ -181,6 +197,7 @@
             const headerPoint = 40;
 
             let currentTheme = "light";
+            let currentId = "home";
 
             sections.forEach(function (section) {
                 const rect = section.getBoundingClientRect();
@@ -191,10 +208,12 @@
                 ) {
                     currentTheme =
                         section.getAttribute("data-theme") || "light";
+                    currentId = section.id || currentId;
                 }
             });
 
             applyHeaderTheme(currentTheme);
+            updateActiveNav(currentId);
         }
 
         window.addEventListener(
