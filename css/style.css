@@ -103,6 +103,10 @@ img {
    HEADER
 ========================================================= */
 
+/* =========================================================
+   HEADER
+========================================================= */
+
 .site-header {
   position: fixed;
 
@@ -136,21 +140,31 @@ img {
 }
 
 .main-nav {
+  position: relative;
+
   display: flex;
   align-items: center;
   gap: 28px;
 
+  z-index: 9999;
+
   pointer-events: auto;
+
+  mix-blend-mode: difference;
 }
 
 .main-nav a {
+  position: relative;
+
   font-size: 12px;
   font-weight: 700;
+
   text-transform: uppercase;
   letter-spacing: 0.08em;
 
-  color: #000;
-  mix-blend-mode: difference;
+  color: #fff !important;
+
+  mix-blend-mode: difference !important;
 
   transition: opacity 0.2s ease;
 }
